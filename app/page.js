@@ -1,119 +1,142 @@
 "use client";
 
 import { useState } from "react";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import Positioning from "./components/Positioning";
+import ServicesSection from "./components/ServicesSection";
+import HowItWorks from "./components/HowItWorks";
+import SampleReportPreview from "./components/SampleReportPreview";
+import WhoWeServe from "./components/WhoWeServe";
+import ScopeBuilder from "./components/ScopeBuilder";
+import WhyFacet from "./components/WhyFacet";
+import InsightsSection from "./components/InsightsSection";
+import FaqSection from "./components/FaqSection";
+import AboutSection from "./components/AboutSection";
+import ContactSection from "./components/ContactSection";
+import Footer from "./components/Footer";
+import LegalModals from "./components/LegalModals";
 
 export default function Home() {
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState("idle"); // idle, loading, success, error
-  const [message, setMessage] = useState("");
+  const [quoteModalOpen, setQuoteModalOpen] = useState(false);
+  const [preselectedServiceId, setPreselectedServiceId] = useState("");
+  const [activeLegalModal, setActiveLegalModal] = useState(null); // 'disclaimer' | 'privacy' | 'terms' | null
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!email) return;
+  const handleOpenQuote = (serviceId = "") => {
+    setPreselectedServiceId(serviceId || "");
+    setQuoteModalOpen(true);
+  };
 
-    // Simple email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      setStatus("error");
-      setMessage("Please enter a valid email address.");
-      return;
+  const handleExploreServices = () => {
+    const el = document.getElementById("services");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
     }
+  };
 
-    setStatus("loading");
-    setMessage("");
-
-    // Simulate API registration
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1200));
-      setStatus("success");
-      setMessage("Thank you! You've been added to our waitlist.");
-      setEmail("");
-    } catch (err) {
-      setStatus("error");
-      setMessage("Something went wrong. Please try again.");
+  const handleSelectServiceFromFooter = (serviceId) => {
+    const el = document.getElementById("services");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
     <>
-      {/* Background Glow Orbs */}
-      <div className="glow-bg">
-        <div className="glow-orb orb-1"></div>
-        <div className="glow-orb orb-2"></div>
-      </div>
+      {/* Sticky Header Navigation */}
+      <Navbar onOpenQuote={() => handleOpenQuote()} />
 
-      <div className="center-container">
-        <main className="glass-card main-card animate-fade-in">
-          {/* Header/Logo */}
-          <div className="card-header">
-            <div className="logo">
-              <div className="logo-symbol">
-                <div className="logo-inner"></div>
-              </div>
-              Facet
-            </div>
-            <span className="badge-tag">
-              <span className="badge-dot"></span>
-              PropTech 2.0
-            </span>
+      <main>
+        {/* Hero Section */}
+        <Hero
+          onOpenQuote={() => handleOpenQuote()}
+          onExploreServices={handleExploreServices}
+        />
+
+        {/* Positioning / Problem */}
+        <Positioning />
+
+        {/* 7 Confirmed Service Verticals */}
+        <ServicesSection
+          onSelectForQuote={(serviceId) => handleOpenQuote(serviceId)}
+        />
+
+        {/* How It Works (Methodology) */}
+        <HowItWorks
+          onOpenQuote={() => handleOpenQuote()}
+        />
+
+        {/* What a Report Includes (Sample Report Preview) */}
+        <SampleReportPreview
+          onOpenQuote={() => handleOpenQuote()}
+        />
+
+        {/* Who We Serve (Client Sectors) */}
+        <WhoWeServe
+          onOpenQuote={() => handleOpenQuote()}
+        />
+
+        {/* Embedded Scope Builder Section */}
+        <section id="get-a-quote" className="section-padding bg-page" aria-label="Build Scope">
+          <div className="container-narrow">
+            <ScopeBuilder
+              initialServiceId={preselectedServiceId}
+              isModal={false}
+            />
           </div>
+        </section>
 
-          {/* Main Info */}
-          <div className="card-content">
-            <h1 className="coming-soon-title">Coming Soon</h1>
-            <h2 className="tagline">Real Estate Legal Due Diligence, Decoded.</h2>
-            <p className="description">
-              Facet is building the modern transaction infrastructure for real estate.
-            </p>
+        {/* Why FACET Verify (Core Pillars) */}
+        <WhyFacet />
+
+        {/* Insights / Knowledge Centre */}
+        <InsightsSection
+          onOpenQuote={() => handleOpenQuote()}
+        />
+
+        {/* FAQs */}
+        <FaqSection
+          onOpenQuote={() => handleOpenQuote()}
+        />
+
+        {/* About FACET Verify */}
+        <AboutSection
+          onOpenQuote={() => handleOpenQuote()}
+        />
+
+        {/* Direct Contact Desk */}
+        <ContactSection />
+      </main>
+
+      {/* Comprehensive Footer */}
+      <Footer
+        onOpenLegal={(type) => setActiveLegalModal(type)}
+        onSelectService={handleSelectServiceFromFooter}
+        onOpenQuote={() => handleOpenQuote()}
+      />
+
+      {/* Quick Quote Modal */}
+      {quoteModalOpen && (
+        <div className="modal-overlay" onClick={() => setQuoteModalOpen(false)}>
+          <div
+            className="modal-content"
+            onClick={(e) => e.stopPropagation()}
+            style={{ maxWidth: "820px", padding: 0 }}
+          >
+            <ScopeBuilder
+              initialServiceId={preselectedServiceId}
+              onClose={() => setQuoteModalOpen(false)}
+              isModal={true}
+            />
           </div>
+        </div>
+      )}
 
-          {/* Subscribe Form */}
-          <div className="form-wrapper">
-            <form onSubmit={handleSubmit} className="form-group">
-              <input
-                type="email"
-                placeholder="Enter your professional email"
-                className="input-email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                disabled={status === "loading"}
-                id="email-input"
-                required
-              />
-              <button
-                type="submit"
-                className="btn-submit"
-                disabled={status === "loading"}
-                id="subscribe-button"
-              >
-                {status === "loading" ? "Joining..." : "Notify Me"}
-              </button>
-            </form>
-
-            {message && (
-              <div className={`form-status ${status === "success" ? "status-success" : "status-error"}`} id="form-feedback-message">
-                {status === "success" ? (
-                  <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l5-5z" clipRule="evenodd" />
-                  </svg>
-                ) : (
-                  <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                  </svg>
-                )}
-                {message}
-              </div>
-            )}
-          </div>
-
-          {/* Footer Inside the Card */}
-          <div className="card-footer">
-            <span>&copy; {new Date().getFullYear()} Facet Technologies, Inc.</span>
-            <span className="divider">•</span>
-            <a href="mailto:hello@facetdue.com" className="contact-link">Contact Us</a>
-          </div>
-        </main>
-      </div>
+      {/* Legal Modals (Disclaimer, Privacy, Terms) */}
+      <LegalModals
+        activeModal={activeLegalModal}
+        onClose={() => setActiveLegalModal(null)}
+      />
     </>
   );
 }
