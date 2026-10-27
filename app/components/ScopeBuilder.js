@@ -10,45 +10,54 @@ export default function ScopeBuilder({ initialServiceId = "", onClose, isModal =
   const [errorMessage, setErrorMessage] = useState("");
 
   const [formData, setFormData] = useState({
-    serviceId: initialServiceId || SERVICES[0].id,
-    subjectType: "Property",
+    serviceId: initialServiceId || (SERVICES[0] && SERVICES[0].id) || "property-due-diligence",
+    subjectType: "Property / Land Parcel",
     subjectIdentifier: "",
-    jurisdiction: "Maharashtra",
+    jurisdiction: "United States (Federal & State)",
     urgency: "Standard (5–7 Business Days)",
     transactionValue: "",
     researchAreas: [
       "Title & Deed Chain",
-      "Litigation & Court Disputes"
+      "Litigation & Court Disputes",
+      "Encumbrance & Lien Verification",
     ],
     contactName: "",
     company: "",
     email: "",
     phone: "",
     purpose: "",
-    consent: true
+    ndaRequired: true,
+    consent: true,
   });
 
-  const availableResearchAreas = [
-    "Title & Deed Chain",
-    "Litigation & Court Disputes",
-    "Encumbrance Verification",
-    "Revenue Mutation (7/12 / Patta)",
-    "Promoter Background & DIN",
-    "MCA Charges & Insolvency (IBC)",
-    "RERA Registration & Orders",
-    "Adverse Media & OSINT",
-    "Site Demarcation & Approvals",
-    "UBO & Shareholding Network"
+  const jurisdictionsList = [
+    "United States (Federal & State)",
+    "United Kingdom (England & Wales / Companies House)",
+    "European Union (Cross-Border)",
+    "India - National / Multi-State",
+    ...INDIAN_STATES.map((s) => `India - ${s}`),
+    "Other International Jurisdiction",
   ];
 
-  const handleCheckboxToggle = (area) => {
+  const availableResearchAreas = [
+    { id: "title", label: "Title & Deed Chain", desc: "Historical transfers, registered deeds & conveyance" },
+    { id: "litigation", label: "Litigation & Court Disputes", desc: "Federal, state, district & appellate tribunal dockets" },
+    { id: "encumbrance", label: "Encumbrance & Lien Verification", desc: "Charges, mortgages, registered liens & hypothecations" },
+    { id: "regulatory", label: "Regulatory & Statutory Filings", desc: "Enforcement actions, sanctions & compliance filings" },
+    { id: "promoter", label: "Promoter Background & Directorships", desc: "Corporate track record, DIN, and cross-affiliations" },
+    { id: "ubo", label: "UBO & Beneficial Ownership Network", desc: "Holding chains, shell detection, and cap table vetting" },
+    { id: "insolvency", label: "Bankruptcy & Insolvency Registry", desc: "Chapter 11, IBC insolvency filings, and distress flags" },
+    { id: "osint", label: "Adverse Media & OSINT Intelligence", desc: "Reputational intelligence, controversies, and grey-market checks" },
+  ];
+
+  const handleCheckboxToggle = (label) => {
     setFormData((prev) => {
-      const exists = prev.researchAreas.includes(area);
+      const exists = prev.researchAreas.includes(label);
       return {
         ...prev,
         researchAreas: exists
-          ? prev.researchAreas.filter((a) => a !== area)
-          : [...prev.researchAreas, area]
+          ? prev.researchAreas.filter((a) => a !== label)
+          : [...prev.researchAreas, label],
       };
     });
   };
@@ -58,13 +67,13 @@ export default function ScopeBuilder({ initialServiceId = "", onClose, isModal =
     setErrorMessage("");
     if (step === 1) {
       if (!formData.subjectIdentifier.trim()) {
-        setErrorMessage("Please enter a subject name or identifier (e.g. Survey number, Company name, or Individual name).");
+        setErrorMessage("Please enter a subject identifier (e.g. Survey number, Property address, Company CIN/Name, or Promoter name).");
         return;
       }
       setStep(2);
     } else if (step === 2) {
       if (formData.researchAreas.length === 0) {
-        setErrorMessage("Please select at least one research area for your scope.");
+        setErrorMessage("Please select at least one research module for your scope.");
         return;
       }
       setStep(3);
@@ -76,7 +85,7 @@ export default function ScopeBuilder({ initialServiceId = "", onClose, isModal =
     setErrorMessage("");
 
     if (!formData.contactName.trim() || !formData.email.trim()) {
-      setErrorMessage("Please provide your name and business email.");
+      setErrorMessage("Please provide your name and business email address.");
       return;
     }
 
@@ -88,13 +97,12 @@ export default function ScopeBuilder({ initialServiceId = "", onClose, isModal =
 
     setLoading(true);
 
-    // Simulate reliable scope intake processing
     try {
-      await new Promise((resolve) => setTimeout(resolve, 900));
+      await new Promise((resolve) => setTimeout(resolve, 800));
       setSubmitted(true);
       setLoading(false);
     } catch (err) {
-      setErrorMessage("Unable to submit at this time. Please try again or contact enquiries@facetverify.com.");
+      setErrorMessage("Unable to process request at this time. Please contact enquiries@facetverify.com.");
       setLoading(false);
     }
   };
@@ -102,86 +110,77 @@ export default function ScopeBuilder({ initialServiceId = "", onClose, isModal =
   const currentServiceObj = SERVICES.find((s) => s.id === formData.serviceId) || SERVICES[0];
 
   return (
-    <div className={`scope-builder-card ${isModal ? "is-modal" : ""}`} style={{
-      background: "#FFFFFF",
-      border: "1px solid var(--border-light)",
-      borderRadius: "8px",
-      padding: "2.5rem 2rem",
-      boxShadow: "var(--shadow-md)"
-    }}>
-      {/* Header */}
-      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: "1.75rem" }}>
+    <div
+      className={`w-full bg-white rounded-2xl border border-slate-200 shadow-xl overflow-hidden ${
+        isModal ? "p-6 sm:p-8" : "p-6 sm:p-10"
+      }`}
+    >
+      {/* Top Header */}
+      <div className="flex items-start justify-between pb-6 mb-8 border-b border-slate-200 gap-4">
         <div>
-          <div className="eyebrow" style={{ marginBottom: "0.25rem" }}>
-            Scope Intake & Proposal
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-[#0B2545] font-display font-bold text-[11px] sm:text-[12px] uppercase tracking-wider mb-3">
+            <span className="w-2 h-2 rounded-full bg-sky-500 animate-pulse" />
+            Confidential Scope Intake &amp; Proposal
           </div>
-          <h3 className="heading-md" style={{ color: "var(--navy-primary)" }}>
+          <h2 className="font-display font-extrabold text-[24px] sm:text-[30px] text-[#0B2545] tracking-tight leading-tight">
             Build the Right Due Diligence Scope.
-          </h3>
-          <p style={{ fontSize: "0.9375rem", color: "var(--text-muted)" }}>
-            Tell us what you need to verify. We will evaluate accessible records and return a scoped proposal and fee estimate.
+          </h2>
+          <p className="font-body text-[15px] sm:text-[16px] text-[#4B5563] mt-2 leading-relaxed">
+            Tell us what you need to verify. We will evaluate accessible statutory repositories and return a formal scope proposal and fixed-fee estimate.
           </p>
         </div>
+
         {isModal && onClose && (
           <button
             type="button"
-            className="modal-close-btn"
             onClick={onClose}
             aria-label="Close"
+            className="w-9 h-9 rounded-full bg-slate-100 text-[#0B2545] hover:bg-slate-200 transition-colors flex items-center justify-center shrink-0 cursor-pointer"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
+            <span className="material-symbols-outlined text-[20px]">close</span>
           </button>
         )}
       </div>
 
       {/* Success State */}
       {submitted ? (
-        <div style={{
-          padding: "2.5rem 1.5rem",
-          textAlign: "center",
-          background: "var(--bg-page)",
-          borderRadius: "6px",
-          border: "1px solid var(--border-light)"
-        }}>
-          <div style={{
-            width: "3.5rem",
-            height: "3.5rem",
-            borderRadius: "50%",
-            background: "var(--verified-green-bg)",
-            color: "var(--verified-green)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            margin: "0 auto 1.25rem auto"
-          }}>
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <polyline points="20 6 9 17 4 12"></polyline>
-            </svg>
+        <div className="py-12 px-4 text-center max-w-xl mx-auto">
+          <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-5 shadow-sm">
+            <span className="material-symbols-outlined text-[36px]">verified</span>
           </div>
-          <h4 style={{ fontSize: "1.25rem", color: "var(--navy-primary)", fontWeight: "700", marginBottom: "0.5rem" }}>
-            Thank You. Your Request Has Been Received.
-          </h4>
-          <p style={{ fontSize: "0.9375rem", color: "var(--text-body)", maxWidth: "540px", margin: "0 auto 1.5rem auto", lineHeight: "1.6" }}>
-            Our team will review your specified jurisdiction ({formData.jurisdiction}), subject parameters, and research modules, and contact you within 24 business hours to clarify scope, deliverables, timeline and fixed fee.
+
+          <h3 className="font-display font-extrabold text-[26px] text-[#0B2545] mb-3">
+            Requirement Received Successfully
+          </h3>
+
+          <p className="font-body text-[16px] text-[#4B5563] leading-relaxed mb-6">
+            Thank you, <strong className="text-[#0B2545]">{formData.contactName}</strong>. Our investigative intelligence desk will review your target parameters across{" "}
+            <strong className="text-[#0B2545]">{formData.jurisdiction}</strong> and prepare a formal scope schedule, deliverables list, turnaround time, and fee estimate within 24 business hours.
           </p>
 
-          <div style={{
-            background: "#FFFFFF",
-            padding: "1rem",
-            borderRadius: "4px",
-            border: "1px solid var(--border-subtle)",
-            maxWidth: "460px",
-            margin: "0 auto 1.5rem auto",
-            textAlign: "left",
-            fontSize: "0.8125rem",
-            color: "var(--text-muted)"
-          }}>
-            <div><strong style={{ color: "var(--navy-primary)" }}>Service:</strong> {currentServiceObj.title}</div>
-            <div><strong style={{ color: "var(--navy-primary)" }}>Subject:</strong> {formData.subjectIdentifier} ({formData.subjectType})</div>
-            <div><strong style={{ color: "var(--navy-primary)" }}>Contact:</strong> {formData.contactName} ({formData.email})</div>
+          <div className="p-5 bg-slate-50 rounded-xl border border-slate-200 text-left text-[14px] text-slate-700 space-y-2 mb-8">
+            <div className="flex items-center justify-between pb-2 border-b border-slate-200">
+              <span className="font-bold text-[#0B2545]">Inquiry Reference:</span>
+              <span className="font-mono text-blue-600 font-semibold">
+                FV-{(Date.now() % 1000000).toString().padStart(6, "0")}
+              </span>
+            </div>
+            <div>
+              <span className="font-semibold text-slate-500">Service:</span>{" "}
+              <span className="font-medium text-[#0B2545]">{currentServiceObj ? currentServiceObj.title : formData.serviceId}</span>
+            </div>
+            <div>
+              <span className="font-semibold text-slate-500">Subject:</span>{" "}
+              <span className="font-medium text-[#0B2545]">{formData.subjectIdentifier} ({formData.subjectType})</span>
+            </div>
+            <div>
+              <span className="font-semibold text-slate-500">Primary Jurisdiction:</span>{" "}
+              <span className="font-medium text-[#0B2545]">{formData.jurisdiction}</span>
+            </div>
+            <div>
+              <span className="font-semibold text-slate-500">Contact Email:</span>{" "}
+              <span className="font-medium text-[#0B2545]">{formData.email}</span>
+            </div>
           </div>
 
           <button
@@ -191,7 +190,7 @@ export default function ScopeBuilder({ initialServiceId = "", onClose, isModal =
               setStep(1);
               if (isModal && onClose) onClose();
             }}
-            className="btn btn-outline-dark btn-sm"
+            className="px-8 py-3.5 rounded-xl bg-[#0B2545] text-white font-display font-bold text-[15px] hover:bg-[#134074] transition-all shadow-md cursor-pointer"
           >
             Submit Another Requirement
           </button>
@@ -199,167 +198,231 @@ export default function ScopeBuilder({ initialServiceId = "", onClose, isModal =
       ) : (
         <div>
           {/* Step Track */}
-          <div className="step-indicator-wrapper">
-            <div className="step-indicator-track">
-              <div
-                className="step-indicator-progress"
-                style={{ width: step === 1 ? "15%" : step === 2 ? "65%" : "100%" }}
-              ></div>
-            </div>
+          <div className="mb-8">
+            <div className="grid grid-cols-3 gap-2 sm:gap-4 relative">
+              {/* Step 1 */}
+              <button
+                type="button"
+                onClick={() => setStep(1)}
+                className={`flex flex-col sm:flex-row items-center gap-2 p-3 rounded-xl border text-left transition-all ${
+                  step === 1
+                    ? "bg-[#0B2545] text-white border-[#0B2545] shadow-sm"
+                    : step > 1
+                    ? "bg-slate-50 text-slate-700 border-slate-200 hover:border-slate-300"
+                    : "bg-white text-slate-400 border-slate-200"
+                }`}
+              >
+                <div
+                  className={`w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs shrink-0 ${
+                    step === 1
+                      ? "bg-white text-[#0B2545]"
+                      : step > 1
+                      ? "bg-emerald-500 text-white"
+                      : "bg-slate-200 text-slate-500"
+                  }`}
+                >
+                  {step > 1 ? "✓" : "1"}
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[12px] sm:text-[13px] font-display font-bold leading-tight">
+                    Subject &amp; Vertical
+                  </span>
+                  <span className={`text-[11px] hidden sm:inline ${step === 1 ? "text-blue-200" : "text-slate-400"}`}>
+                    Classification &amp; Details
+                  </span>
+                </div>
+              </button>
 
-            <div className={`step-node ${step === 1 ? "active" : step > 1 ? "completed" : ""}`}>
-              <div className="step-bubble">1</div>
-              <span className="step-label">Subject & Type</span>
-            </div>
+              {/* Step 2 */}
+              <button
+                type="button"
+                onClick={() => {
+                  if (formData.subjectIdentifier.trim()) setStep(2);
+                }}
+                className={`flex flex-col sm:flex-row items-center gap-2 p-3 rounded-xl border text-left transition-all ${
+                  step === 2
+                    ? "bg-[#0B2545] text-white border-[#0B2545] shadow-sm"
+                    : step > 2
+                    ? "bg-slate-50 text-slate-700 border-slate-200 hover:border-slate-300"
+                    : "bg-white text-slate-400 border-slate-200"
+                }`}
+              >
+                <div
+                  className={`w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs shrink-0 ${
+                    step === 2
+                      ? "bg-white text-[#0B2545]"
+                      : step > 2
+                      ? "bg-emerald-500 text-white"
+                      : "bg-slate-200 text-slate-500"
+                  }`}
+                >
+                  {step > 2 ? "✓" : "2"}
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[12px] sm:text-[13px] font-display font-bold leading-tight">
+                    Scope &amp; Modules
+                  </span>
+                  <span className={`text-[11px] hidden sm:inline ${step === 2 ? "text-blue-200" : "text-slate-400"}`}>
+                    Jurisdiction &amp; Checks
+                  </span>
+                </div>
+              </button>
 
-            <div className={`step-node ${step === 2 ? "active" : step > 2 ? "completed" : ""}`}>
-              <div className="step-bubble">2</div>
-              <span className="step-label">Jurisdiction & Modules</span>
-            </div>
-
-            <div className={`step-node ${step === 3 ? "active" : ""}`}>
-              <div className="step-bubble">3</div>
-              <span className="step-label">Timing & Contact</span>
+              {/* Step 3 */}
+              <button
+                type="button"
+                onClick={() => {
+                  if (formData.subjectIdentifier.trim() && formData.researchAreas.length > 0) setStep(3);
+                }}
+                className={`flex flex-col sm:flex-row items-center gap-2 p-3 rounded-xl border text-left transition-all ${
+                  step === 3
+                    ? "bg-[#0B2545] text-white border-[#0B2545] shadow-sm"
+                    : "bg-white text-slate-400 border-slate-200"
+                }`}
+              >
+                <div
+                  className={`w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs shrink-0 ${
+                    step === 3 ? "bg-white text-[#0B2545]" : "bg-slate-200 text-slate-500"
+                  }`}
+                >
+                  3
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[12px] sm:text-[13px] font-display font-bold leading-tight">
+                    Timing &amp; Contact
+                  </span>
+                  <span className={`text-[11px] hidden sm:inline ${step === 3 ? "text-blue-200" : "text-slate-400"}`}>
+                    Delivery &amp; Proposal
+                  </span>
+                </div>
+              </button>
             </div>
           </div>
 
           {/* Error Notice */}
           {errorMessage && (
-            <div style={{
-              padding: "0.75rem 1rem",
-              background: "rgba(217, 45, 58, 0.08)",
-              border: "1px solid rgba(217, 45, 58, 0.25)",
-              borderRadius: "4px",
-              color: "var(--risk-red)",
-              fontSize: "0.875rem",
-              marginBottom: "1.25rem",
-              display: "flex",
-              alignItems: "center",
-              gap: "0.5rem"
-            }}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-              </svg>
+            <div className="p-4 mb-6 rounded-xl bg-red-50 border border-red-200 text-red-700 text-[14px] flex items-center gap-3">
+              <span className="material-symbols-outlined text-[20px] text-red-500 shrink-0">error</span>
               <span>{errorMessage}</span>
             </div>
           )}
 
           {/* Form Content */}
           <form onSubmit={step === 3 ? handleSubmit : handleNext}>
-            {/* Step 1: Subject & Service */}
+            {/* STEP 1: SUBJECT & VERTICAL */}
             {step === 1 && (
-              <div>
-                <div className="form-group">
-                  <label className="form-label" htmlFor="scope-service-select">
-                    Service Vertical Required <span className="form-label-required">*</span>
+              <div className="space-y-6">
+                <div>
+                  <label htmlFor="scope-service-select" className="block text-xs font-bold uppercase tracking-wider text-[#0B2545] mb-2">
+                    Service Vertical Required <span className="text-red-500">*</span>
                   </label>
                   <select
                     id="scope-service-select"
-                    className="form-select"
                     value={formData.serviceId}
                     onChange={(e) => setFormData({ ...formData, serviceId: e.target.value })}
+                    className="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#0B2545] font-medium text-[15px] focus:bg-white focus:border-[#0B2545] focus:ring-2 focus:ring-[#0B2545]/10 outline-none transition-all cursor-pointer"
                   >
                     {SERVICES.map((s) => (
                       <option key={s.id} value={s.id}>
-                        {s.number}. {s.title}
+                        {s.number ? `${s.number}. ` : ""}{s.title}
                       </option>
                     ))}
                   </select>
                 </div>
 
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="scope-subject-type">
-                      Subject Classification <span className="form-label-required">*</span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="scope-subject-type" className="block text-xs font-bold uppercase tracking-wider text-[#0B2545] mb-2">
+                      Subject Classification <span className="text-red-500">*</span>
                     </label>
                     <select
                       id="scope-subject-type"
-                      className="form-select"
                       value={formData.subjectType}
                       onChange={(e) => setFormData({ ...formData, subjectType: e.target.value })}
+                      className="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#0B2545] font-medium text-[15px] focus:bg-white focus:border-[#0B2545] focus:ring-2 focus:ring-[#0B2545]/10 outline-none transition-all cursor-pointer"
                     >
-                      <option value="Property">Property / Land Parcel</option>
-                      <option value="Individual">Individual / Promoter</option>
-                      <option value="Company">Corporate / Target Entity</option>
-                      <option value="Vendor">Vendor / Supplier</option>
-                      <option value="Transaction">M&A Transaction</option>
-                      <option value="Asset">Asset & Beneficial Interest</option>
+                      <option value="Property / Land Parcel">Property / Land Parcel</option>
+                      <option value="Individual / Promoter">Individual / Promoter / Key Person</option>
+                      <option value="Corporate Entity / Target Company">Corporate Entity / Target Company</option>
+                      <option value="Vendor / Supply Chain Entity">Vendor / Supply Chain Entity</option>
+                      <option value="M&A Transaction Scope">M&amp;A Transaction Scope</option>
+                      <option value="Asset & Beneficial Holding">Asset &amp; Beneficial Holding</option>
                     </select>
                   </div>
 
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="scope-identifier">
-                      Identifier / Reference <span className="form-label-required">*</span>
+                  <div>
+                    <label htmlFor="scope-identifier" className="block text-xs font-bold uppercase tracking-wider text-[#0B2545] mb-2">
+                      Target Identifier or Name <span className="text-red-500">*</span>
                     </label>
                     <input
                       id="scope-identifier"
                       type="text"
-                      className="form-input"
                       placeholder="e.g. Survey No. 182, or CIN / Company Name"
                       value={formData.subjectIdentifier}
                       onChange={(e) => setFormData({ ...formData, subjectIdentifier: e.target.value })}
+                      className="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#0B2545] font-medium text-[15px] focus:bg-white focus:border-[#0B2545] focus:ring-2 focus:ring-[#0B2545]/10 outline-none transition-all"
                     />
                   </div>
                 </div>
 
-                <div className="form-group">
-                  <label className="form-label" htmlFor="scope-purpose">
-                    Transaction Context / Decision Purpose
-                    <span className="form-hint">(Helps us scope relevant risks)</span>
-                  </label>
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <label htmlFor="scope-purpose" className="block text-xs font-bold uppercase tracking-wider text-[#0B2545]">
+                      Transaction Context &amp; Purpose
+                    </label>
+                    <span className="text-xs text-slate-400 font-medium">Optional context helps tailor risk parameters</span>
+                  </div>
                   <textarea
                     id="scope-purpose"
-                    className="form-textarea"
                     rows="3"
-                    placeholder="e.g. Preparing for outright acquisition of commercial plot; need independent confirmation of title chain and any pending partition claims."
+                    placeholder="e.g. Preparing for acquisition of commercial parcel; need independent verification of title deed trail, municipal sanctions, and pending partition claims."
                     value={formData.purpose}
                     onChange={(e) => setFormData({ ...formData, purpose: e.target.value })}
-                  ></textarea>
+                    className="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#0B2545] text-[15px] focus:bg-white focus:border-[#0B2545] focus:ring-2 focus:ring-[#0B2545]/10 outline-none transition-all resize-none"
+                  />
                 </div>
 
-                <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1.5rem" }}>
-                  <button type="submit" className="btn btn-primary">
-                    Next: Jurisdiction & Scope
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <line x1="5" y1="12" x2="19" y2="12"></line>
-                      <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
+                <div className="flex justify-end pt-4">
+                  <button
+                    type="submit"
+                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#0B2545] text-white font-display font-bold text-[15px] hover:bg-[#134074] transition-all shadow-md hover:shadow-lg cursor-pointer"
+                  >
+                    <span>Next: Jurisdiction &amp; Scope Modules</span>
+                    <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
                   </button>
                 </div>
               </div>
             )}
 
-            {/* Step 2: Jurisdiction & Modules */}
+            {/* STEP 2: JURISDICTION & MODULES */}
             {step === 2 && (
-              <div>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", marginBottom: "1.25rem" }}>
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="scope-jurisdiction">
-                      Primary State / Jurisdiction <span className="form-label-required">*</span>
+              <div className="space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="scope-jurisdiction" className="block text-xs font-bold uppercase tracking-wider text-[#0B2545] mb-2">
+                      Primary Target Jurisdiction <span className="text-red-500">*</span>
                     </label>
                     <select
                       id="scope-jurisdiction"
-                      className="form-select"
                       value={formData.jurisdiction}
                       onChange={(e) => setFormData({ ...formData, jurisdiction: e.target.value })}
+                      className="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#0B2545] font-medium text-[15px] focus:bg-white focus:border-[#0B2545] focus:ring-2 focus:ring-[#0B2545]/10 outline-none transition-all cursor-pointer"
                     >
-                      {INDIAN_STATES.map((state) => (
-                        <option key={state} value={state}>{state}</option>
+                      {jurisdictionsList.map((j) => (
+                        <option key={j} value={j}>{j}</option>
                       ))}
                     </select>
                   </div>
 
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="scope-urgency">
+                  <div>
+                    <label htmlFor="scope-urgency" className="block text-xs font-bold uppercase tracking-wider text-[#0B2545] mb-2">
                       Required Turnaround Cadence
                     </label>
                     <select
                       id="scope-urgency"
-                      className="form-select"
                       value={formData.urgency}
                       onChange={(e) => setFormData({ ...formData, urgency: e.target.value })}
+                      className="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#0B2545] font-medium text-[15px] focus:bg-white focus:border-[#0B2545] focus:ring-2 focus:ring-[#0B2545]/10 outline-none transition-all cursor-pointer"
                     >
                       <option value="Standard (5–7 Business Days)">Standard (5–7 Business Days)</option>
                       <option value="Priority (3–4 Business Days)">Priority (3–4 Business Days)</option>
@@ -368,185 +431,200 @@ export default function ScopeBuilder({ initialServiceId = "", onClose, isModal =
                   </div>
                 </div>
 
-                <div className="form-group">
-                  <label className="form-label">
-                    Select Research Modules to Include <span className="form-label-required">*</span>
-                  </label>
-                  <div style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-                    gap: "0.625rem",
-                    background: "var(--bg-page)",
-                    padding: "1rem",
-                    borderRadius: "6px",
-                    border: "1px solid var(--border-light)"
-                  }}>
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <label className="block text-xs font-bold uppercase tracking-wider text-[#0B2545]">
+                      Select Research Modules Required <span className="text-red-500">*</span>
+                    </label>
+                    <span className="text-xs text-blue-600 font-semibold">
+                      {formData.researchAreas.length} selected
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {availableResearchAreas.map((area) => {
-                      const checked = formData.researchAreas.includes(area);
+                      const isSelected = formData.researchAreas.includes(area.label);
                       return (
-                        <label
-                          key={area}
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "0.625rem",
-                            fontSize: "0.8125rem",
-                            color: "var(--text-body)",
-                            cursor: "pointer"
-                          }}
+                        <div
+                          key={area.id}
+                          onClick={() => handleCheckboxToggle(area.label)}
+                          className={`p-3.5 rounded-xl border text-left cursor-pointer transition-all flex items-start gap-3 ${
+                            isSelected
+                              ? "bg-blue-50/70 border-[#0B2545] text-[#0B2545] shadow-xs"
+                              : "bg-white border-slate-200 text-slate-700 hover:border-slate-300"
+                          }`}
                         >
-                          <input
-                            type="checkbox"
-                            checked={checked}
-                            onChange={() => handleCheckboxToggle(area)}
-                            style={{ accentColor: "var(--facet-red)" }}
-                          />
-                          <span>{area}</span>
-                        </label>
+                          <div
+                            className={`w-5 h-5 rounded flex items-center justify-center text-xs mt-0.5 shrink-0 transition-colors ${
+                              isSelected ? "bg-[#0B2545] text-white" : "border border-slate-300 bg-white"
+                            }`}
+                          >
+                            {isSelected && "✓"}
+                          </div>
+                          <div>
+                            <span className="font-display font-bold text-[14px] block leading-snug">
+                              {area.label}
+                            </span>
+                            <span className="font-body text-[12px] text-slate-500 leading-tight block mt-0.5">
+                              {area.desc}
+                            </span>
+                          </div>
+                        </div>
                       );
                     })}
                   </div>
                 </div>
 
-                <div className="form-group">
-                  <label className="form-label" htmlFor="scope-transaction-value">
-                    Approximate Transaction Value Band
-                    <span className="form-hint">(Optional — assists in materiality calibration)</span>
-                  </label>
-                  <input
-                    id="scope-transaction-value"
-                    type="text"
-                    className="form-input"
-                    placeholder="e.g. ₹10 Cr – ₹50 Cr, or Institutional Investment"
-                    value={formData.transactionValue}
-                    onChange={(e) => setFormData({ ...formData, transactionValue: e.target.value })}
-                  />
-                </div>
-
-                <div style={{ display: "flex", justifyContent: "space-between", marginTop: "1.5rem" }}>
+                <div className="flex items-center justify-between pt-4">
                   <button
                     type="button"
                     onClick={() => setStep(1)}
-                    className="btn btn-outline-dark"
+                    className="inline-flex items-center gap-1.5 px-5 py-3 rounded-xl bg-slate-100 text-slate-700 font-display font-semibold text-[14px] hover:bg-slate-200 transition-all cursor-pointer"
                   >
-                    Back
+                    <span className="material-symbols-outlined text-[18px]">arrow_back</span>
+                    <span>Back</span>
                   </button>
-                  <button type="submit" className="btn btn-primary">
-                    Next: Contact Details
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <line x1="5" y1="12" x2="19" y2="12"></line>
-                      <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
+
+                  <button
+                    type="submit"
+                    className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#0B2545] text-white font-display font-bold text-[15px] hover:bg-[#134074] transition-all shadow-md hover:shadow-lg cursor-pointer"
+                  >
+                    <span>Next: Timing &amp; Contact</span>
+                    <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
                   </button>
                 </div>
               </div>
             )}
 
-            {/* Step 3: Contact & Submission */}
+            {/* STEP 3: CONTACT & CONFIRMATION */}
             {step === 3 && (
-              <div>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="scope-name">
-                      Full Name <span className="form-label-required">*</span>
+              <div className="space-y-6">
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+                  <div>
+                    <span className="text-xs uppercase font-bold text-slate-400 block tracking-wider">Scoped Service</span>
+                    <span className="font-display font-bold text-[#0B2545] text-[15px]">
+                      {currentServiceObj ? currentServiceObj.title : formData.serviceId}
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setStep(1)}
+                    className="text-xs font-bold text-blue-600 hover:text-blue-800 underline cursor-pointer"
+                  >
+                    Change
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="scope-contact-name" className="block text-xs font-bold uppercase tracking-wider text-[#0B2545] mb-2">
+                      Full Name <span className="text-red-500">*</span>
                     </label>
                     <input
-                      id="scope-name"
+                      id="scope-contact-name"
                       type="text"
-                      className="form-input"
-                      placeholder="e.g. Rajesh Khurana"
+                      placeholder="e.g. Eleanor Vance"
                       value={formData.contactName}
                       onChange={(e) => setFormData({ ...formData, contactName: e.target.value })}
-                      required
+                      className="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#0B2545] font-medium text-[15px] focus:bg-white focus:border-[#0B2545] focus:ring-2 focus:ring-[#0B2545]/10 outline-none transition-all"
                     />
                   </div>
 
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="scope-company">
-                      Organization / Firm Name
+                  <div>
+                    <label htmlFor="scope-company" className="block text-xs font-bold uppercase tracking-wider text-[#0B2545] mb-2">
+                      Organization / Law Firm
                     </label>
                     <input
                       id="scope-company"
                       type="text"
-                      className="form-input"
-                      placeholder="e.g. Apex Realty Capital / Legal Counsel"
+                      placeholder="e.g. Apex Capital Partners LLC"
                       value={formData.company}
                       onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                      className="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#0B2545] font-medium text-[15px] focus:bg-white focus:border-[#0B2545] focus:ring-2 focus:ring-[#0B2545]/10 outline-none transition-all"
                     />
                   </div>
-                </div>
 
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="scope-email">
-                      Business Email Address <span className="form-label-required">*</span>
+                  <div>
+                    <label htmlFor="scope-email" className="block text-xs font-bold uppercase tracking-wider text-[#0B2545] mb-2">
+                      Corporate / Work Email <span className="text-red-500">*</span>
                     </label>
                     <input
                       id="scope-email"
                       type="email"
-                      className="form-input"
-                      placeholder="rajesh@firm.com"
+                      placeholder="e.g. e.vance@apexcapital.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      required
+                      className="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#0B2545] font-medium text-[15px] focus:bg-white focus:border-[#0B2545] focus:ring-2 focus:ring-[#0B2545]/10 outline-none transition-all"
                     />
                   </div>
 
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="scope-phone">
-                      Contact Phone / Mobile
+                  <div>
+                    <label htmlFor="scope-phone" className="block text-xs font-bold uppercase tracking-wider text-[#0B2545] mb-2">
+                      Phone Number (Direct or Mobile)
                     </label>
                     <input
                       id="scope-phone"
                       type="tel"
-                      className="form-input"
-                      placeholder="+91 98200 XXXXX"
+                      placeholder="e.g. +1 (415) 800-2490 or +91 98200..."
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#0B2545] font-medium text-[15px] focus:bg-white focus:border-[#0B2545] focus:ring-2 focus:ring-[#0B2545]/10 outline-none transition-all"
                     />
                   </div>
                 </div>
 
-                {/* Consent & Data Privacy */}
-                <div style={{
-                  padding: "1rem",
-                  background: "var(--bg-page)",
-                  borderRadius: "4px",
-                  border: "1px solid var(--border-light)",
-                  marginBottom: "1.5rem"
-                }}>
-                  <label style={{ display: "flex", alignItems: "flex-start", gap: "0.625rem", cursor: "pointer", fontSize: "0.8125rem", color: "var(--text-body)", lineHeight: "1.4" }}>
+                <div className="pt-2 space-y-3">
+                  <label className="flex items-start gap-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={formData.ndaRequired}
+                      onChange={(e) => setFormData({ ...formData, ndaRequired: e.target.checked })}
+                      className="mt-1 w-4 h-4 rounded text-[#0B2545] focus:ring-[#0B2545]"
+                    />
+                    <span className="text-[13px] text-slate-600 leading-snug">
+                      We require an executed bilateral Non-Disclosure Agreement (NDA) before disclosing confidential targets or party identities.
+                    </span>
+                  </label>
+
+                  <label className="flex items-start gap-3 cursor-pointer">
                     <input
                       type="checkbox"
                       checked={formData.consent}
                       onChange={(e) => setFormData({ ...formData, consent: e.target.checked })}
-                      style={{ accentColor: "var(--facet-red)", marginTop: "2px" }}
+                      className="mt-1 w-4 h-4 rounded text-[#0B2545] focus:ring-[#0B2545]"
                     />
-                    <span>
-                      I authorize FACET Verify to review these engagement details and contact me regarding this scoped due diligence requirement. I understand that all shared information is handled under strict confidentiality.
+                    <span className="text-[13px] text-slate-600 leading-snug">
+                      I understand that FACET Verify provides public-record investigative intelligence and research for decision-support, not formal legal opinions or title certifications.
                     </span>
                   </label>
                 </div>
 
-                {/* Pricing / Proposal Note */}
-                <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginBottom: "1.25rem", fontStyle: "italic" }}>
-                  * We do not display automated unvalidated price ranges. Our senior team evaluates the accessibility of records in your specified jurisdiction and delivers a transparent proposal within 24 business hours.
-                </div>
-
-                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <div className="flex items-center justify-between pt-4">
                   <button
                     type="button"
                     onClick={() => setStep(2)}
-                    className="btn btn-outline-dark"
+                    className="inline-flex items-center gap-1.5 px-5 py-3 rounded-xl bg-slate-100 text-slate-700 font-display font-semibold text-[14px] hover:bg-slate-200 transition-all cursor-pointer"
                   >
-                    Back
+                    <span className="material-symbols-outlined text-[18px]">arrow_back</span>
+                    <span>Back</span>
                   </button>
+
                   <button
                     type="submit"
-                    className="btn btn-primary"
-                    disabled={loading || !formData.consent}
+                    disabled={loading}
+                    className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#0B2545] text-white font-display font-bold text-[15px] hover:bg-[#134074] transition-all shadow-md hover:shadow-lg disabled:opacity-60 cursor-pointer"
                   >
-                    {loading ? "Transmitting Scope..." : "Request a Scoped Quote"}
+                    {loading ? (
+                      <>
+                        <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        <span>Evaluating Parameters...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Request Scoped Due Diligence Proposal</span>
+                        <span className="material-symbols-outlined text-[18px]">send</span>
+                      </>
+                    )}
                   </button>
                 </div>
               </div>
