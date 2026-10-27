@@ -21,11 +21,12 @@ export const metadata = {
   authors: [{ name: "FACET Verify" }],
   icons: {
     icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/logo-mark.svg", type: "image/svg+xml" }
+      { url: "/icon.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.svg", type: "image/svg+xml" }
     ],
-    shortcut: "/favicon.svg",
-    apple: "/favicon.svg"
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png"
   },
   openGraph: {
     title: "FACET Verify | Due Diligence & Investigative Intelligence",
@@ -41,8 +42,10 @@ export default function RootLayout({ children }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon.png" type="image/png" sizes="32x32" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="alternate icon" href="/logo-mark.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
         {/* Modern, Highly Readable Typography: Plus Jakarta Sans & Inter */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
