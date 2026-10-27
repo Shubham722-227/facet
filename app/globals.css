@@ -1,4 +1,4 @@
-/* Base Reset & Core Styles matching Design Inspiration */
+/* Base Reset & Core Styles matching Hyperdigital.in Inspiration & website.md */
 @layer base {
   html, body {
     margin: 0;
@@ -6,34 +6,39 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
   body {
     overscroll-behavior: none;
     background-color: #F7F8FA;
-    color: #121c2a;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1F2937;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
   }
 }
 
 :root {
-  --primary: #001026;
-  --primary-container: #0b2545;
-  --on-primary: #ffffff;
-  --secondary: #0050cc;
-  --secondary-container: #0266ff;
-  --accent-electric: #0EA5E9;
-  --verification-green: #10B981;
-  --evidence-flag: #EF4444;
+  --primary: #0B2545;
+  --primary-container: #133966;
+  --facet-red: #0B2545;
+  --facet-red-hover: #134074;
+  --secondary: #1F2937;
+  --secondary-container: #374151;
+  --accent-electric: #134074;
+  --verification-green: #26865A;
+  --warning-amber: #C98316;
+  --evidence-flag: #D92D3A;
   --surface-canvas: #F7F8FA;
   --surface-card: #FFFFFF;
-  --surface-container-low: #eff4ff;
-  --surface-container: #e6eeff;
-  --surface-container-high: #dee9fc;
-  --surface-container-highest: #d9e3f6;
-  --on-surface: #121c2a;
-  --on-surface-variant: #44474e;
-  --border-subtle: #E2E8F0;
-  --border-active: #CBD5E1;
+  --surface-dark: #0B2545;
+  --surface-dark-card: #133966;
+  --on-surface: #1F2937;
+  --on-surface-variant: #4B5563;
+  --on-surface-muted: #6B7280;
+  --border-subtle: #E5E7EB;
+  --border-active: #D1D5DB;
+  --border-dark: rgba(255, 255, 255, 0.12);
 }
 
 /* Material Symbols Outlined Configuration */
@@ -54,56 +59,114 @@
   vertical-align: middle;
 }
 
-/* Animations */
-@keyframes spinSlow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Hyperdigital-inspired Sleek Cards & Glow Accents */
+.hyper-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 1rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(11, 20, 34, 0.04), 0 4px 12px rgba(11, 20, 34, 0.02);
 }
 
-.animate-spin-slow {
-  animation: spinSlow 24s linear infinite;
+.hyper-card:hover {
+  border-color: #CBD5E1;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(11, 20, 34, 0.08), 0 2px 6px rgba(11, 20, 34, 0.04);
 }
 
-/* Glassmorphic utilities */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.85);
+.hyper-dark-card {
+  background: #142235;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hyper-dark-card:hover {
+  border-color: rgba(229, 43, 50, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* Vcheck-Inspired Glassmorphic Design System */
+.vcheck-glass {
+  background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 20px rgba(11, 37, 69, 0.06);
 }
 
-.dark-glass-panel {
-  background: rgba(11, 37, 69, 0.7);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+.vcheck-glass-dark {
+  background: rgba(11, 37, 69, 0.8);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.vcheck-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  border-radius: 1.25rem;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 10px rgba(11, 37, 69, 0.04);
+}
+
+.vcheck-card:hover {
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(19, 64, 116, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(11, 37, 69, 0.1), 0 2px 8px rgba(11, 37, 69, 0.04);
+}
+
+.vcheck-card-dark {
+  background: rgba(19, 57, 102, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1.25rem;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.vcheck-card-dark:hover {
+  background: rgba(19, 57, 102, 0.8);
+  border-color: rgba(123, 185, 255, 0.35);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Glass Badge styling */
+.badge-glass {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
 }
 
 /* Scrollbar subtle styling */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #F7F8FA;
+  background: #F8FAFC;
 }
 ::-webkit-scrollbar-thumb {
   background: #CBD5E1;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #94A3B8;
-}
-
-/* Interactive card hover */
-.intel-card-hover {
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.intel-card-hover:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 36px -10px rgba(11, 37, 69, 0.08);
 }

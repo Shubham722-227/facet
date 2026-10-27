@@ -417,7 +417,7 @@ export const WHO_WE_SERVE = [
     title: "Law Firms & Legal Teams",
     badge: "Legal Support",
     headline: "Rigorous Research That Complements Legal Analysis.",
-    description: "We serve as an investigative research partner for counsel handling complex M&A, cross-border dispute resolution, real estate title clearance, and asset enforcement.",
+    description: "We serve as an investigative research partner for counsel handling complex M&A, multi-jurisdiction dispute resolution, real estate title clearance, and asset enforcement.",
     useCases: [
       "Multi-jurisdictional court search and case chronology building",
       "Property revenue record and mutation history extraction",
@@ -582,16 +582,16 @@ export const FAQS = [
     answer: "To start, we require the core identifiers of the subject: for a property, the survey number, village/taluka, district, and copies of available prior deeds; for an individual, full name, father's name, approximate age, and location; for a company, the CIN, corporate name, and registered address. We also discuss the specific transaction context and decision goals."
   },
   {
-    question: "Are all records in India available online?",
-    answer: "No. While India has made significant strides in land record digitisation and the e-Courts mission, substantial historical records (particularly deeds prior to 2002, revenue mutation registers, and municipal sanction files) frequently reside in physical record rooms (Taluka Tehsils and Sub-Registrar Offices). Where required by scope, FACET Verify coordinates on-the-ground archival inspection."
+    question: "Which geographies and jurisdictions does FACET Verify cover?",
+    answer: "FACET Verify provides comprehensive public-record verification and investigative intelligence across the United States, Europe, the United Kingdom, and India. Our research teams systematically navigate US federal (PACER, SEC, UCC) and state corporate registries, UK Companies House and European Business Registers (EBR), and Indian national (MCA-21, e-Courts) and regional archival registries."
   },
   {
     question: "How do you handle confidential client and transaction data?",
     answer: "Confidentiality is fundamental to our practice. All client engagements are executed under binding Non-Disclosure Agreements (NDAs). Client identity is strictly decoupled from on-the-ground research queries to prevent tipping off counterparties. All data is encrypted in transit and at rest, and stored under strict access-control protocols."
   },
   {
-    question: "Can you investigate subjects or companies located outside India?",
-    answer: "Yes, on a scoped case-by-case basis. We undertake cross-border corporate intelligence and counterparty diligence where lawful access, public registers, and verified international research partnerships permit. We confirm international scope during the initial intake consultation."
+    question: "How do you navigate country-specific records across different legal systems?",
+    answer: "We perform structured subject disambiguation, beneficial ownership tracing, and timeline alignment tailored to each specific country. Across the US, Europe, the UK, and India, we navigate local statutory registries, corporate disclosures, and on-the-ground archival inspection, identifying undisclosed liens, related-party transactions, and court exposure according to each jurisdiction's legal frameworks."
   },
   {
     question: "Does your report prove fraud or corporate misconduct?",
@@ -599,18 +599,24 @@ export const FAQS = [
   }
 ];
 
+export const GLOBAL_JURISDICTIONS = [
+  "United States (Federal & All 50 States)",
+  "United Kingdom & Crown Dependencies",
+  "European Union & Western Europe",
+  "India (National & All States)",
+  "Multi-Country / Global Corridors (US, EU, UK & India)",
+  "Asia-Pacific & Middle East (Scoped Mandates)"
+];
+
 export const INDIAN_STATES = [
-  "Maharashtra",
-  "Karnataka",
-  "Delhi NCR",
-  "Tamil Nadu",
-  "Telangana",
-  "Gujarat",
-  "Uttar Pradesh",
-  "Haryana",
-  "West Bengal",
-  "Rajasthan",
-  "Kerala",
-  "Madhya Pradesh",
-  "Multi-State / Pan-India"
+  "United States (Delaware / NY / CA / Nationwide)",
+  "United Kingdom & Western Europe",
+  "India (Pan-India / Multi-State)",
+  "Multi-Country Scope (US / EU / India)",
+  "Maharashtra (Mumbai / Pune)",
+  "Karnataka (Bengaluru)",
+  "Delhi NCR (Delhi / Gurugram / Noida)",
+  "Tamil Nadu (Chennai)",
+  "Telangana (Hyderabad)",
+  "Gujarat (Ahmedabad / GIFT City)"
 ];

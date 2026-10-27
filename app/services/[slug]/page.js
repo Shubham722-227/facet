@@ -17,7 +17,7 @@ export async function generateMetadata({ params }) {
   if (!service) return {};
 
   return {
-    title: `${service.title} | FACET Intelligence`,
+    title: `${service.title} | FACET Verify`,
     description: service.shortDesc,
   };
 }
@@ -36,28 +36,26 @@ export default async function ServiceDetailPage({ params }) {
 
       <main className="w-full pt-20 bg-surface-canvas min-h-screen">
         {/* Detail Hero */}
-        <section className="bg-primary text-on-primary py-20 px-4 sm:px-8 lg:px-12 relative overflow-hidden">
-          <div className="absolute top-0 right-1/4 w-96 h-96 bg-accent-electric/15 rounded-full blur-[140px] pointer-events-none"></div>
-
-          <div className="max-w-[1440px] mx-auto relative z-10">
+        <section className="bg-gradient-to-b from-[#0B2545] to-[#133966] text-white py-24 px-4 sm:px-8 lg:px-12 border-b border-slate-700">
+          <div className="max-w-[1440px] mx-auto">
             {/* Breadcrumb */}
-            <div className="flex items-center gap-2 text-xs font-mono text-slate-400 mb-6">
-              <Link href="/" className="hover:text-white transition-colors">HOME</Link>
-              <span>/</span>
-              <Link href="/services" className="hover:text-white transition-colors">CAPABILITIES</Link>
-              <span>/</span>
-              <span className="text-accent-electric">{service.number}</span>
+            <nav aria-label="Breadcrumb" className="mb-4 text-[13px] text-slate-400">
+              <Link href="/" className="hover:text-white transition-colors">Home</Link>
+              <span className="mx-2 text-slate-600">/</span>
+              <Link href="/services" className="hover:text-white transition-colors">Services</Link>
+              <span className="mx-2 text-slate-600">/</span>
+              <span className="text-white font-medium">{service.title}</span>
+            </nav>
+
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 text-xs font-display font-bold text-white mb-4 border border-white/15">
+              SERVICE LINE {service.number} // FACET VERIFY
             </div>
 
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-mono text-accent-electric mb-4">
-              <span>MANDATE VERTICAL {service.number}</span>
-            </div>
-
-            <h1 className="font-display-xl text-3xl sm:text-5xl text-white tracking-tight mb-4 max-w-3xl">
+            <h1 className="font-display font-extrabold text-[36px] sm:text-[50px] text-white tracking-tight mb-5 leading-tight max-w-4xl">
               {service.title}
             </h1>
 
-            <p className="font-body-lg text-slate-300 max-w-2xl leading-relaxed text-base sm:text-lg">
+            <p className="font-body text-[19px] text-slate-300 max-w-3xl leading-relaxed">
               {service.intro}
             </p>
           </div>
@@ -68,39 +66,44 @@ export default async function ServiceDetailPage({ params }) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             {/* Left 8 Cols: Detailed Protocol */}
             <div className="lg:col-span-8 space-y-10">
+              
               {/* Potential Scope Areas */}
-              <div className="bg-white/85 backdrop-blur-xl p-8 rounded-2xl shadow-sm border border-border-subtle">
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="material-symbols-outlined text-secondary text-[24px]">verified</span>
-                  <h2 className="font-headline-sm text-2xl text-primary font-bold">
-                    Forensic Scope Parameters
+              <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                <div className="flex items-center gap-2 mb-6">
+                  <span className="material-symbols-outlined text-facet-red text-[26px]">manage_search</span>
+                  <h2 className="font-display font-bold text-2xl text-primary">
+                    Scope of Investigation
                   </h2>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   {service.scopeAreas.map((area, idx) => (
                     <div
                       key={idx}
-                      className="p-3.5 rounded-lg bg-surface-canvas border border-border-subtle/80 flex items-start gap-2.5 text-sm text-on-surface leading-snug"
+                      className="p-4 rounded-xl bg-slate-50 border border-slate-200/80 flex items-start gap-3 text-sm text-slate-800 leading-snug"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-accent-electric mt-1.5 shrink-0"></span>
-                      <span>{area}</span>
+                      <span className="material-symbols-outlined text-facet-red text-[18px] shrink-0 mt-0.5">
+                        check
+                      </span>
+                      <span className="font-medium">{area}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Typical Client Deliverables */}
-              <div className="bg-white/85 backdrop-blur-xl p-8 rounded-2xl shadow-sm border border-border-subtle">
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="material-symbols-outlined text-primary text-[24px]">fact_check</span>
-                  <h2 className="font-headline-sm text-2xl text-primary font-bold">
-                    Verified Deliverables
+              <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                <div className="flex items-center gap-2 mb-6">
+                  <span className="material-symbols-outlined text-primary text-[26px]">assignment_turned_in</span>
+                  <h2 className="font-display font-bold text-2xl text-primary">
+                    Documented Deliverables
                   </h2>
                 </div>
-                <ul className="space-y-3 pt-2">
+                <ul className="space-y-3.5">
                   {service.deliverables.map((del, idx) => (
-                    <li key={idx} className="flex items-start gap-3 text-sm text-on-surface-variant">
-                      <span className="material-symbols-outlined text-verification-green text-[20px] shrink-0 mt-0.5">check_circle</span>
+                    <li key={idx} className="flex items-start gap-3 text-base text-slate-700">
+                      <span className="material-symbols-outlined text-emerald-600 text-[20px] shrink-0 mt-0.5">
+                        check_circle
+                      </span>
                       <span className="leading-relaxed">{del}</span>
                     </li>
                   ))}
@@ -108,20 +111,20 @@ export default async function ServiceDetailPage({ params }) {
               </div>
 
               {/* Workflow Phases */}
-              <div className="bg-white/85 backdrop-blur-xl p-8 rounded-2xl shadow-sm border border-border-subtle">
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="material-symbols-outlined text-accent-electric text-[24px]">timeline</span>
-                  <h2 className="font-headline-sm text-2xl text-primary font-bold">
-                    Evidentiary Methodology &amp; Workflow
+              <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                <div className="flex items-center gap-2 mb-6">
+                  <span className="material-symbols-outlined text-facet-red text-[26px]">timeline</span>
+                  <h2 className="font-display font-bold text-2xl text-primary">
+                    Verification Methodology
                   </h2>
                 </div>
-                <ol className="space-y-4 pt-2">
+                <ol className="space-y-4">
                   {service.process.map((step, idx) => (
                     <li key={idx} className="flex items-start gap-4">
-                      <span className="w-7 h-7 rounded-full bg-primary text-white text-xs font-mono font-bold flex items-center justify-center shrink-0">
-                        {idx + 1}
+                      <span className="w-8 h-8 rounded-xl bg-slate-100 text-primary text-sm font-mono font-bold flex items-center justify-center shrink-0 border border-slate-200">
+                        0{idx + 1}
                       </span>
-                      <p className="text-sm text-on-surface-variant leading-relaxed pt-1">
+                      <p className="text-[15px] text-slate-700 leading-relaxed pt-1">
                         {step}
                       </p>
                     </li>
@@ -130,13 +133,15 @@ export default async function ServiceDetailPage({ params }) {
               </div>
 
               {/* Scope Boundary Notice */}
-              <div className="p-6 rounded-xl bg-error-container/40 border border-evidence-flag/20 text-on-surface flex items-start gap-4">
-                <span className="material-symbols-outlined text-evidence-flag text-[24px] shrink-0 mt-0.5">shield</span>
+              <div className="p-6 rounded-2xl bg-slate-100 border border-slate-300 text-slate-800 flex items-start gap-4">
+                <span className="material-symbols-outlined text-facet-red text-[24px] shrink-0 mt-0.5">
+                  info
+                </span>
                 <div>
-                  <div className="font-bold text-sm text-primary mb-1">
-                    Defensible Scope Boundary &amp; Evidentiary Safe Harbors
+                  <div className="font-display font-bold text-[15px] text-primary mb-1">
+                    Evidentiary Scope &amp; Legal Boundaries
                   </div>
-                  <p className="text-xs text-on-surface-variant leading-relaxed">
+                  <p className="font-body text-[14px] text-slate-600 leading-relaxed">
                     {service.limitations}
                   </p>
                 </div>
@@ -145,45 +150,45 @@ export default async function ServiceDetailPage({ params }) {
 
             {/* Right 4 Cols: Mandate Action Card */}
             <div className="lg:col-span-4">
-              <div className="sticky top-28 bg-white/95 backdrop-blur-xl p-7 rounded-2xl shadow-lg border border-border-subtle space-y-6">
+              <div className="sticky top-28 bg-white p-8 rounded-2xl shadow-xl border border-slate-200 space-y-6">
                 <div>
-                  <span className="font-label-sm text-[11px] font-mono uppercase tracking-widest text-secondary block mb-1">
-                    Bespoke Scoping
+                  <span className="text-[11px] font-mono uppercase tracking-widest text-facet-red font-bold block mb-1">
+                    Scoped Proposal
                   </span>
-                  <h3 className="font-headline-sm text-xl text-primary font-bold">
-                    Commission This Intelligence Mandate
+                  <h3 className="font-display font-bold text-2xl text-primary">
+                    Commission This Service
                   </h3>
-                  <p className="text-xs text-on-surface-variant mt-2 leading-relaxed">
-                    Custom scope formulation based on target entity jurisdictions, timeline horizons, and litigation sensitivities.
+                  <p className="font-body text-sm text-slate-600 mt-2 leading-relaxed">
+                    Submit your target parcel identifiers or counterparty parameters for an agreed scope of work and fee estimate.
                   </p>
                 </div>
 
-                <div className="p-4 bg-surface-canvas rounded-xl space-y-2 text-xs font-mono text-slate-600">
+                <div className="p-4 bg-slate-50 rounded-xl space-y-2 text-xs font-mono text-slate-600 border border-slate-200">
                   <div className="flex justify-between">
-                    <span>Protocol:</span>
-                    <span className="font-bold text-primary">ISO-27001</span>
+                    <span>Standard:</span>
+                    <span className="font-bold text-primary">Lawful Public Records</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Admissibility:</span>
-                    <span className="text-verification-green font-bold">Court-Tested</span>
+                    <span>Sourcing:</span>
+                    <span className="text-emerald-700 font-bold">Documented Exhibits</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Delivery:</span>
-                    <span className="text-secondary font-bold">Encrypted PDF Dossier</span>
+                    <span>Deliverable:</span>
+                    <span className="text-primary font-bold">Source-Cited PDF Report</span>
                   </div>
                 </div>
 
                 <Link
-                  href="/contact"
-                  className="w-full py-3.5 rounded-lg bg-primary text-on-primary font-label-md text-xs uppercase tracking-wider font-bold hover:bg-secondary transition-all flex items-center justify-center gap-2"
+                  href="/get-a-quote"
+                  className="w-full py-4 rounded-xl bg-facet-red text-white font-display font-bold text-sm tracking-wider uppercase hover:bg-facet-red-hover transition-all flex items-center justify-center gap-2 shadow-md"
                 >
-                  <span>Initiate Intake Consultation</span>
-                  <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                  <span>Request Scoped Proposal</span>
+                  <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
                 </Link>
 
-                <div className="text-center">
-                  <Link href="/services" className="text-xs text-secondary hover:underline font-mono">
-                    ← Return to Capabilities Matrix
+                <div className="text-center pt-2">
+                  <Link href="/services" className="text-sm font-semibold text-slate-500 hover:text-primary hover:underline">
+                    ← Return to All Services
                   </Link>
                 </div>
               </div>

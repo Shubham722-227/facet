@@ -26,7 +26,7 @@ export default function InsightsPage() {
               Perspectives on Risk &amp; Due Diligence.
             </h1>
             <p className="font-body-lg text-slate-300 max-w-2xl leading-relaxed">
-              Field intelligence, case chronologies, and evidentiary analysis on cross-border SPVs, maritime sanctions evasion, and pre-insolvency asset transfers.
+              Field intelligence, case chronologies, and evidentiary analysis on complex SPVs, maritime sanctions evasion, and pre-insolvency asset transfers across jurisdictions.
             </p>
           </div>
         </section>

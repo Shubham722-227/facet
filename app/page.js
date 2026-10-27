@@ -4,10 +4,9 @@ import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import ServicesSection from "./components/ServicesSection";
-import HowItWorks from "./components/HowItWorks";
-import SampleReportPreview from "./components/SampleReportPreview";
-import WhoWeServe from "./components/WhoWeServe";
-import InsightsSection from "./components/InsightsSection";
+import Positioning from "./components/Positioning";
+import WorkflowSteps from "./components/WorkflowSteps";
+import ClientSectors from "./components/ClientSectors";
 import MandateCTA from "./components/MandateCTA";
 import Footer from "./components/Footer";
 import ConsultationModal from "./components/ConsultationModal";
@@ -17,30 +16,27 @@ export default function Home() {
 
   return (
     <>
-      {/* Header */}
+      {/* Header with Complete Logo SVG */}
       <Navbar onOpenConsultation={() => setConsultationOpen(true)} />
 
-      <main className="w-full pt-20 bg-surface-canvas min-h-screen">
+      <main className="w-full bg-[#F7F8FA] min-h-screen">
         <div className="flex flex-col w-full">
-          {/* 1. Hero Section with Interactive 3D Prismatic Showcase */}
+          {/* 1. Hero: Glassmorphic Vcheck-style Hero with Interactive Verification Dossier */}
           <Hero onOpenConsultation={() => setConsultationOpen(true)} />
 
-          {/* 2. Capabilities Matrix (7 Services Bento Grid) */}
+          {/* 2. Core Due Diligence Verticals: 6-Card Vcheck-style Bento Grid */}
           <ServicesSection onSelectForQuote={() => setConsultationOpen(true)} />
 
-          {/* 3. The Evidentiary Pipeline (Dark Glass 5-Stage Section) */}
-          <HowItWorks onOpenConsultation={() => setConsultationOpen(true)} />
+          {/* 3. Positioning / The Investigative Distinction (Record Research vs Context) */}
+          <Positioning />
 
-          {/* 4. Intelligence Reporting Showcase (Dossier Mockup) */}
-          <SampleReportPreview onOpenConsultation={() => setConsultationOpen(true)} />
+          {/* 4. Streamlined 3-Stage Process */}
+          <WorkflowSteps onOpenConsultation={() => setConsultationOpen(true)} />
 
-          {/* 5. Institutional Application (Specialized Risk Environments) */}
-          <WhoWeServe onOpenConsultation={() => setConsultationOpen(true)} />
+          {/* 6. Target Client Sectors */}
+          <ClientSectors />
 
-          {/* 6. Intelligence Briefings (Insights Section) */}
-          <InsightsSection />
-
-          {/* 7. Final High-Contrast Mandate Initiation Panel */}
+          {/* 7. Vcheck-style Scope Initiation & CTA Banner */}
           <MandateCTA onOpenConsultation={() => setConsultationOpen(true)} />
         </div>
       </main>
@@ -48,7 +44,7 @@ export default function Home() {
       {/* Institutional Footer */}
       <Footer />
 
-      {/* Confidential Mandate Consultation Modal */}
+      {/* Confidential Scope Consultation Modal */}
       <ConsultationModal
         isOpen={consultationOpen}
         onClose={() => setConsultationOpen(false)}

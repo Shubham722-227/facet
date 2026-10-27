@@ -12,12 +12,12 @@ export default function TermsPage() {
     <>
       <Navbar />
       <main className="bg-page">
-        <section className="bg-navy" style={{ padding: "4rem 0 4.5rem 0", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+        <section className="bg-[#0B2545]" style={{ padding: "4rem 0 4.5rem 0", borderBottom: "1px solid rgba(255,255,255,0.12)" }}>
           <div className="container">
             <nav aria-label="Breadcrumb" style={{ marginBottom: "1rem", fontSize: "0.8125rem", color: "#94A3B8" }}>
               <Link href="/" style={{ color: "#94A3B8", textDecoration: "none" }}>Home</Link>
               <span style={{ margin: "0 0.5rem" }}>/</span>
-              <span style={{ color: "#F8FAFC" }}>Terms of Use</span>
+              <span style={{ color: "#FFFFFF" }}>Terms of Use</span>
             </nav>
             <div className="eyebrow eyebrow-dark">
               Legal Agreement
@@ -26,7 +26,7 @@ export default function TermsPage() {
               Terms of Use
             </h1>
             <p style={{ fontSize: "1.125rem", color: "#94A3B8", maxWidth: "720px", lineHeight: "1.7" }}>
-              Standard terms governing website access, sample report reviews, and formal due diligence engagements.
+              Standard terms governing website access, service exploration, and formal due diligence engagements.
             </p>
           </div>
         </section>
@@ -45,7 +45,7 @@ export default function TermsPage() {
                 2. Intellectual Property Rights
               </h2>
               <p style={{ marginBottom: "1.5rem" }}>
-                All text, graphics, trademarks, logos, structure blueprints, and sample report previews displayed on this site are the exclusive property of FACET Verify. No material may be reproduced, copied, or redistributed for commercial gain without express prior written consent.
+                All text, graphics, trademarks, logos, methodology frameworks, and deliverables displayed on this site are the exclusive property of FACET Verify. No material may be reproduced, copied, or redistributed for commercial gain without express prior written consent.
               </p>
 
               <h2 className="heading-sm" style={{ color: "var(--navy-primary)", marginBottom: "1rem" }}>

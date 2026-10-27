@@ -83,7 +83,7 @@ export default function LegalModals({ activeModal, onClose }) {
               </p>
               <h4 style={{ fontSize: "1rem", color: "var(--navy-primary)", fontWeight: "700", marginBottom: "0.5rem" }}>1. Intellectual Property & Deliverable Reliance</h4>
               <p style={{ marginBottom: "1.25rem" }}>
-                All methodologies, website blueprints, and report structures are the exclusive intellectual property of FACET Verify. Sample reports are illustrative and do not establish live findings.
+                All methodologies, website blueprints, and report structures are the exclusive intellectual property of FACET Verify. Illustrative frameworks do not establish live findings.
               </p>
               <h4 style={{ fontSize: "1rem", color: "var(--navy-primary)", fontWeight: "700", marginBottom: "0.5rem" }}>2. Inquiry & Proposal Protocol</h4>
               <p style={{ marginBottom: "1.25rem" }}>

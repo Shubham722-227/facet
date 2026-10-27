@@ -1,290 +1,258 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 export default function SampleReportPreview({ onOpenConsultation }) {
-  const [activeAnnexure, setActiveAnnexure] = useState(null);
-
-  const annexures = {
-    "ANNEX A-04": {
-      id: "ANNEX A-04",
-      title: "Hidden Beneficial Control in BVI Shell",
-      registry: "BVI Financial Services Commission / Corporate Registry (IBC No. 894101)",
-      date: "04 March 2025",
-      findings: "Sub-surface share register comparison reveals 100% voting shares assigned to nominee trust for a sanctioned real estate developer subject to court attachment in Mumbai High Court.",
-      exhibit: "Exhibit A-04-Certified-TrustDeed.pdf [SHA256: 7f8a8819c9]"
-    },
-    "ANNEX B-11": {
-      id: "ANNEX B-11",
-      title: "Pre-Insolvency Property Alienation",
-      registry: "Sub-Registrar Digital Land Records & NCLT Mumbai Docket",
-      date: "18 February 2025",
-      findings: "Conveyance of prime 8.4-acre commercial asset executed at 42% undervalue exactly 45 days prior to lender moratorium filing. Classified as preferential avoidance transaction under Section 43/66 of IBC.",
-      exhibit: "Exhibit B-11-DeedExtract-Haveli.pdf [SHA256: 3c91bb022f]"
-    }
-  };
+  const [activeTab, setActiveTab] = useState("summary");
 
   return (
-    <section id="sample-report" className="w-full px-4 sm:px-8 lg:px-12 py-24 bg-surface-canvas relative">
+    <section id="sample-report" className="w-full px-4 sm:px-8 lg:px-12 py-24 bg-white relative border-b border-slate-200/80">
       <div className="max-w-[1440px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Left: Narrative & 4 Evidentiary Pillars */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          {/* Left Column: Narrative & 4 Evidentiary Principles */}
           <div className="lg:col-span-5 flex flex-col items-start">
-            <div className="font-label-sm text-label-sm text-secondary uppercase tracking-widest font-semibold mb-2">
-              Evidentiary Integrity
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-100 text-primary font-display font-bold text-[12px] uppercase tracking-wider mb-4 border border-slate-200">
+              The Deliverable Architecture
             </div>
-            <h2 className="font-headline-lg text-3xl sm:text-headline-lg text-primary tracking-tight mb-4">
-              Real Intelligence. Real Decisions.
+            
+            <h2 className="font-display font-extrabold text-[36px] sm:text-[44px] text-primary tracking-tight leading-tight mb-5">
+              Evidence You Can Read. <br />
+              <span className="text-[#134074]">Context You Can Use.</span>
             </h2>
-            <p className="font-body-md text-body-md text-on-surface-variant mb-8 leading-relaxed">
-              FACET dossiers are engineered for General Counsels, Investment Committees, and arbitral forums. Every assertion is corroborated by traceable documentary exhibits.
+            
+            <p className="font-body text-[18px] text-on-surface-variant mb-8 leading-relaxed">
+              A FACET Verify deliverable is structured to help decision-makers see what was reviewed, what was found, where the information originated, and what risks require attention.
             </p>
 
             <div className="space-y-6 w-full">
-              <div className="flex items-start gap-4">
-                <div className="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary font-bold font-mono text-sm shrink-0">
-                  1
-                </div>
-                <div>
-                  <h4 className="font-headline-sm text-primary text-[17px] mb-1">
-                    Evidence-Led Research
-                  </h4>
-                  <p className="font-body-sm text-body-sm text-on-surface-variant">
-                    We rely on primary official records, cadastral registers, and authenticated court documents rather than unverified scrapers.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary font-bold font-mono text-sm shrink-0">
-                  2
-                </div>
-                <div>
-                  <h4 className="font-headline-sm text-primary text-[17px] mb-1">
-                    Source-Linked Findings
-                  </h4>
-                  <p className="font-body-sm text-body-sm text-on-surface-variant">
-                    Every intelligence finding links to an unalterable forensic annexure with full chain-of-custody tracking.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary font-bold font-mono text-sm shrink-0">
-                  3
-                </div>
-                <div>
-                  <h4 className="font-headline-sm text-primary text-[17px] mb-1">
-                    Transparent Limitations
-                  </h4>
-                  <p className="font-body-sm text-body-sm text-on-surface-variant">
-                    Unambiguous demarcation between verified facts, regulatory notices, and corroborating HUMINT indications.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary font-bold font-mono text-sm shrink-0">
-                  4
-                </div>
-                <div>
-                  <h4 className="font-headline-sm text-primary text-[17px] mb-1">
-                    Structured Board-Ready Reporting
-                  </h4>
-                  <p className="font-body-sm text-body-sm text-on-surface-variant">
-                    Designed for immediate synthesis by board directors, credit officers, and legal defense squads.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right: Angled Mockup of a FACET Executive Intelligence Dossier */}
-          <div className="lg:col-span-7 relative">
-            <div className="relative bg-white/95 backdrop-blur-2xl rounded-2xl p-6 sm:p-8 shadow-[0_24px_50px_rgba(11,37,69,0.08)] border border-border-subtle">
-              {/* Dossier Header Ribbon */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-6 border-b border-border-subtle gap-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-primary text-on-primary flex items-center justify-center font-headline-sm font-bold text-lg shadow-sm">
-                    F
+              {[
+                {
+                  num: "1",
+                  title: "Evidence-Led Research",
+                  desc: "Grounded in primary official records, statutory registries, and verified public disclosures rather than uncorroborated automated scrapers."
+                },
+                {
+                  num: "2",
+                  title: "Source-Linked Findings",
+                  desc: "Every key finding is linked to an identified source register, filing, deed extract or docket with clear date boundaries."
+                },
+                {
+                  num: "3",
+                  title: "Transparent Limitations",
+                  desc: "Clear explanation of what was searched, which periods were examined, and what state or municipal record constraints apply."
+                },
+                {
+                  num: "4",
+                  title: "Structured Decision Context",
+                  desc: "Organised into an executive summary, risk themes (Red, Amber, Green), detailed analysis, and key questions for legal counsel."
+                }
+              ].map((p) => (
+                <div key={p.num} className="flex items-start gap-4">
+                  <div className="w-9 h-9 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-primary font-bold font-mono text-[15px] shrink-0">
+                    {p.num}
                   </div>
                   <div>
-                    <div className="font-mono text-xs uppercase tracking-wider text-on-surface-variant">
-                      DOSSIER REF: FC-2025-0988-X
-                    </div>
-                    <h3 className="font-headline-sm text-xl text-primary font-bold">
-                      VALIANT GLOBAL HOLDINGS S.A.
-                    </h3>
+                    <h4 className="font-display font-bold text-primary text-[17px] mb-1">
+                      {p.title}
+                    </h4>
+                    <p className="font-body text-[15px] text-slate-600 leading-relaxed">
+                      {p.desc}
+                    </p>
                   </div>
                 </div>
-                <div>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-error-container text-on-error-container font-label-sm text-xs uppercase font-bold border border-evidence-flag/20">
-                    <span className="w-2 h-2 rounded-full bg-evidence-flag"></span> Elevated Risk Profile
-                  </span>
-                </div>
-              </div>
+              ))}
+            </div>
 
-              {/* Dossier Body Split */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-                <div className="bg-surface-canvas p-3.5 rounded-lg border border-border-subtle/80">
-                  <div className="font-label-sm text-[11px] text-on-surface-variant uppercase mb-1 font-semibold">
-                    Target Entity Status
-                  </div>
-                  <div className="font-headline-sm text-[16px] text-primary font-bold">
-                    Active // Cross-Listed
-                  </div>
-                  <div className="text-[11px] font-mono text-slate-500 mt-1 truncate">
-                    LEI: 5493001KJTIIGC8Y1R12
-                  </div>
-                </div>
-
-                <div className="bg-surface-canvas p-3.5 rounded-lg border border-border-subtle/80">
-                  <div className="font-label-sm text-[11px] text-on-surface-variant uppercase mb-1 font-semibold">
-                    Courts Scanned
-                  </div>
-                  <div className="font-headline-sm text-[16px] text-primary font-bold">
-                    14 Jurisdictions
-                  </div>
-                  <div className="text-[11px] font-mono text-slate-500 mt-1">
-                    31 Direct Pleadings Indexed
-                  </div>
-                </div>
-
-                <div className="bg-surface-canvas p-3.5 rounded-lg border border-border-subtle/80">
-                  <div className="font-label-sm text-[11px] text-on-surface-variant uppercase mb-1 font-semibold">
-                    Attribution Index
-                  </div>
-                  <div className="font-headline-sm text-[16px] text-verification-green font-bold">
-                    96.4% Deterministic
-                  </div>
-                  <div className="text-[11px] font-mono text-slate-500 mt-1">
-                    4 Independent Cross-Ref
-                  </div>
-                </div>
-              </div>
-
-              {/* Key Findings Simulated Table */}
-              <div className="space-y-3 mb-6">
-                <div className="text-xs font-mono uppercase tracking-wider text-slate-400 font-bold">
-                  Corroborated Red Flags
-                </div>
-
-                <div
-                  onClick={() => setActiveAnnexure(annexures["ANNEX A-04"])}
-                  className="p-3.5 rounded-lg bg-surface-container-low flex items-start justify-between gap-4 cursor-pointer hover:bg-surface-container transition-colors border border-border-subtle/60 group"
-                >
-                  <div className="flex items-start gap-3">
-                    <span className="material-symbols-outlined text-evidence-flag text-[20px] shrink-0 mt-0.5">
-                      report_problem
-                    </span>
-                    <div>
-                      <div className="font-body-sm text-[13px] font-semibold text-primary group-hover:text-secondary transition-colors">
-                        Hidden Beneficial Control in BVI Shell
-                      </div>
-                      <div className="text-[12px] text-on-surface-variant leading-relaxed">
-                        Nominee directors linked to sanctioned real estate developer in southern district.
-                      </div>
-                    </div>
-                  </div>
-                  <span className="font-mono text-[11px] text-evidence-flag font-bold shrink-0 px-2 py-0.5 rounded bg-white border border-evidence-flag/30">
-                    ANNEX A-04
-                  </span>
-                </div>
-
-                <div
-                  onClick={() => setActiveAnnexure(annexures["ANNEX B-11"])}
-                  className="p-3.5 rounded-lg bg-surface-container-low flex items-start justify-between gap-4 cursor-pointer hover:bg-surface-container transition-colors border border-border-subtle/60 group"
-                >
-                  <div className="flex items-start gap-3">
-                    <span className="material-symbols-outlined text-secondary text-[20px] shrink-0 mt-0.5">
-                      account_tree
-                    </span>
-                    <div>
-                      <div className="font-body-sm text-[13px] font-semibold text-primary group-hover:text-secondary transition-colors">
-                        Pre-Insolvency Property Alienation
-                      </div>
-                      <div className="text-[12px] text-on-surface-variant leading-relaxed">
-                        Title to commercial asset transfers executed 45 days prior to lender moratorium filing.
-                      </div>
-                    </div>
-                  </div>
-                  <span className="font-mono text-[11px] text-primary font-bold shrink-0 px-2 py-0.5 rounded bg-white border border-primary/20">
-                    ANNEX B-11
-                  </span>
-                </div>
-              </div>
-
-              {/* Digital Seal Footer */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between pt-4 bg-surface-canvas rounded-lg px-4 py-3 border border-border-subtle gap-2">
-                <div className="flex items-center gap-2">
-                  <span className="material-symbols-outlined text-verification-green text-[18px]">
-                    verified_user
-                  </span>
-                  <span className="font-mono text-[11px] text-slate-700 font-semibold">
-                    FACET Digital Cryptographic Seal: Validated
-                  </span>
-                </div>
-                <span className="font-mono text-[10px] text-slate-500">
-                  Timestamp: 2025-05-12T14:32:01 UTC
-                </span>
-              </div>
+            <div className="mt-8 pt-6 border-t border-slate-100 w-full flex items-center gap-4">
+              <Link
+                href="/sample-report"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-primary text-white font-display font-bold text-[15px] hover:bg-slate-800 transition-all shadow-sm"
+              >
+                <span>Explore Full Sample Report</span>
+                <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+              </Link>
             </div>
           </div>
+
+          {/* Right Column: High-End Glassmorphic Dossier Mockup */}
+          <div className="lg:col-span-7 w-full">
+            <div className="rounded-2xl bg-[#0B2545] border border-white/15 p-6 sm:p-8 shadow-2xl text-white backdrop-blur-xl relative overflow-hidden">
+              <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-blue-500/10 blur-3xl pointer-events-none" />
+              
+              {/* Dossier Header */}
+              <div className="flex flex-wrap items-center justify-between pb-5 border-b border-white/15 gap-4 mb-5 relative z-10">
+                <div className="flex items-center gap-3">
+                  <img src="/logo-mark-white.svg" alt="FACET" className="h-7 w-auto" />
+                  <div>
+                    <div className="font-display font-bold text-[15px] text-white">
+                      FACET VERIFY DOSSIER PREVIEW
+                    </div>
+                    <div className="text-[11px] font-mono text-slate-300">
+                      REF: FV-2025-PR-0881 // PROPERTY & COUNTERPARTY
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span className="px-3 py-1 rounded-full bg-white/10 text-blue-200 text-[11px] font-mono border border-white/15">
+                    Illustrative Sample Report
+                  </span>
+                </div>
+              </div>
+
+              {/* Dossier Tabs */}
+              <div className="flex gap-2 mb-6 border-b border-white/15 pb-3 relative z-10">
+                {[
+                  { id: "summary", label: "Executive Risk Summary" },
+                  { id: "chain", label: "Title Chain Analysis" },
+                  { id: "litigation", label: "Litigation Docket" }
+                ].map((t) => (
+                  <button
+                    key={t.id}
+                    type="button"
+                    onClick={() => setActiveTab(t.id)}
+                    className={`px-3.5 py-1.5 rounded-lg font-display font-semibold text-[13px] transition-all ${
+                      activeTab === t.id
+                        ? "bg-white text-[#0B2545] shadow-sm font-bold"
+                        : "bg-white/10 text-slate-300 hover:text-white hover:bg-white/15"
+                    }`}
+                  >
+                    {t.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Tab 1: Executive Summary */}
+              {activeTab === "summary" && (
+                <div className="space-y-4">
+                  {/* Red Flag Card */}
+                  <div className="p-4 rounded-xl bg-red-950/40 border border-red-500/40 flex items-start gap-3.5">
+                    <span className="material-symbols-outlined text-facet-red text-[22px] shrink-0 mt-0.5">
+                      error
+                    </span>
+                    <div>
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="font-display font-bold text-[15px] text-red-200">
+                          HIGH RISK FLAG: Pending Partition Dispute (2022)
+                        </span>
+                        <span className="text-[11px] px-2 py-0.5 rounded bg-red-500/20 text-red-300 font-mono">
+                          RED
+                        </span>
+                      </div>
+                      <p className="text-[13px] text-red-100/80 leading-relaxed mb-2">
+                        Suit for partition and separate possession filed by co-heirs currently pending before the Senior Civil Division. Ad-interim stay application on alienation scheduled for hearing.
+                      </p>
+                      <div className="text-[11px] font-mono text-red-300/70">
+                        SOURCE: Civil Court Regular Suit No. 412/2022 // Certified Docket Inspection
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Amber Flag Card */}
+                  <div className="p-4 rounded-xl bg-amber-950/40 border border-amber-500/40 flex items-start gap-3.5">
+                    <span className="material-symbols-outlined text-warning-amber text-[22px] shrink-0 mt-0.5">
+                      warning
+                    </span>
+                    <div>
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="font-display font-bold text-[15px] text-amber-200">
+                          ATTENTION ITEM: Mutation Register Discrepancy (2018)
+                        </span>
+                        <span className="text-[11px] px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono">
+                          AMBER
+                        </span>
+                      </div>
+                      <p className="text-[13px] text-amber-100/80 leading-relaxed mb-2">
+                        Mutation entry No. 1042 recorded in revenue register reflects a 4-month variance against registered gift deed execution date. Requires reconciliation with Tahsildar certified copy.
+                      </p>
+                      <div className="text-[11px] font-mono text-amber-300/70">
+                        SOURCE: Taluk Mutation Extract Register // SRO Volume 489
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Green Verified Card */}
+                  <div className="p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/40 flex items-start gap-3.5">
+                    <span className="material-symbols-outlined text-verification-green text-[22px] shrink-0 mt-0.5">
+                      check_circle
+                    </span>
+                    <div>
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="font-display font-bold text-[15px] text-emerald-200">
+                          VERIFIED: Promoter Directorships & Tax Status Clear
+                        </span>
+                        <span className="text-[11px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono">
+                          GREEN
+                        </span>
+                      </div>
+                      <p className="text-[13px] text-emerald-100/80 leading-relaxed mb-2">
+                        Promoter active directorships reconciled with MCA21. No registered bank charges or wilful default listings noted across official financial enforcement indices.
+                      </p>
+                      <div className="text-[11px] font-mono text-emerald-300/70">
+                        SOURCE: MCA21 Company Master Index // TransUnion Commercial Charge Registry
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Tab 2: Chain of Title */}
+              {activeTab === "chain" && (
+                <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-3 text-[14px]">
+                  <div className="font-display font-bold text-white mb-2 text-[15px]">
+                    30-Year Chronological Transfer Register
+                  </div>
+                  <div className="border-l-2 border-slate-600 pl-4 space-y-3">
+                    <div>
+                      <div className="text-[12px] font-mono text-facet-red font-bold">1994 // ORIGINAL ALLOTMENT</div>
+                      <div className="text-slate-200 text-[13px]">Government Grant to Agricultural Settlement Society (Deed No. 412/1994).</div>
+                    </div>
+                    <div>
+                      <div className="text-[12px] font-mono text-slate-400 font-bold">2008 // REGISTERED SALE CONVEYANCE</div>
+                      <div className="text-slate-200 text-[13px]">Conveyed to Greenfield Infrastructure Pvt Ltd for non-agricultural industrial conversion.</div>
+                    </div>
+                    <div>
+                      <div className="text-[12px] font-mono text-amber-400 font-bold">2018 // FAMILY GIFT & MUTATION</div>
+                      <div className="text-slate-200 text-[13px]">Inter-promoter gift deed with mutation gap under verification.</div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Tab 3: Litigation Docket */}
+              {activeTab === "litigation" && (
+                <div className="p-4 rounded-xl bg-white/5 border border-white/10 text-[13px] space-y-2.5">
+                  <div className="font-display font-bold text-white text-[15px] mb-2">
+                    Litigation Screening Results across 3 Jurisdictions
+                  </div>
+                  <div className="flex justify-between py-1.5 border-b border-white/10 text-slate-300">
+                    <span>District Civil Court (Haveli)</span>
+                    <span className="text-red-400 font-bold">1 Active Partition Case</span>
+                  </div>
+                  <div className="flex justify-between py-1.5 border-b border-white/10 text-slate-300">
+                    <span>Bombay High Court (Commercial)</span>
+                    <span className="text-emerald-400 font-bold">0 Pending Writs</span>
+                  </div>
+                  <div className="flex justify-between py-1.5 text-slate-300">
+                    <span>NCLT (Insolvency Tribunal)</span>
+                    <span className="text-emerald-400 font-bold">Clear / No Filings</span>
+                  </div>
+                </div>
+              )}
+
+              {/* Dossier Disclaimer */}
+              <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                <span>FACET VERIFY STATUTORY SCOPE DISCLAIMER</span>
+                <span>NOT A TITLE GUARANTEE OR LEGAL CERTIFICATE</span>
+              </div>
+
+            </div>
+          </div>
+
         </div>
       </div>
-
-      {/* Annexure Inspection Dialog */}
-      {activeAnnexure && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary/60 backdrop-blur-sm"
-          onClick={() => setActiveAnnexure(null)}
-        >
-          <div
-            className="bg-white rounded-2xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-border-subtle"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between mb-4">
-              <span className="font-mono text-xs font-bold px-2.5 py-1 rounded bg-surface-container text-primary">
-                {activeAnnexure.id}
-              </span>
-              <button
-                type="button"
-                onClick={() => setActiveAnnexure(null)}
-                className="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary"
-              >
-                <span className="material-symbols-outlined text-[20px]">close</span>
-              </button>
-            </div>
-
-            <h3 className="font-headline-sm text-xl text-primary font-bold mb-2">
-              {activeAnnexure.title}
-            </h3>
-
-            <div className="text-xs font-mono text-slate-500 mb-4">
-              {activeAnnexure.registry} · {activeAnnexure.date}
-            </div>
-
-            <p className="font-body-md text-sm text-on-surface-variant mb-6 leading-relaxed">
-              {activeAnnexure.findings}
-            </p>
-
-            <div className="p-3 bg-surface-canvas rounded-lg border border-border-subtle text-xs font-mono text-secondary mb-6 truncate">
-              {activeAnnexure.exhibit}
-            </div>
-
-            <button
-              type="button"
-              onClick={() => {
-                setActiveAnnexure(null);
-                onOpenConsultation();
-              }}
-              className="w-full py-3 rounded-lg bg-primary text-on-primary font-label-md text-label-md uppercase tracking-wider"
-            >
-              Request Full Specimen Dossier
-            </button>
-          </div>
-        </div>
-      )}
     </section>
   );
 }

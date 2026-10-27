@@ -1,152 +1,115 @@
 "use client";
 
+import Link from "next/link";
+
 export default function Positioning() {
   return (
-    <section className="section-padding bg-page" style={{ borderBottom: "1px solid var(--border-light)" }} aria-label="Core Philosophy">
-      <div className="container">
-        <div style={{ maxWidth: "800px", margin: "0 auto 3.5rem auto", textAlign: "center" }}>
-          <div className="eyebrow" style={{ justifyContent: "center" }}>
+    <section className="w-full py-20 px-4 sm:px-8 lg:px-12 bg-white border-b border-slate-200" aria-label="Core Philosophy">
+      <div className="max-w-[1440px] mx-auto">
+        
+        {/* Section Header */}
+        <div className="max-w-3xl mx-auto text-center mb-14">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-100 text-[#0B2545] font-display font-bold text-[12px] uppercase tracking-wider mb-3 border border-slate-200">
             The Investigative Distinction
           </div>
-          <h2 className="heading-lg" style={{ color: "var(--navy-primary)", marginBottom: "1.25rem" }}>
-            Records Tell Part of the Story.<br />
-            Context Matters.
+          <h2 className="font-display font-extrabold text-[34px] sm:text-[44px] text-[#0B2545] tracking-tight leading-tight mb-4">
+            Records Tell Part of the Story. <br className="hidden sm:inline" />
+            <span className="text-[#134074]">Context Matters.</span>
           </h2>
-          <p style={{ fontSize: "1.125rem", color: "var(--text-body)", lineHeight: "1.75" }}>
-            Public records and documents are essential to due diligence, but an informed transaction decision also depends on understanding relationships, undisclosed disputes, timeline inconsistencies, and the context surrounding a person, corporate entity, or parcel of land.
+          <p className="font-body text-[17px] sm:text-[18px] text-[#4B5563] leading-relaxed">
+            Public records and documents are essential to due diligence. Because corporate filings, statutory registers, and court dockets vary significantly across the US, Europe, the UK, and India, an informed decision requires country-specific due diligence tailored to each jurisdiction&apos;s registries and evidentiary rules.
           </p>
         </div>
 
-        {/* 2-Column Comparative Matrix */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-          gap: "2rem",
-          maxWidth: "1060px",
-          margin: "0 auto"
-        }}>
+        {/* 2-Column Comparative Bento Matrix */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          
           {/* Column 1: Record-Based Research */}
-          <div className="card-white" style={{ position: "relative", overflow: "hidden" }}>
-            <div style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              height: "4px",
-              background: "#94A3B8"
-            }}></div>
+          <div className="rounded-2xl p-7 sm:p-8 bg-slate-50 border border-slate-200 flex flex-col justify-between shadow-xs">
+            <div>
+              <div className="flex items-center gap-3.5 mb-5">
+                <div className="w-11 h-11 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-[#0B2545] shadow-xs">
+                  <span className="material-symbols-outlined text-[24px]">description</span>
+                </div>
+                <div>
+                  <h3 className="font-display font-bold text-[20px] text-[#0B2545] leading-tight">
+                    Multi-Jurisdictional Records
+                  </h3>
+                  <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                    The Primary Data Baseline
+                  </span>
+                </div>
+              </div>
 
-            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem" }}>
-              <div style={{
-                width: "2.5rem",
-                height: "2.5rem",
-                borderRadius: "4px",
-                background: "var(--bg-subtle)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "var(--navy-primary)"
-              }}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <polyline points="14 2 14 8 20 8"></polyline>
-                  <line x1="16" y1="13" x2="8" y2="13"></line>
-                  <line x1="16" y1="17" x2="8" y2="17"></line>
-                  <polyline points="10 9 9 9 8 9"></polyline>
-                </svg>
-              </div>
-              <div>
-                <h3 className="heading-sm" style={{ color: "var(--navy-primary)" }}>Record-Based Research</h3>
-                <span style={{ fontSize: "0.75rem", color: "var(--text-muted)", textTransform: "uppercase", fontWeight: "600", letterSpacing: "0.05em" }}>The Baseline Data</span>
-              </div>
+              <p className="font-body text-[15px] text-[#4B5563] mb-5 leading-relaxed">
+                Systematic retrieval of publicly indexed filings, official gazettes, and statutory government registers across target jurisdictions:
+              </p>
+
+              <ul className="space-y-3.5">
+                {[
+                  { title: "United States (Federal & State)", desc: "Delaware & state Division of Corporations, SEC EDGAR disclosures, UCC liens, and PACER federal court dockets." },
+                  { title: "United Kingdom & Europe", desc: "UK Companies House PSC registers, European Business Register (EBR), Insolvency registers, and High Court winding-up rolls." },
+                  { title: "India & South Asia", desc: "MCA-21 statutory master data, e-Courts & High Court dockets, Sub-Registrar deed books, and land revenue mutation records." },
+                  { title: "Global Sanctions & Regulatory Lists", desc: "US OFAC, UK OFSI, EU Consolidated Sanctions, INTERPOL Red Notices, and international PEP databases." }
+                ].map((item, idx) => (
+                  <li key={idx} className="flex gap-3 items-start">
+                    <span className="material-symbols-outlined text-slate-400 text-[18px] mt-0.5 shrink-0">
+                      check_circle
+                    </span>
+                    <div>
+                      <div className="font-display font-bold text-[15px] text-[#0B2545]">{item.title}</div>
+                      <div className="font-body text-[13px] text-slate-500 leading-normal">{item.desc}</div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
-
-            <p style={{ fontSize: "0.9375rem", color: "var(--text-body)", marginBottom: "1.5rem", lineHeight: "1.6" }}>
-              Systematic retrieval of publicly indexed filings, official gazettes, and statutory government registers:
-            </p>
-
-            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.875rem" }}>
-              {[
-                { title: "Property and land revenue records", desc: "Sub-Registrar deeds, 7/12 extracts, mutation registers, and encumbrance certificates." },
-                { title: "Litigation and regulatory records", desc: "District court, High Court, and specialized tribunal cause-lists and e-Courts dockets." },
-                { title: "Corporate ownership and directorships", desc: "MCA-21 statutory master data, annual returns, registered charges, and DIN tracking." },
-                { title: "Regulatory orders and public filings", desc: "RERA registrations, default notices, insolvency dockets, and official gazette notifications." }
-              ].map((item, idx) => (
-                <li key={idx} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
-                  <div style={{ marginTop: "0.25rem", color: "var(--navy-primary)" }}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                  </div>
-                  <div>
-                    <div style={{ fontSize: "0.9375rem", fontWeight: "600", color: "var(--navy-primary)" }}>{item.title}</div>
-                    <div style={{ fontSize: "0.8125rem", color: "var(--text-muted)", lineHeight: "1.4" }}>{item.desc}</div>
-                  </div>
-                </li>
-              ))}
-            </ul>
           </div>
 
           {/* Column 2: Investigative Analysis */}
-          <div className="card-white" style={{ position: "relative", overflow: "hidden", borderColor: "#CBD5E1" }}>
-            <div style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              height: "4px",
-              background: "var(--facet-red)"
-            }}></div>
+          <div className="rounded-2xl p-7 sm:p-8 bg-white border-2 border-[#0B2545]/20 flex flex-col justify-between shadow-md relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-1.5 bg-[#0B2545]" />
+            
+            <div>
+              <div className="flex items-center gap-3.5 mb-5">
+                <div className="w-11 h-11 rounded-xl bg-[#0B2545]/5 border border-[#0B2545]/15 flex items-center justify-center text-[#0B2545] shadow-xs">
+                  <span className="material-symbols-outlined text-[24px]">manage_search</span>
+                </div>
+                <div>
+                  <h3 className="font-display font-bold text-[20px] text-[#0B2545] leading-tight">
+                    Country-Specific Analysis
+                  </h3>
+                  <span className="text-[11px] font-bold text-[#134074] uppercase tracking-wider">
+                    The Decision Intelligence
+                  </span>
+                </div>
+              </div>
 
-            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem" }}>
-              <div style={{
-                width: "2.5rem",
-                height: "2.5rem",
-                borderRadius: "4px",
-                background: "var(--facet-red-subtle)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "var(--facet-red)"
-              }}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  <line x1="11" y1="8" x2="11" y2="14"></line>
-                  <line x1="8" y1="11" x2="14" y2="11"></line>
-                </svg>
-              </div>
-              <div>
-                <h3 className="heading-sm" style={{ color: "var(--navy-primary)" }}>Investigative Analysis</h3>
-                <span style={{ fontSize: "0.75rem", color: "var(--facet-red)", textTransform: "uppercase", fontWeight: "700", letterSpacing: "0.05em" }}>The Decision Intelligence</span>
-              </div>
+              <p className="font-body text-[15px] text-[#4B5563] mb-5 leading-relaxed">
+                Synthesizing country-specific records to uncover behavioral patterns, undisclosed liabilities, and structural risks:
+              </p>
+
+              <ul className="space-y-3.5">
+                {[
+                  { title: "Country-specific beneficial ownership tracing", desc: "Mapping parent entities, shadow directorships, registered holding structures, and corporate networks." },
+                  { title: "Subject disambiguation across naming conventions", desc: "Preventing false positives by resolving transliterated names, director IDs (DIN), and international tax identifiers." },
+                  { title: "Reconciling statutory disclosures with local ground reality", desc: "Harmonizing western registry databases with emerging market archival records and physical inspections." },
+                  { title: "Actionable Red, Amber, Green risk frameworks", desc: "Delivering an executive audit trail to arm investment committees, transactional counsel, and credit underwriters." }
+                ].map((item, idx) => (
+                  <li key={idx} className="flex gap-3 items-start">
+                    <span className="material-symbols-outlined text-emerald-600 text-[18px] mt-0.5 shrink-0">
+                      verified
+                    </span>
+                    <div>
+                      <div className="font-display font-bold text-[15px] text-[#0B2545]">{item.title}</div>
+                      <div className="font-body text-[13px] text-slate-500 leading-normal">{item.desc}</div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
-
-            <p style={{ fontSize: "0.9375rem", color: "var(--text-body)", marginBottom: "1.5rem", lineHeight: "1.6" }}>
-              Synthesizing disconnected records to uncover behavioral patterns, undisclosed liabilities, and structural risks:
-            </p>
-
-            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.875rem" }}>
-              {[
-                { title: "Cross-referencing related parties & entities", desc: "Mapping beneficial ownership, shadow directorships, common addresses, and SPV networks." },
-                { title: "Reviewing discrepancies and timeline gaps", desc: "Reconciling counterparty disclosure representations against historical transfer dates and survey records." },
-                { title: "Organising risk indicators by practical severity", desc: "Separating proven judicial judgments from unadjudicated allegations and procedural objections." },
-                { title: "Identifying critical questions for counsel", desc: "Arming client advocates, credit analysts, and deal leaders with targeted warranties and indemnity requirements." }
-              ].map((item, idx) => (
-                <li key={idx} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
-                  <div style={{ marginTop: "0.25rem", color: "var(--facet-red)" }}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                    </svg>
-                  </div>
-                  <div>
-                    <div style={{ fontSize: "0.9375rem", fontWeight: "600", color: "var(--navy-primary)" }}>{item.title}</div>
-                    <div style={{ fontSize: "0.8125rem", color: "var(--text-muted)", lineHeight: "1.4" }}>{item.desc}</div>
-                  </div>
-                </li>
-              ))}
-            </ul>
           </div>
+
         </div>
       </div>
     </section>

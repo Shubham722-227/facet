@@ -12,12 +12,12 @@ export default function PrivacyPolicyPage() {
     <>
       <Navbar />
       <main className="bg-page">
-        <section className="bg-navy" style={{ padding: "4rem 0 4.5rem 0", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+        <section className="bg-[#0B2545]" style={{ padding: "4rem 0 4.5rem 0", borderBottom: "1px solid rgba(255,255,255,0.12)" }}>
           <div className="container">
             <nav aria-label="Breadcrumb" style={{ marginBottom: "1rem", fontSize: "0.8125rem", color: "#94A3B8" }}>
               <Link href="/" style={{ color: "#94A3B8", textDecoration: "none" }}>Home</Link>
               <span style={{ margin: "0 0.5rem" }}>/</span>
-              <span style={{ color: "#F8FAFC" }}>Privacy Policy</span>
+              <span style={{ color: "#FFFFFF" }}>Privacy Policy</span>
             </nav>
             <div className="eyebrow eyebrow-dark">
               Data Protection
