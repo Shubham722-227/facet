@@ -1,40 +1,47 @@
-import Link from "next/link";
+"use client";
+
+import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import HowItWorks from "../components/HowItWorks";
-
-export const metadata = {
-  title: "How It Works | FACET Verify Due Diligence",
-  description: "Understand how FACET Verify scopes research, reviews sources, analyses findings and delivers structured due diligence reports.",
-};
+import MandateCTA from "../components/MandateCTA";
+import ConsultationModal from "../components/ConsultationModal";
 
 export default function HowItWorksPage() {
+  const [consultationOpen, setConsultationOpen] = useState(false);
+
   return (
     <>
-      <Navbar />
-      <main className="bg-page">
-        <section className="bg-navy" style={{ padding: "4rem 0 4.5rem 0", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
-          <div className="container">
-            <nav aria-label="Breadcrumb" style={{ marginBottom: "1rem", fontSize: "0.8125rem", color: "#94A3B8" }}>
-              <Link href="/" style={{ color: "#94A3B8", textDecoration: "none" }}>Home</Link>
-              <span style={{ margin: "0 0.5rem" }}>/</span>
-              <span style={{ color: "#F8FAFC" }}>How It Works</span>
-            </nav>
-            <div className="eyebrow eyebrow-dark">
-              Structured Methodology
+      <Navbar onOpenConsultation={() => setConsultationOpen(true)} />
+
+      <main className="w-full pt-20 bg-surface-canvas min-h-screen">
+        <section className="bg-primary text-on-primary py-20 px-4 sm:px-8 lg:px-12 relative overflow-hidden">
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-accent-electric/15 rounded-full blur-[140px] pointer-events-none"></div>
+
+          <div className="max-w-[1440px] mx-auto relative z-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-mono text-accent-electric mb-4">
+              <span>METHODOLOGY &amp; CHAIN OF CUSTODY</span>
             </div>
-            <h1 className="heading-lg" style={{ color: "#FFFFFF", marginBottom: "1rem" }}>
-              A Transparent Process. A Defined Scope. Clear Findings.
+            <h1 className="font-display-xl text-3xl sm:text-5xl text-white tracking-tight mb-4">
+              The Evidentiary Pipeline.
             </h1>
-            <p style={{ fontSize: "1.125rem", color: "#94A3B8", maxWidth: "720px", lineHeight: "1.7" }}>
-              Good due diligence begins with a clear question. FACET Verify works with you to define the subject, scope, accessible sources, deliverables and timeline before research begins.
+            <p className="font-body-lg text-slate-300 max-w-2xl leading-relaxed">
+              Explore how our intelligence dockets progress from intake under bilateral NDAs through multi-source field investigation to cryptographically authenticated delivery.
             </p>
           </div>
         </section>
 
-        <HowItWorks />
+        <HowItWorks onOpenConsultation={() => setConsultationOpen(true)} />
+
+        <MandateCTA onOpenConsultation={() => setConsultationOpen(true)} />
       </main>
+
       <Footer />
+
+      <ConsultationModal
+        isOpen={consultationOpen}
+        onClose={() => setConsultationOpen(false)}
+      />
     </>
   );
 }

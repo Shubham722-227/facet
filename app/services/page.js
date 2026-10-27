@@ -1,46 +1,49 @@
-import Link from "next/link";
+"use client";
+
+import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ServicesSection from "../components/ServicesSection";
-import WhyFacet from "../components/WhyFacet";
-
-export const metadata = {
-  title: "Due Diligence & Investigative Intelligence Services | FACET Verify",
-  description: "Explore FACET Verify services covering property, counterparties, litigation, third parties, investigations, transactions and asset ownership research.",
-};
+import MandateCTA from "../components/MandateCTA";
+import ConsultationModal from "../components/ConsultationModal";
 
 export default function ServicesPage() {
+  const [consultationOpen, setConsultationOpen] = useState(false);
+
   return (
     <>
-      <Navbar />
-      <main className="bg-page" style={{ minHeight: "80vh" }}>
-        {/* Header */}
-        <section className="bg-navy" style={{ padding: "4rem 0 4.5rem 0", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
-          <div className="container">
-            <nav aria-label="Breadcrumb" style={{ marginBottom: "1rem", fontSize: "0.8125rem", color: "#94A3B8" }}>
-              <Link href="/" style={{ color: "#94A3B8", textDecoration: "none" }}>Home</Link>
-              <span style={{ margin: "0 0.5rem" }}>/</span>
-              <span style={{ color: "#F8FAFC" }}>Services</span>
-            </nav>
+      <Navbar onOpenConsultation={() => setConsultationOpen(true)} />
 
-            <div className="eyebrow eyebrow-dark">
-              Our Capabilities
+      <main className="w-full pt-20 bg-surface-canvas min-h-screen">
+        {/* Editorial Sub-Hero Banner */}
+        <section className="bg-primary text-on-primary py-20 px-4 sm:px-8 lg:px-12 relative overflow-hidden">
+          <div className="absolute -top-20 -right-20 w-96 h-96 bg-accent-electric/10 rounded-full blur-[120px] pointer-events-none"></div>
+          <div className="max-w-[1440px] mx-auto relative z-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md mb-4 text-xs font-mono text-accent-electric">
+              <span>SPECIALIZED INVESTIGATIVE PRACTICE</span>
             </div>
-
-            <h1 className="heading-lg" style={{ color: "#FFFFFF", marginBottom: "1rem" }}>
-              One Partner for Critical Due Diligence Questions.
+            <h1 className="font-display-xl text-3xl sm:text-5xl text-white tracking-tight mb-4">
+              Comprehensive Due Diligence &amp; Forensics.
             </h1>
-
-            <p style={{ fontSize: "1.125rem", color: "#94A3B8", maxWidth: "720px", lineHeight: "1.7" }}>
-              FACET Verify supports property, corporate and transaction decisions through scoped research, source review and investigative analysis. Choose a defined vertical or combine workstreams.
+            <p className="font-body-lg text-slate-300 max-w-2xl leading-relaxed">
+              Explore our core intelligence capabilities covering asset verification, promoter scrutiny, litigation risk, vendor screening, cross-border asset tracing, and fraud investigations.
             </p>
           </div>
         </section>
 
-        <ServicesSection />
-        <WhyFacet />
+        {/* 7 Services Bento Matrix */}
+        <ServicesSection onSelectForQuote={() => setConsultationOpen(true)} />
+
+        {/* Conversion Panel */}
+        <MandateCTA onOpenConsultation={() => setConsultationOpen(true)} />
       </main>
+
       <Footer />
+
+      <ConsultationModal
+        isOpen={consultationOpen}
+        onClose={() => setConsultationOpen(false)}
+      />
     </>
   );
 }

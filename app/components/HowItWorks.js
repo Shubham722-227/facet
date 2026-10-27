@@ -1,162 +1,120 @@
 "use client";
 
-import { HOW_IT_WORKS_STEPS } from "../data/content";
+import Link from "next/link";
 
-export default function HowItWorks({ onOpenQuote }) {
+export default function HowItWorks({ onOpenConsultation }) {
+  const stages = [
+    {
+      code: "01 // INTAKE",
+      icon: "lock",
+      title: "Submit Request",
+      desc: "Secure onboarding under strict bilateral NDA protocols. Identification of target parameters and jurisdictions.",
+      sub: "Air-Gapped Vault",
+      border: "border-accent-electric/60"
+    },
+    {
+      code: "02 // SCOPE",
+      icon: "rule",
+      title: "Define Scope",
+      desc: "Jurisdictional scoping, corporate registry access points, and establishment of legal discovery boundaries.",
+      sub: "Mandate Charter",
+      border: "border-accent-electric/40"
+    },
+    {
+      code: "03 // INVESTIGATE",
+      icon: "search_insights",
+      title: "Field & Digital Research",
+      desc: "Ground-level record extraction, municipal archives, litigation dockets, and confidential HUMINT source debriefs.",
+      sub: "Multi-Source Intake",
+      border: "border-accent-electric/60",
+      activeIcon: true
+    },
+    {
+      code: "04 // TRIANGULATE",
+      icon: "analytics",
+      title: "Assess Findings",
+      desc: "Multi-analyst cross-examination, conflict screening, source verification, and risk-severity indexing.",
+      sub: "Admissibility Review",
+      border: "border-accent-electric/40"
+    },
+    {
+      code: "05 // DOSSIER",
+      icon: "verified",
+      title: "Deliver Report",
+      desc: "Cryptographically signed board-ready dossier with granular source annexures and direct counsel briefing.",
+      sub: "Executive Delivery",
+      border: "border-verification-green",
+      isGreen: true
+    }
+  ];
+
   return (
-    <section id="how-it-works" className="section-padding bg-page" aria-label="Methodology and Process">
-      <div className="container">
+    <section id="how-it-works" className="w-full bg-[#08182B] text-on-primary py-24 px-4 sm:px-8 lg:px-12 relative overflow-hidden">
+      {/* Ambient mesh pattern */}
+      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#38BDF8_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-secondary-container/20 rounded-full blur-[140px] pointer-events-none"></div>
+
+      <div className="max-w-[1440px] mx-auto relative z-10">
         {/* Section Header */}
-        <div style={{ maxWidth: "800px", margin: "0 auto 3.5rem auto", textAlign: "center" }}>
-          <div className="eyebrow" style={{ justifyContent: "center" }}>
-            Operational Methodology
-          </div>
-          <h2 className="heading-lg" style={{ color: "var(--navy-primary)", marginBottom: "1.25rem" }}>
-            A Clear Process from Scope to Findings.
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="font-label-sm text-label-sm uppercase tracking-widest text-accent-electric font-semibold block mb-2">
+            The Evidentiary Pipeline
+          </span>
+          <h2 className="font-headline-lg text-3xl sm:text-headline-lg text-white tracking-tight mb-4">
+            From Inquiry to Institutional Intelligence.
           </h2>
-          <p style={{ fontSize: "1.125rem", color: "var(--text-body)", lineHeight: "1.75" }}>
-            Effective due diligence begins with a defined risk question. We agree on the subjects, jurisdictions, accessible sources, and delivery schedule before any research begins.
+          <p className="font-body-md text-body-md text-slate-300">
+            A closed-loop forensic intake and verification architecture designed for legal defensibility.
           </p>
         </div>
 
-        {/* 5-Step Process Timeline */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))",
-          gap: "1.5rem",
-          marginBottom: "3.5rem"
-        }}>
-          {HOW_IT_WORKS_STEPS.map((stepItem, idx) => (
+        {/* 5 Connected Horizontal Glass Stages */}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 relative">
+          {stages.map((stage) => (
             <div
-              key={stepItem.step}
-              className="card-white"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                position: "relative",
-                padding: "1.75rem 1.5rem"
-              }}
+              key={stage.code}
+              className={`bg-white/5 backdrop-blur-xl p-5 rounded-xl border-t-2 ${stage.border} hover:bg-white/10 transition-all flex flex-col justify-between min-h-[220px] shadow-lg`}
             >
-              {/* Step indicator */}
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1rem" }}>
-                <span style={{
-                  fontFamily: "monospace",
-                  fontSize: "1.5rem",
-                  fontWeight: "800",
-                  color: "var(--facet-red)",
-                  letterSpacing: "-0.03em"
-                }}>
-                  {stepItem.step}
-                </span>
-                <span style={{ fontSize: "0.6875rem", textTransform: "uppercase", fontWeight: "700", color: "var(--text-muted)", letterSpacing: "0.08em" }}>
-                  PHASE {idx + 1}
-                </span>
+              <div>
+                <div className="flex justify-between items-center mb-4">
+                  <span className={`font-mono ${stage.isGreen ? "text-verification-green" : "text-accent-electric"} text-sm font-bold`}>
+                    {stage.code}
+                  </span>
+                  <span className={`material-symbols-outlined ${stage.isGreen ? "text-verification-green" : stage.activeIcon ? "text-accent-electric" : "text-slate-400"} text-[18px]`}>
+                    {stage.icon}
+                  </span>
+                </div>
+                <h4 className="font-headline-sm text-[17px] text-white font-semibold mb-2">
+                  {stage.title}
+                </h4>
+                <p className="font-body-sm text-[13px] text-slate-300 leading-snug">
+                  {stage.desc}
+                </p>
               </div>
-
-              <h3 style={{ fontSize: "1.1rem", fontWeight: "700", color: "var(--navy-primary)", marginBottom: "0.25rem", lineHeight: "1.3" }}>
-                {stepItem.title}
-              </h3>
-
-              <div style={{ fontSize: "0.75rem", fontWeight: "600", color: "var(--text-muted)", marginBottom: "0.875rem" }}>
-                {stepItem.subtitle}
-              </div>
-
-              <p style={{ fontSize: "0.875rem", color: "var(--text-body)", lineHeight: "1.55", marginBottom: "1rem" }}>
-                {stepItem.description}
-              </p>
-
-              <div style={{ marginTop: "auto", paddingTop: "0.875rem", borderTop: "1px solid var(--border-subtle)" }}>
-                <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.4rem" }}>
-                  {stepItem.details.map((detail, dIdx) => (
-                    <li key={dIdx} style={{ fontSize: "0.75rem", color: "var(--text-muted)", lineHeight: "1.35", display: "flex", gap: "0.4rem" }}>
-                      <span style={{ color: "var(--facet-red)" }}>•</span>
-                      <span>{detail}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <span className={`font-label-sm text-[10px] ${stage.isGreen ? "text-verification-green font-bold" : "text-slate-400"} uppercase tracking-widest block pt-3 border-t border-white/10 mt-4`}>
+                {stage.sub}
+              </span>
             </div>
           ))}
         </div>
 
-        {/* Commitment Box ("What Clients Should Expect") */}
-        <div style={{
-          background: "var(--navy-primary)",
-          color: "#FFFFFF",
-          borderRadius: "8px",
-          padding: "2.5rem",
-          display: "grid",
-          gridTemplateColumns: "1fr 1.8fr",
-          gap: "2.5rem",
-          alignItems: "center"
-        }}>
-          <div>
-            <div className="eyebrow eyebrow-dark" style={{ marginBottom: "0.5rem" }}>
-              Our Engagement Standard
-            </div>
-            <h3 className="heading-md" style={{ color: "#FFFFFF", marginBottom: "1rem" }}>
-              What You Should Always Expect From FACET
-            </h3>
-            <p style={{ fontSize: "0.9375rem", color: "#94A3B8", lineHeight: "1.6", marginBottom: "1.5rem" }}>
-              We hold our work to strict professional standards of independence, source attribution, and client confidentiality.
-            </p>
-            <button
-              type="button"
-              onClick={onOpenQuote}
-              className="btn btn-primary"
-            >
-              Discuss Your Requirement
-            </button>
+        {/* Bottom Protocol Action */}
+        <div className="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          <div className="flex items-center gap-3">
+            <span className="material-symbols-outlined text-verification-green text-[22px]">lock_clock</span>
+            <span className="text-xs sm:text-sm text-slate-300 font-mono">
+              Strict Bilateral NDA Execution Prior to Identifying Target Identifiers
+            </span>
           </div>
-
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-            gap: "1.25rem"
-          }}>
-            {[
-              {
-                title: "A Defined Scope in Writing",
-                text: "No ambiguous research boundaries. Inclusions, exclusions, and searched jurisdictions are codified in advance."
-              },
-              {
-                title: "Source-Linked Findings",
-                text: "Every material finding citations its originating public register, gazette, or court docket with dates accessed."
-              },
-              {
-                title: "Separation of Fact & Inference",
-                text: "Reports strictly isolate established official records from allegations, ongoing suits, or analytical inferences."
-              },
-              {
-                title: "Strict Confidentiality",
-                text: "Bound by bilateral NDAs. Counterparties are never alerted during lawful on-the-ground or online inquiries."
-              }
-            ].map((box, bIdx) => (
-              <div key={bIdx} style={{
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.1)",
-                borderRadius: "4px",
-                padding: "1.25rem"
-              }}>
-                <div style={{ fontSize: "0.875rem", fontWeight: "700", color: "#FFFFFF", marginBottom: "0.4rem" }}>
-                  {box.title}
-                </div>
-                <div style={{ fontSize: "0.8125rem", color: "#94A3B8", lineHeight: "1.45" }}>
-                  {box.text}
-                </div>
-              </div>
-            ))}
-          </div>
+          <button
+            type="button"
+            onClick={onOpenConsultation}
+            className="px-6 py-2.5 rounded-lg bg-accent-electric/20 text-accent-electric border border-accent-electric/40 font-label-md text-xs uppercase tracking-wider font-semibold hover:bg-accent-electric hover:text-primary transition-all"
+          >
+            Initiate Secure Mandate
+          </button>
         </div>
       </div>
-
-      <style jsx>{`
-        @media (max-width: 860px) {
-          div[style*="gridTemplateColumns: 1fr 1.8fr"] {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }

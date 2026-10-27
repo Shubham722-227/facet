@@ -1,40 +1,47 @@
-import Link from "next/link";
+"use client";
+
+import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import WhoWeServe from "../components/WhoWeServe";
-
-export const metadata = {
-  title: "Who We Serve | Due Diligence for Banks, Law Firms, Corporates & Investors",
-  description: "Learn how FACET Verify aligns due diligence research for lending institutions, counsel, property developers, and deal teams.",
-};
+import MandateCTA from "../components/MandateCTA";
+import ConsultationModal from "../components/ConsultationModal";
 
 export default function IndustriesPage() {
+  const [consultationOpen, setConsultationOpen] = useState(false);
+
   return (
     <>
-      <Navbar />
-      <main className="bg-page">
-        <section className="bg-navy" style={{ padding: "4rem 0 4.5rem 0", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
-          <div className="container">
-            <nav aria-label="Breadcrumb" style={{ marginBottom: "1rem", fontSize: "0.8125rem", color: "#94A3B8" }}>
-              <Link href="/" style={{ color: "#94A3B8", textDecoration: "none" }}>Home</Link>
-              <span style={{ margin: "0 0.5rem" }}>/</span>
-              <span style={{ color: "#F8FAFC" }}>Who We Serve</span>
-            </nav>
-            <div className="eyebrow eyebrow-dark">
-              Industry Verticals
+      <Navbar onOpenConsultation={() => setConsultationOpen(true)} />
+
+      <main className="w-full pt-20 bg-surface-canvas min-h-screen">
+        <section className="bg-primary text-on-primary py-20 px-4 sm:px-8 lg:px-12 relative overflow-hidden">
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-secondary/15 rounded-full blur-[140px] pointer-events-none"></div>
+
+          <div className="max-w-[1440px] mx-auto relative z-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-mono text-accent-electric mb-4">
+              <span>SPECIALIZED RISK ENVIRONMENTS</span>
             </div>
-            <h1 className="heading-lg" style={{ color: "#FFFFFF", marginBottom: "1rem" }}>
-              Due Diligence Built Around Your Decision.
+            <h1 className="font-display-xl text-3xl sm:text-5xl text-white tracking-tight mb-4">
+              Institutional Due Diligence by Sector.
             </h1>
-            <p style={{ fontSize: "1.125rem", color: "#94A3B8", maxWidth: "720px", lineHeight: "1.7" }}>
-              Research scope depends on your organizational mandate, fiduciary duties, and transaction risk question. Explore our tailored sector practices.
+            <p className="font-body-lg text-slate-300 max-w-2xl leading-relaxed">
+              Tailored evidentiary frameworks engineered for wholesale credit committees, litigation partners, sovereign funds, land funds, and family offices.
             </p>
           </div>
         </section>
 
-        <WhoWeServe />
+        <WhoWeServe onOpenConsultation={() => setConsultationOpen(true)} />
+
+        <MandateCTA onOpenConsultation={() => setConsultationOpen(true)} />
       </main>
+
       <Footer />
+
+      <ConsultationModal
+        isOpen={consultationOpen}
+        onClose={() => setConsultationOpen(false)}
+      />
     </>
   );
 }

@@ -1,174 +1,182 @@
 "use client";
 
 import { useState } from "react";
-import { INSIGHTS } from "../data/content";
+import Link from "next/link";
 
-export default function InsightsSection({ onOpenQuote }) {
+export default function InsightsSection() {
   const [activeArticle, setActiveArticle] = useState(null);
 
+  const featuredArticle = {
+    category: "Cross-Border M&A",
+    readTime: "8 Min Read // March 2025",
+    title: "Unmasking Layered SPVs in Cross-Border Infrastructure Acquisitions.",
+    summary: "How private equity sponsors are leveraging multi-jurisdictional register triangulation to uncover hidden beneficial owners and sanction contamination in offshore special purpose holding structures.",
+    author: "M. V. ALDRICH, SENIOR INVESTIGATIVE COUNSEL",
+    fullContent: [
+      "In modern cross-border infrastructure and commercial acquisitions, beneficial ownership is frequently obscured across multiple intermediary holding tiers spanning Cyprus, Delaware, the Cayman Islands, and local operating SPVs.",
+      "Standard database screening algorithms frequently flag false positives while completely missing complex circular nominee trusts. Deterministic attribution requires forensic analysis of statutory director voting declarations, registered share pledges, and historical debt service agreements.",
+      "FACET's cross-border methodology triangulates public registry disclosures, gazette notifications, and judicial dispute filings to reconstruct the true economic hierarchy behind target entities."
+    ]
+  };
+
+  const supportingArticles = [
+    {
+      category: "Asset Tracing",
+      readTime: "5 Min Read",
+      reportNo: "REPORT NO. 44-B",
+      tagColor: "text-secondary",
+      title: "Pre-Insolvency Asset Alienation: Evidentiary Safe Harbors",
+      summary: "Techniques for establishing the chronological timeline of illicit property transfers before corporate rescue petitions.",
+      fullContent: [
+        "Creditors facing non-performing assets often discover that prime real estate or corporate shareholdings were alienated in the shadow of insolvency.",
+        "Establishing an avoidance action under bankruptcy regimes (such as Section 43/66 of the IBC or Chapter 11 fraudulent conveyances) hinges upon proving transaction timing, artificial undervaluation, and shared beneficial control between transferor and transferee.",
+        "Our evidentiary audits trace revenue mutation registers and registered consideration escrows to produce defensible affidavits for commercial courts."
+      ]
+    },
+    {
+      category: "Sanctions Risk",
+      readTime: "6 Min Read",
+      reportNo: "REPORT NO. 44-C",
+      tagColor: "text-evidence-flag",
+      title: "The New Vector: Sanction Evasion via Maritime Shell Flags",
+      summary: "Detecting automatic identification system (AIS) dark-voyages and flag-of-convenience transfers in high-seas commodity trades.",
+      fullContent: [
+        "Secondary sanctions enforcement has heightened scrutiny on commodity financiers, maritime underwriters, and charterers.",
+        "Illicit cargo transfers rely increasingly on AIS manipulation, sudden flag-state transfers, and layered offshore ownership entities registered in jurisdictions with minimal regulatory disclosure.",
+        "FACET integrates satellite telemetry data with corporate shareholding databases to map vessel ownership back to sanctioned state entities."
+      ]
+    }
+  ];
+
   return (
-    <section id="insights" className="section-padding bg-page" aria-label="Due Diligence Knowledge Centre">
-      <div className="container">
-        {/* Section Header */}
-        <div style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: "1.5rem", marginBottom: "3rem" }}>
-          <div style={{ maxWidth: "700px" }}>
-            <div className="eyebrow">
-              Knowledge Centre & Field Guides
-            </div>
-            <h2 className="heading-lg" style={{ color: "var(--navy-primary)", marginBottom: "0.75rem" }}>
-              Practical Guidance for Better Due Diligence.
+    <section id="insights" className="w-full px-4 sm:px-8 lg:px-12 py-24 bg-surface-canvas relative">
+      <div className="max-w-[1440px] mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+          <div>
+            <span className="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-semibold block mb-2">
+              Intelligence Briefings
+            </span>
+            <h2 className="font-headline-lg text-3xl sm:text-headline-lg text-primary tracking-tight">
+              Perspectives on Risk &amp; Due Diligence.
             </h2>
-            <p style={{ fontSize: "1.05rem", color: "var(--text-body)", lineHeight: "1.65" }}>
-              Independent research, regulatory frameworks, and practical checklists prepared by our diligence specialists.
-            </p>
           </div>
+          <Link
+            href="/insights"
+            className="inline-flex items-center gap-1 font-label-md text-label-md uppercase tracking-wider text-primary hover:text-secondary transition-colors font-bold mt-4 md:mt-0"
+          >
+            <span>View All Insights</span>
+            <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+          </Link>
         </div>
 
-        {/* 4 Article Cards Grid */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          gap: "1.75rem"
-        }}>
-          {INSIGHTS.map((article) => (
-            <div
-              key={article.id}
-              className="card-white"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                padding: "2rem"
-              }}
-            >
-              <div>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1rem" }}>
-                  <span className="badge badge-neutral" style={{ fontSize: "0.7rem" }}>
-                    {article.category}
-                  </span>
-                  <span style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>
-                    {article.readTime}
-                  </span>
-                </div>
-
-                <h3 className="heading-sm" style={{ color: "var(--navy-primary)", marginBottom: "0.75rem", lineHeight: "1.35" }}>
-                  {article.title}
-                </h3>
-
-                <p style={{ fontSize: "0.875rem", color: "var(--text-body)", lineHeight: "1.6", marginBottom: "1.5rem" }}>
-                  {article.summary}
-                </p>
-              </div>
-
-              <div style={{ paddingTop: "1rem", borderTop: "1px solid var(--border-subtle)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                <span style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>
-                  {article.date}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          {/* Featured Insight Card */}
+          <div
+            onClick={() => setActiveArticle(featuredArticle)}
+            className="lg:col-span-7 bg-white/85 backdrop-blur-xl rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between cursor-pointer border border-border-subtle"
+          >
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="px-2.5 py-0.5 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm uppercase tracking-wider font-semibold">
+                  {featuredArticle.category}
                 </span>
-                <button
-                  type="button"
-                  onClick={() => setActiveArticle(article)}
-                  style={{
-                    background: "none",
-                    border: "none",
-                    color: "var(--facet-red)",
-                    fontWeight: "600",
-                    fontSize: "0.8125rem",
-                    cursor: "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.35rem"
-                  }}
-                >
-                  Read Analysis
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </button>
+                <span className="font-body-sm text-xs text-on-surface-variant">
+                  {featuredArticle.readTime}
+                </span>
               </div>
+              <h3 className="font-headline-md text-2xl sm:text-headline-md text-primary mb-4 leading-tight">
+                {featuredArticle.title}
+              </h3>
+              <p className="font-body-md text-body-md text-on-surface-variant mb-6 leading-relaxed">
+                {featuredArticle.summary}
+              </p>
             </div>
-          ))}
+            <div className="pt-6 flex items-center justify-between border-t border-border-subtle/50">
+              <span className="font-mono text-xs text-secondary font-bold">
+                AUTHOR: {featuredArticle.author}
+              </span>
+              <span className="material-symbols-outlined text-primary">arrow_outward</span>
+            </div>
+          </div>
+
+          {/* 2 Supporting Editorial Cards */}
+          <div className="lg:col-span-5 flex flex-col gap-6">
+            {supportingArticles.map((art) => (
+              <div
+                key={art.title}
+                onClick={() => setActiveArticle(art)}
+                className="bg-white/85 backdrop-blur-xl rounded-xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between cursor-pointer border border-border-subtle"
+              >
+                <div>
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className={`px-2 py-0.5 rounded bg-surface-container ${art.tagColor} font-label-sm text-label-sm uppercase tracking-wider font-semibold`}>
+                      {art.category}
+                    </span>
+                    <span className="font-body-sm text-xs text-on-surface-variant">
+                      {art.readTime}
+                    </span>
+                  </div>
+                  <h4 className="font-headline-sm text-[18px] text-primary mb-2 font-bold">
+                    {art.title}
+                  </h4>
+                  <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                    {art.summary}
+                  </p>
+                </div>
+                <div className="pt-4 flex justify-between items-center text-xs font-mono text-primary font-semibold border-t border-border-subtle/50 mt-4">
+                  <span>{art.reportNo}</span>
+                  <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Article Read Modal */}
+      {/* Article Reader Modal */}
       {activeArticle && (
-        <div className="modal-overlay" onClick={() => setActiveArticle(null)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: "780px" }}>
-            <div className="modal-header">
-              <div>
-                <span className="badge badge-neutral" style={{ marginBottom: "0.5rem" }}>
-                  {activeArticle.category} · {activeArticle.readTime}
-                </span>
-                <h3 className="heading-md" style={{ color: "var(--navy-primary)" }}>
-                  {activeArticle.title}
-                </h3>
-              </div>
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary/60 backdrop-blur-sm"
+          onClick={() => setActiveArticle(null)}
+        >
+          <div
+            className="bg-white rounded-2xl p-6 sm:p-8 max-w-2xl w-full shadow-2xl border border-border-subtle max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between mb-4">
+              <span className="px-2.5 py-1 rounded bg-surface-container text-primary font-mono text-xs font-bold uppercase">
+                {activeArticle.category}
+              </span>
               <button
                 type="button"
-                className="modal-close-btn"
                 onClick={() => setActiveArticle(null)}
+                className="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary"
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
+                <span className="material-symbols-outlined text-[20px]">close</span>
               </button>
             </div>
 
-            <div className="modal-body" style={{ lineHeight: "1.75", fontSize: "0.9375rem" }}>
-              {activeArticle.content.map((paragraph, idx) => (
-                <p key={idx} style={{ marginBottom: "1.25rem", color: "var(--text-body)" }}>
-                  {paragraph}
-                </p>
+            <h3 className="font-headline-md text-2xl text-primary font-bold mb-3">
+              {activeArticle.title}
+            </h3>
+
+            <div className="space-y-4 text-on-surface-variant text-sm sm:text-base leading-relaxed mb-6">
+              {activeArticle.fullContent.map((para, idx) => (
+                <p key={idx}>{para}</p>
               ))}
-
-              {/* Practical Checklist Box */}
-              <div style={{
-                background: "var(--bg-page)",
-                border: "1px solid var(--border-light)",
-                borderRadius: "6px",
-                padding: "1.5rem",
-                marginTop: "1.75rem",
-                marginBottom: "1.5rem"
-              }}>
-                <h4 style={{ fontSize: "0.875rem", textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--navy-primary)", fontWeight: "700", marginBottom: "0.875rem" }}>
-                  Investigative Due Diligence Checklist
-                </h4>
-                <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                  {activeArticle.checklist.map((item, cIdx) => (
-                    <li key={cIdx} style={{ display: "flex", alignItems: "flex-start", gap: "0.625rem", fontSize: "0.875rem" }}>
-                      <span style={{ color: "var(--facet-red)", fontWeight: "bold" }}>✓</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div style={{ fontSize: "0.75rem", color: "var(--text-muted)", fontStyle: "italic", borderTop: "1px solid var(--border-subtle)", paddingTop: "1rem" }}>
-                Disclaimer: This article provides general research methodology and educational guidance. It does not constitute formal legal advice or substitute for counsel tailored to a specific jurisdiction.
-              </div>
             </div>
 
-            <div className="modal-footer">
-              <button
-                type="button"
-                onClick={() => setActiveArticle(null)}
-                className="btn btn-outline-dark"
-              >
-                Close Article
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setActiveArticle(null);
-                  onOpenQuote();
-                }}
-                className="btn btn-primary"
-              >
-                Discuss a Related Scoped Engagement
-              </button>
+            <div className="p-4 bg-surface-canvas rounded-xl border border-border-subtle text-xs text-slate-500 font-mono mb-6">
+              Evidentiary Citation Protocol: Multi-jurisdictional register triangulation and authenticated filings.
             </div>
+
+            <button
+              type="button"
+              onClick={() => setActiveArticle(null)}
+              className="w-full py-3 rounded-lg bg-primary text-on-primary font-label-md text-label-md uppercase tracking-wider"
+            >
+              Close Briefing
+            </button>
           </div>
         </div>
       )}

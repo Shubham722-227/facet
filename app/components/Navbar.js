@@ -1,189 +1,127 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { BRAND } from "../data/content";
+import { usePathname } from "next/navigation";
 
-export default function Navbar({ onOpenQuote, activeSection = "" }) {
+export default function Navbar({ onOpenConsultation }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const navItems = [
-    { label: "Services", href: "#services" },
-    { label: "How It Works", href: "#how-it-works" },
-    { label: "Sample Report", href: "#sample-report" },
-    { label: "Who We Serve", href: "#who-we-serve" },
-    { label: "Insights", href: "#insights" },
-    { label: "About", href: "#about" },
-    { label: "FAQs", href: "#faqs" },
-    { label: "Contact", href: "#contact" },
+  const navLinks = [
+    { label: "Services", href: "/services" },
+    { label: "Industries", href: "/industries" },
+    { label: "How It Works", href: "/how-it-works" },
+    { label: "Insights", href: "/insights" },
+    { label: "About", href: "/about" },
   ];
 
-  const handleLinkClick = (e, href) => {
-    if (href.startsWith("#")) {
-      e.preventDefault();
-      const el = document.querySelector(href);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
-      setMobileMenuOpen(false);
-    }
-  };
-
   return (
-    <header className={`header-wrapper ${scrolled ? "header-scrolled" : ""}`}>
-      <div className="container">
-        <nav className="nav-container" aria-label="Main Navigation">
-          {/* Brand Logo */}
-          <Link href="/" className="brand-logo" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-            <div className="brand-icon">
-              <svg width="32" height="32" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                {/* Geometric Facet Diamond */}
-                <path d="M18 3L32 10.5L32 25.5L18 33L4 25.5L4 10.5L18 3Z" stroke="#FFFFFF" strokeWidth="1.5" strokeLinejoin="round" fill="rgba(255,255,255,0.03)" />
-                <path d="M18 3L18 33" stroke="rgba(255,255,255,0.3)" strokeWidth="1" strokeDasharray="2 2" />
-                <path d="M4 10.5L32 10.5" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
-                <path d="M4 25.5L32 25.5" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
-                {/* Central Red Diamond Focal Node */}
-                <polygon points="18,12 24,18 18,24 12,18" fill="var(--facet-red)" />
+    <header className="fixed top-0 left-0 w-full z-50 bg-surface-card/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(11,37,69,0.04)] border-b border-border-subtle/60">
+      <div className="h-20 w-full px-4 sm:px-8 lg:px-12 flex items-center justify-between max-w-[1440px] mx-auto">
+        {/* Brand & Security Badge */}
+        <div className="flex items-center gap-6">
+          <Link href="/" className="flex items-center gap-2.5 group">
+            {/* Prismatic Diamond Emblem */}
+            <div className="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-accent-electric shadow-sm group-hover:bg-primary transition-colors">
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="12,2 22,8 22,16 12,22 2,16 2,8" stroke="#0EA5E9" strokeWidth="1.75" fill="rgba(14,165,233,0.15)" />
+                <polyline points="2,8 12,14 22,8" stroke="#FFFFFF" strokeWidth="1.25" strokeOpacity="0.7" />
+                <line x1="12" y1="14" x2="12" y2="22" stroke="#FFFFFF" strokeWidth="1.25" strokeOpacity="0.7" />
+                <circle cx="12" cy="14" r="2" fill="#0EA5E9" />
               </svg>
             </div>
-            <div>
-              <div className="brand-name">
-                FACET <span className="brand-name-verify">Verify</span>
-              </div>
-              <span className="brand-subline">Due Diligence & Investigative Intelligence</span>
-            </div>
+            <span className="font-headline-sm text-[22px] tracking-tight text-primary font-bold">
+              FACET
+            </span>
           </Link>
 
-          {/* Desktop Nav Links */}
-          <ul className="nav-links" style={{ display: "none" }}>
-            {/* Handled by media query or inline flex on desktop */}
-          </ul>
+          <span className="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-low text-on-surface-variant font-label-sm text-[11px] font-semibold border border-border-subtle/50">
+            <span className="w-1.5 h-1.5 rounded-full bg-verification-green animate-pulse"></span>
+            CORP INTEL // 256-BIT SECURE
+          </span>
+        </div>
 
-          <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
-            <div className="desktop-menu" style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
-              {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={(e) => handleLinkClick(e, item.href)}
-                  className={`nav-link ${activeSection === item.href.replace("#", "") ? "active" : ""}`}
-                >
-                  {item.label}
-                </a>
-              ))}
-            </div>
-
-            {/* Primary Action Button */}
-            <button
-              type="button"
-              onClick={onOpenQuote}
-              className="btn btn-primary btn-sm"
-              id="header-quote-button"
-            >
-              Get a Quote
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </button>
-
-            {/* Mobile Hamburger Button */}
-            <button
-              type="button"
-              className="mobile-toggle-btn"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle Navigation Menu"
-              aria-expanded={mobileMenuOpen}
-              style={{
-                background: "transparent",
-                border: "1px solid rgba(255,255,255,0.15)",
-                color: "#FFFFFF",
-                padding: "0.5rem",
-                borderRadius: "4px",
-                cursor: "pointer",
-                display: "none"
-              }}
-            >
-              {mobileMenuOpen ? (
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-              ) : (
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <line x1="3" y1="12" x2="21" y2="12"></line>
-                  <line x1="3" y1="6" x2="21" y2="6"></line>
-                  <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-              )}
-            </button>
-          </div>
+        {/* Desktop Navigation Links */}
+        <nav className="hidden lg:flex items-center gap-8">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.label}
+                href={link.href}
+                className={`font-label-md text-label-md uppercase tracking-wider transition-colors ${
+                  isActive
+                    ? "text-primary font-bold border-b-2 border-secondary pb-1"
+                    : "text-on-surface-variant hover:text-on-surface"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
+
+        {/* Right CTA & Account */}
+        <div className="flex items-center gap-4">
+          <button
+            type="button"
+            onClick={onOpenConsultation}
+            className="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md uppercase tracking-wider shadow-[0_1px_3px_rgba(11,37,69,0.06)] hover:bg-secondary-container hover:text-on-secondary transition-all"
+          >
+            Request a Consultation
+          </button>
+
+          <div
+            className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary cursor-pointer hover:bg-secondary transition-colors"
+            title="Institutional Client Portal"
+            onClick={onOpenConsultation}
+          >
+            <span className="material-symbols-outlined text-[18px]">person</span>
+          </div>
+
+          {/* Mobile Menu Trigger */}
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden p-2 rounded-lg bg-surface-container text-primary flex items-center justify-center"
+            aria-label="Toggle Mobile Menu"
+          >
+            <span className="material-symbols-outlined text-[24px]">
+              {mobileMenuOpen ? "close" : "menu"}
+            </span>
+          </button>
+        </div>
       </div>
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div
-          className="mobile-drawer"
-          style={{
-            background: "var(--navy-primary)",
-            borderBottom: "1px solid rgba(255,255,255,0.1)",
-            padding: "1.5rem",
-            display: "flex",
-            flexDirection: "column",
-            gap: "1rem",
-          }}
-        >
-          {navItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              onClick={(e) => handleLinkClick(e, item.href)}
-              style={{
-                color: "var(--text-light)",
-                textDecoration: "none",
-                fontSize: "1rem",
-                fontWeight: "500",
-                padding: "0.5rem 0",
-                borderBottom: "1px solid rgba(255,255,255,0.06)",
-              }}
-            >
-              {item.label}
-            </a>
-          ))}
+        <div className="lg:hidden bg-surface-card border-b border-border-subtle p-6 space-y-4 shadow-xl animate-fadeIn">
+          <div className="flex flex-col space-y-3">
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="font-label-md text-sm uppercase tracking-wider text-on-surface font-semibold py-2 border-b border-border-subtle/50"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+
           <button
             type="button"
             onClick={() => {
               setMobileMenuOpen(false);
-              onOpenQuote();
+              onOpenConsultation();
             }}
-            className="btn btn-primary"
-            style={{ width: "100%", marginTop: "0.5rem" }}
+            className="w-full py-3 rounded-lg bg-primary-container text-on-primary font-label-md uppercase tracking-wider text-center"
           >
-            Get a Quote
+            Request a Consultation
           </button>
         </div>
       )}
-
-      <style jsx>{`
-        @media (max-width: 980px) {
-          .desktop-menu {
-            display: none !important;
-          }
-          .mobile-toggle-btn {
-            display: flex !important;
-          }
-        }
-      `}</style>
     </header>
   );
 }

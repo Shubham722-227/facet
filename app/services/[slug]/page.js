@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { SERVICES } from "../../data/content";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import ScopeBuilder from "../../components/ScopeBuilder";
+import MandateCTA from "../../components/MandateCTA";
 
 export function generateStaticParams() {
   return SERVICES.map((service) => ({
@@ -17,7 +17,7 @@ export async function generateMetadata({ params }) {
   if (!service) return {};
 
   return {
-    title: `${service.title} | FACET Verify`,
+    title: `${service.title} | FACET Intelligence`,
     description: service.shortDesc,
   };
 }
@@ -33,106 +33,168 @@ export default async function ServiceDetailPage({ params }) {
   return (
     <>
       <Navbar />
-      <main className="bg-page" style={{ minHeight: "80vh" }}>
-        {/* Breadcrumb Header */}
-        <section className="bg-navy" style={{ padding: "3rem 0 3.5rem 0", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
-          <div className="container">
-            <nav aria-label="Breadcrumb" style={{ marginBottom: "1rem", fontSize: "0.8125rem", color: "#94A3B8" }}>
-              <Link href="/" style={{ color: "#94A3B8", textDecoration: "none" }}>Home</Link>
-              <span style={{ margin: "0 0.5rem" }}>/</span>
-              <Link href="/services" style={{ color: "#94A3B8", textDecoration: "none" }}>Services</Link>
-              <span style={{ margin: "0 0.5rem" }}>/</span>
-              <span style={{ color: "#F8FAFC" }}>{service.title}</span>
-            </nav>
 
-            <div className="eyebrow eyebrow-dark">
-              Service Vertical {service.number}
+      <main className="w-full pt-20 bg-surface-canvas min-h-screen">
+        {/* Detail Hero */}
+        <section className="bg-primary text-on-primary py-20 px-4 sm:px-8 lg:px-12 relative overflow-hidden">
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-accent-electric/15 rounded-full blur-[140px] pointer-events-none"></div>
+
+          <div className="max-w-[1440px] mx-auto relative z-10">
+            {/* Breadcrumb */}
+            <div className="flex items-center gap-2 text-xs font-mono text-slate-400 mb-6">
+              <Link href="/" className="hover:text-white transition-colors">HOME</Link>
+              <span>/</span>
+              <Link href="/services" className="hover:text-white transition-colors">CAPABILITIES</Link>
+              <span>/</span>
+              <span className="text-accent-electric">{service.number}</span>
             </div>
 
-            <h1 className="heading-lg" style={{ color: "#FFFFFF", marginBottom: "1rem" }}>
-              {service.heroHeadline}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-mono text-accent-electric mb-4">
+              <span>MANDATE VERTICAL {service.number}</span>
+            </div>
+
+            <h1 className="font-display-xl text-3xl sm:text-5xl text-white tracking-tight mb-4 max-w-3xl">
+              {service.title}
             </h1>
 
-            <p style={{ fontSize: "1.125rem", color: "#94A3B8", maxWidth: "760px", lineHeight: "1.7" }}>
+            <p className="font-body-lg text-slate-300 max-w-2xl leading-relaxed text-base sm:text-lg">
               {service.intro}
             </p>
           </div>
         </section>
 
-        {/* Content Section */}
-        <section className="section-padding">
-          <div className="container">
-            <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: "3rem" }}>
-              {/* Left Column: Scope Details */}
-              <div>
-                {/* Scope Areas */}
-                <div className="card-white" style={{ marginBottom: "2rem" }}>
-                  <h2 className="heading-sm" style={{ color: "var(--navy-primary)", marginBottom: "1.25rem" }}>
-                    Potential Scope Areas & Investigations
+        {/* Content Breakdown */}
+        <section className="py-20 px-4 sm:px-8 lg:px-12 max-w-[1440px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            {/* Left 8 Cols: Detailed Protocol */}
+            <div className="lg:col-span-8 space-y-10">
+              {/* Potential Scope Areas */}
+              <div className="bg-white/85 backdrop-blur-xl p-8 rounded-2xl shadow-sm border border-border-subtle">
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="material-symbols-outlined text-secondary text-[24px]">verified</span>
+                  <h2 className="font-headline-sm text-2xl text-primary font-bold">
+                    Forensic Scope Parameters
                   </h2>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-                    {service.scopeAreas.map((area, idx) => (
-                      <div key={idx} style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem", fontSize: "0.9375rem" }}>
-                        <span style={{ color: "var(--facet-red)", fontWeight: "bold", marginTop: "2px" }}>›</span>
-                        <span>{area}</span>
-                      </div>
-                    ))}
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                  {service.scopeAreas.map((area, idx) => (
+                    <div
+                      key={idx}
+                      className="p-3.5 rounded-lg bg-surface-canvas border border-border-subtle/80 flex items-start gap-2.5 text-sm text-on-surface leading-snug"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent-electric mt-1.5 shrink-0"></span>
+                      <span>{area}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Typical Client Deliverables */}
+              <div className="bg-white/85 backdrop-blur-xl p-8 rounded-2xl shadow-sm border border-border-subtle">
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="material-symbols-outlined text-primary text-[24px]">fact_check</span>
+                  <h2 className="font-headline-sm text-2xl text-primary font-bold">
+                    Verified Deliverables
+                  </h2>
+                </div>
+                <ul className="space-y-3 pt-2">
+                  {service.deliverables.map((del, idx) => (
+                    <li key={idx} className="flex items-start gap-3 text-sm text-on-surface-variant">
+                      <span className="material-symbols-outlined text-verification-green text-[20px] shrink-0 mt-0.5">check_circle</span>
+                      <span className="leading-relaxed">{del}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Workflow Phases */}
+              <div className="bg-white/85 backdrop-blur-xl p-8 rounded-2xl shadow-sm border border-border-subtle">
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="material-symbols-outlined text-accent-electric text-[24px]">timeline</span>
+                  <h2 className="font-headline-sm text-2xl text-primary font-bold">
+                    Evidentiary Methodology &amp; Workflow
+                  </h2>
+                </div>
+                <ol className="space-y-4 pt-2">
+                  {service.process.map((step, idx) => (
+                    <li key={idx} className="flex items-start gap-4">
+                      <span className="w-7 h-7 rounded-full bg-primary text-white text-xs font-mono font-bold flex items-center justify-center shrink-0">
+                        {idx + 1}
+                      </span>
+                      <p className="text-sm text-on-surface-variant leading-relaxed pt-1">
+                        {step}
+                      </p>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+
+              {/* Scope Boundary Notice */}
+              <div className="p-6 rounded-xl bg-error-container/40 border border-evidence-flag/20 text-on-surface flex items-start gap-4">
+                <span className="material-symbols-outlined text-evidence-flag text-[24px] shrink-0 mt-0.5">shield</span>
+                <div>
+                  <div className="font-bold text-sm text-primary mb-1">
+                    Defensible Scope Boundary &amp; Evidentiary Safe Harbors
                   </div>
-                </div>
-
-                {/* Deliverables */}
-                <div className="card-white" style={{ marginBottom: "2rem" }}>
-                  <h2 className="heading-sm" style={{ color: "var(--navy-primary)", marginBottom: "1.25rem" }}>
-                    Typical Client Deliverables
-                  </h2>
-                  <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.625rem" }}>
-                    {service.deliverables.map((del, idx) => (
-                      <li key={idx} style={{ display: "flex", alignItems: "flex-start", gap: "0.625rem", fontSize: "0.9375rem" }}>
-                        <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "var(--navy-primary)", marginTop: "8px" }}></span>
-                        <span>{del}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Process */}
-                <div className="card-white" style={{ marginBottom: "2rem" }}>
-                  <h2 className="heading-sm" style={{ color: "var(--navy-primary)", marginBottom: "1.25rem" }}>
-                    Methodology & Workflow
-                  </h2>
-                  <ol style={{ paddingLeft: "1.25rem", display: "flex", flexDirection: "column", gap: "0.75rem", fontSize: "0.9375rem" }}>
-                    {service.process.map((p, idx) => (
-                      <li key={idx}>{p}</li>
-                    ))}
-                  </ol>
-                </div>
-
-                {/* Limitations */}
-                <div style={{
-                  padding: "1.25rem 1.5rem",
-                  background: "rgba(201, 131, 22, 0.08)",
-                  border: "1px solid rgba(201, 131, 22, 0.25)",
-                  borderRadius: "6px"
-                }}>
-                  <strong style={{ color: "var(--warning-amber)", display: "block", marginBottom: "0.35rem" }}>
-                    Scope Limitations & Boundaries
-                  </strong>
-                  <p style={{ fontSize: "0.875rem", color: "var(--text-body)", lineHeight: "1.6" }}>
+                  <p className="text-xs text-on-surface-variant leading-relaxed">
                     {service.limitations}
                   </p>
                 </div>
               </div>
+            </div>
 
-              {/* Right Column: Pre-filled Scope Builder */}
-              <div>
-                <div style={{ position: "sticky", top: "5.5rem" }}>
-                  <ScopeBuilder initialServiceId={service.id} isModal={false} />
+            {/* Right 4 Cols: Mandate Action Card */}
+            <div className="lg:col-span-4">
+              <div className="sticky top-28 bg-white/95 backdrop-blur-xl p-7 rounded-2xl shadow-lg border border-border-subtle space-y-6">
+                <div>
+                  <span className="font-label-sm text-[11px] font-mono uppercase tracking-widest text-secondary block mb-1">
+                    Bespoke Scoping
+                  </span>
+                  <h3 className="font-headline-sm text-xl text-primary font-bold">
+                    Commission This Intelligence Mandate
+                  </h3>
+                  <p className="text-xs text-on-surface-variant mt-2 leading-relaxed">
+                    Custom scope formulation based on target entity jurisdictions, timeline horizons, and litigation sensitivities.
+                  </p>
+                </div>
+
+                <div className="p-4 bg-surface-canvas rounded-xl space-y-2 text-xs font-mono text-slate-600">
+                  <div className="flex justify-between">
+                    <span>Protocol:</span>
+                    <span className="font-bold text-primary">ISO-27001</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Admissibility:</span>
+                    <span className="text-verification-green font-bold">Court-Tested</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Delivery:</span>
+                    <span className="text-secondary font-bold">Encrypted PDF Dossier</span>
+                  </div>
+                </div>
+
+                <Link
+                  href="/contact"
+                  className="w-full py-3.5 rounded-lg bg-primary text-on-primary font-label-md text-xs uppercase tracking-wider font-bold hover:bg-secondary transition-all flex items-center justify-center gap-2"
+                >
+                  <span>Initiate Intake Consultation</span>
+                  <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </Link>
+
+                <div className="text-center">
+                  <Link href="/services" className="text-xs text-secondary hover:underline font-mono">
+                    ← Return to Capabilities Matrix
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
         </section>
+
+        {/* Bottom Mandate CTA */}
+        <MandateCTA />
       </main>
+
       <Footer />
     </>
   );

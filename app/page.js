@@ -3,139 +3,55 @@
 import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import Positioning from "./components/Positioning";
 import ServicesSection from "./components/ServicesSection";
 import HowItWorks from "./components/HowItWorks";
 import SampleReportPreview from "./components/SampleReportPreview";
 import WhoWeServe from "./components/WhoWeServe";
-import ScopeBuilder from "./components/ScopeBuilder";
-import WhyFacet from "./components/WhyFacet";
 import InsightsSection from "./components/InsightsSection";
-import FaqSection from "./components/FaqSection";
-import AboutSection from "./components/AboutSection";
-import ContactSection from "./components/ContactSection";
+import MandateCTA from "./components/MandateCTA";
 import Footer from "./components/Footer";
-import LegalModals from "./components/LegalModals";
+import ConsultationModal from "./components/ConsultationModal";
 
 export default function Home() {
-  const [quoteModalOpen, setQuoteModalOpen] = useState(false);
-  const [preselectedServiceId, setPreselectedServiceId] = useState("");
-  const [activeLegalModal, setActiveLegalModal] = useState(null); // 'disclaimer' | 'privacy' | 'terms' | null
-
-  const handleOpenQuote = (serviceId = "") => {
-    setPreselectedServiceId(serviceId || "");
-    setQuoteModalOpen(true);
-  };
-
-  const handleExploreServices = () => {
-    const el = document.getElementById("services");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const handleSelectServiceFromFooter = (serviceId) => {
-    const el = document.getElementById("services");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const [consultationOpen, setConsultationOpen] = useState(false);
 
   return (
     <>
-      {/* Sticky Header Navigation */}
-      <Navbar onOpenQuote={() => handleOpenQuote()} />
+      {/* Header */}
+      <Navbar onOpenConsultation={() => setConsultationOpen(true)} />
 
-      <main>
-        {/* Hero Section */}
-        <Hero
-          onOpenQuote={() => handleOpenQuote()}
-          onExploreServices={handleExploreServices}
-        />
+      <main className="w-full pt-20 bg-surface-canvas min-h-screen">
+        <div className="flex flex-col w-full">
+          {/* 1. Hero Section with Interactive 3D Prismatic Showcase */}
+          <Hero onOpenConsultation={() => setConsultationOpen(true)} />
 
-        {/* Positioning / Problem */}
-        <Positioning />
+          {/* 2. Capabilities Matrix (7 Services Bento Grid) */}
+          <ServicesSection onSelectForQuote={() => setConsultationOpen(true)} />
 
-        {/* 7 Confirmed Service Verticals */}
-        <ServicesSection
-          onSelectForQuote={(serviceId) => handleOpenQuote(serviceId)}
-        />
+          {/* 3. The Evidentiary Pipeline (Dark Glass 5-Stage Section) */}
+          <HowItWorks onOpenConsultation={() => setConsultationOpen(true)} />
 
-        {/* How It Works (Methodology) */}
-        <HowItWorks
-          onOpenQuote={() => handleOpenQuote()}
-        />
+          {/* 4. Intelligence Reporting Showcase (Dossier Mockup) */}
+          <SampleReportPreview onOpenConsultation={() => setConsultationOpen(true)} />
 
-        {/* What a Report Includes (Sample Report Preview) */}
-        <SampleReportPreview
-          onOpenQuote={() => handleOpenQuote()}
-        />
+          {/* 5. Institutional Application (Specialized Risk Environments) */}
+          <WhoWeServe onOpenConsultation={() => setConsultationOpen(true)} />
 
-        {/* Who We Serve (Client Sectors) */}
-        <WhoWeServe
-          onOpenQuote={() => handleOpenQuote()}
-        />
+          {/* 6. Intelligence Briefings (Insights Section) */}
+          <InsightsSection />
 
-        {/* Embedded Scope Builder Section */}
-        <section id="get-a-quote" className="section-padding bg-page" aria-label="Build Scope">
-          <div className="container-narrow">
-            <ScopeBuilder
-              initialServiceId={preselectedServiceId}
-              isModal={false}
-            />
-          </div>
-        </section>
-
-        {/* Why FACET Verify (Core Pillars) */}
-        <WhyFacet />
-
-        {/* Insights / Knowledge Centre */}
-        <InsightsSection
-          onOpenQuote={() => handleOpenQuote()}
-        />
-
-        {/* FAQs */}
-        <FaqSection
-          onOpenQuote={() => handleOpenQuote()}
-        />
-
-        {/* About FACET Verify */}
-        <AboutSection
-          onOpenQuote={() => handleOpenQuote()}
-        />
-
-        {/* Direct Contact Desk */}
-        <ContactSection />
+          {/* 7. Final High-Contrast Mandate Initiation Panel */}
+          <MandateCTA onOpenConsultation={() => setConsultationOpen(true)} />
+        </div>
       </main>
 
-      {/* Comprehensive Footer */}
-      <Footer
-        onOpenLegal={(type) => setActiveLegalModal(type)}
-        onSelectService={handleSelectServiceFromFooter}
-        onOpenQuote={() => handleOpenQuote()}
-      />
+      {/* Institutional Footer */}
+      <Footer />
 
-      {/* Quick Quote Modal */}
-      {quoteModalOpen && (
-        <div className="modal-overlay" onClick={() => setQuoteModalOpen(false)}>
-          <div
-            className="modal-content"
-            onClick={(e) => e.stopPropagation()}
-            style={{ maxWidth: "820px", padding: 0 }}
-          >
-            <ScopeBuilder
-              initialServiceId={preselectedServiceId}
-              onClose={() => setQuoteModalOpen(false)}
-              isModal={true}
-            />
-          </div>
-        </div>
-      )}
-
-      {/* Legal Modals (Disclaimer, Privacy, Terms) */}
-      <LegalModals
-        activeModal={activeLegalModal}
-        onClose={() => setActiveLegalModal(null)}
+      {/* Confidential Mandate Consultation Modal */}
+      <ConsultationModal
+        isOpen={consultationOpen}
+        onClose={() => setConsultationOpen(false)}
       />
     </>
   );
