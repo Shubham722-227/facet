@@ -59,18 +59,8 @@ function ClientFeedback() {
               customVariants={revealVariants}
               timelineRef={testimonialRef}
               className="lg:flex-[7] flex-[6] flex flex-col justify-between relative bg-[#0B2545] text-white overflow-hidden rounded-2xl border border-slate-700/40 p-6 shadow-md"
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  backgroundImage: `
-                    linear-gradient(to right, rgba(255, 255, 255, 0.12) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(255, 255, 255, 0.12) 1px, transparent 1px)
-                  `,
-                  backgroundSize: "44px 44px",
-                  WebkitMaskImage: "radial-gradient(ellipse 85% 60% at 50% 0%, #000 70%, transparent 100%)",
-                  maskImage: "radial-gradient(ellipse 85% 60% at 50% 0%, #000 70%, transparent 100%)",
-                }}
-              />
+            >
+              <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#ffffff18_1px,transparent_1px),linear-gradient(to_bottom,#ffffff18_1px,transparent_1px)] bg-[size:50px_56px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)] pointer-events-none" />
               <article className="mt-auto relative z-10">
                 <p className="font-body text-slate-100 text-[16px] sm:text-[17px] leading-relaxed">
                   &ldquo;FACET has been a game-changer for our cross-border transactions. Their investigative scrutiny is top-notch and their team is incredibly responsive.&rdquo;
@@ -238,18 +228,8 @@ function ClientFeedback() {
               customVariants={revealVariants}
               timelineRef={testimonialRef}
               className="lg:flex-[7] flex-[6] flex flex-col justify-between relative bg-[#0B2545] text-white overflow-hidden rounded-2xl border border-slate-700/40 p-6 shadow-md"
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  backgroundImage: `
-                    linear-gradient(to right, rgba(255, 255, 255, 0.12) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(255, 255, 255, 0.12) 1px, transparent 1px)
-                  `,
-                  backgroundSize: "44px 44px",
-                  WebkitMaskImage: "radial-gradient(ellipse 85% 60% at 50% 0%, #000 70%, transparent 100%)",
-                  maskImage: "radial-gradient(ellipse 85% 60% at 50% 0%, #000 70%, transparent 100%)",
-                }}
-              />
+            >
+              <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#ffffff18_1px,transparent_1px),linear-gradient(to_bottom,#ffffff18_1px,transparent_1px)] bg-[size:50px_56px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)] pointer-events-none" />
               <article className="mt-auto relative z-10">
                 <p className="font-body text-slate-100 text-[16px] sm:text-[17px] leading-relaxed">
                   &ldquo;A true game-changer for institutional due diligence. Their exceptional investigative clarity, combined with deep multi-jurisdiction expertise, has made a decisive impact on our capital deployment.&rdquo;
