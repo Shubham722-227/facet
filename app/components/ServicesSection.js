@@ -94,9 +94,22 @@ export default function ServicesSection({ onSelectForQuote }) {
             timelineRef={sectionRef}
             className="w-full relative bg-gradient-to-br from-[#0B2545] via-[#0F325E] to-[#133966] text-white overflow-hidden rounded-3xl border border-[#1E4D82] p-8 sm:p-10 lg:p-12 shadow-xl hover:shadow-2xl transition-all duration-300 group"
           >
-            {/* Ambient Lighting & Blueprint Grid */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_75%_60%_at_50%_0%,#000_70%,transparent_110%)] pointer-events-none" />
-            <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
+            {/* Ambient Lighting & Blueprint Cross-Grid Pattern */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                backgroundImage: `
+                  linear-gradient(to right, rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+                  linear-gradient(to bottom, rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+                  radial-gradient(circle at 18px 18px, rgba(56, 189, 248, 0.45) 1.5px, transparent 1.5px)
+                `,
+                backgroundSize: "36px 36px, 36px 36px, 36px 36px",
+                WebkitMaskImage: "radial-gradient(ellipse 95% 85% at 50% 25%, #000 65%, transparent 100%)",
+                maskImage: "radial-gradient(ellipse 95% 85% at 50% 25%, #000 65%, transparent 100%)",
+              }}
+            />
+            <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-sky-500/15 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-600/10 rounded-full blur-2xl pointer-events-none" />
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               
