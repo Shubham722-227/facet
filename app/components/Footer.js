@@ -13,7 +13,7 @@ export default function Footer() {
         {/* Brand Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-8 mb-8 border-b border-slate-800 gap-6">
           <div className="flex flex-col gap-1.5">
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex items-center gap-3">
               <img
                 src="/logo-mark-white.svg"
                 alt="FACET"
@@ -21,9 +21,6 @@ export default function Footer() {
               />
               <span className="font-display font-black text-2xl tracking-wider text-white">
                 FACET
-              </span>
-              <span className="text-[12px] text-slate-400 font-medium tracking-wide sm:pl-3 sm:border-l sm:border-slate-700">
-                Fraud Analysis, Credibility & Estate Title
               </span>
             </div>
             <p className="text-[13px] text-slate-400 max-w-xl">
@@ -129,7 +126,7 @@ export default function Footer() {
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-3 border-t border-slate-800">
             <div>
-              &copy; {currentYear} FACET. All rights reserved.
+              &copy; {currentYear} FACET &mdash; Fraud Analysis, Credibility &amp; Estate Title. All rights reserved.
             </div>
             <div className="flex flex-wrap gap-4 text-slate-400">
               <Link href="/disclaimer" className="hover:text-slate-200 transition-colors">Due Diligence Disclaimer</Link>
