@@ -5,8 +5,9 @@ export const BRAND = {
   name: "FACET",
   shortName: "FACET",
   descriptor: "Due Diligence & Investigative Intelligence",
-  fullFormPlaceholder: "FACET · Due Diligence & Investigative Intelligence",
-  fullFormNote: "Confirmed full corporate form to be updated upon final confirmation by Rittik Mahakul.",
+  fullForm: "Fraud Analysis, Credibility & Estate Title",
+  fullFormPlaceholder: "FACET: Fraud Analysis, Credibility & Estate Title",
+  fullFormNote: "Fraud Analysis, Credibility & Estate Title",
   tagline: "Make Confident Decisions. See the Full Picture.",
   heroHeadline: "Make Confident Decisions. See the Full Picture.",
   heroSubheadline: "FACET combines structured research, public-record verification and investigative analysis to help clients understand property, people, businesses, legal exposure and transaction risk before making important decisions.",
@@ -533,22 +534,30 @@ export const FAQS = [
 export const GLOBAL_JURISDICTIONS = [
   {
     region: "United States",
+    name: "United States",
     code: "USA",
+    desc: "Federal SEC EDGAR, PACER bankruptcy & district court dockets, and state UCC registries.",
     description: "Federal SEC EDGAR, PACER bankruptcy & district court dockets, UCC filings, FinCEN regulatory indicators, and all 50 State Secretary of State entity registries."
   },
   {
     region: "United Kingdom",
+    name: "United Kingdom",
     code: "UK",
+    desc: "Companies House, UK Insolvency Service, HM Land Registry, and High Court dockets.",
     description: "Distinct statutory framework post-Brexit: Companies House corporate filings, Insolvency Service, HM Land Registry (England & Wales / Scotland), High Court of Justice dockets, and Crown Dependencies (Jersey, Guernsey, Isle of Man)."
   },
   {
     region: "European Union & Continental Europe",
+    name: "Continental Europe",
     code: "EU",
+    desc: "EU Member State commercial registers (Handelsregister, Infogreffe), and insolvency gazettes.",
     description: "Civil law company registers across EU member states (Handelsregister Germany, Infogreffe France, BORME Spain), European Business Register (EBR), and national insolvency gazettes."
   },
   {
     region: "India",
+    name: "India",
     code: "IND",
+    desc: "Ministry of Corporate Affairs (MCA-21), e-Courts, High Courts, NCLT, and Sub-Registrar archives.",
     description: "Ministry of Corporate Affairs (MCA-21), e-Courts & High Courts, National Company Law Tribunal (NCLT), Sub-Registrar deed archives, and state land revenue portals (Mahabhulekh, Bhoomi, Dharani, AnyROR)."
   }
 ];
@@ -570,6 +579,7 @@ export const INDIAN_STATES = [
 // Defined Fixed-Price Core Report & Separately Priced Optional Add-On Modules
 export const PRICING_MODEL = {
   coreReport: {
+    name: "Fixed-Price Core Due Diligence Report",
     title: "Core Due Diligence Report",
     subtitle: "Fixed-Price Baseline Deliverable",
     description: "A comprehensive baseline investigation delivering essential public-record verification, 30-year deed continuity, active encumbrance review, primary litigation screening, and executive risk flags.",
