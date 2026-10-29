@@ -17,7 +17,7 @@ export default function MandateCTA({ onOpenConsultation }) {
             {/* Content on the Left */}
             <div className="lg:col-span-7">
               <div className="flex items-center gap-3 mb-6">
-                <img src="/logo.svg" alt="FACET" className="h-7 w-auto object-contain brightness-0 invert" />
+                <img src="/logo-mark-white.svg" alt="FACET" className="h-7 w-auto object-contain" />
                 <span className="font-display font-black text-xl tracking-wider text-white">FACET</span>
                 <span className="font-display font-semibold text-blue-200 text-[13px] uppercase tracking-wider pl-3 border-l border-white/20">
                   Scoped Mandate Desk
@@ -50,19 +50,19 @@ export default function MandateCTA({ onOpenConsultation }) {
                 </button>
               </div>
 
-              {/* Core Values Strip */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-white/10 text-slate-300 text-[13px] sm:text-[14px]">
-                <div className="flex items-center gap-2.5">
+              {/* Core Values Strip: single-line badges with whitespace-nowrap */}
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-6 border-t border-white/10 text-slate-300 text-[13px] sm:text-[14px]">
+                <div className="flex items-center gap-2 shrink-0">
                   <span className="material-symbols-outlined text-blue-300 text-[20px]">check_circle</span>
-                  <span className="font-medium">Agreed Scope & Defined Sources</span>
+                  <span className="font-medium whitespace-nowrap">Agreed Scope &amp; Defined Sources</span>
                 </div>
-                <div className="flex items-center gap-2.5">
+                <div className="flex items-center gap-2 shrink-0">
                   <span className="material-symbols-outlined text-blue-300 text-[20px]">security</span>
-                  <span className="font-medium">Strict Confidentiality Standard</span>
+                  <span className="font-medium whitespace-nowrap">Strict Confidentiality Standard</span>
                 </div>
-                <div className="flex items-center gap-2.5">
+                <div className="flex items-center gap-2 shrink-0">
                   <span className="material-symbols-outlined text-blue-300 text-[20px]">description</span>
-                  <span className="font-medium">Documented Source Exhibits</span>
+                  <span className="font-medium whitespace-nowrap">Documented Source Exhibits</span>
                 </div>
               </div>
             </div>
