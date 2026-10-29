@@ -19,7 +19,7 @@ export default function InsightsPage() {
           <div className="absolute top-0 right-1/4 w-96 h-96 bg-accent-electric/15 rounded-full blur-[140px] pointer-events-none"></div>
 
           <div className="max-w-[1440px] mx-auto relative z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-mono text-accent-electric mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-mono text-white mb-4">
               <span>INTELLIGENCE BRIEFINGS</span>
             </div>
             <h1 className="font-display-xl text-3xl sm:text-5xl text-white tracking-tight mb-4">
