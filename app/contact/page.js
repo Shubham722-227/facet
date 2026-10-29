@@ -53,7 +53,7 @@ export default function ContactPage() {
             </div>
 
             <div className="w-full lg:w-auto flex justify-center lg:justify-end shrink-0">
-              <div className="relative w-72 h-72 sm:w-96 sm:h-96 lg:w-[420px] lg:h-[420px] xl:w-[480px] xl:h-[480px]">
+              <div className="relative w-80 h-64 sm:w-[440px] sm:h-[330px] lg:w-[520px] lg:h-[380px] xl:w-[580px] xl:h-[420px]">
                 <Image
                   src="/images/mascots/contact.png"
                   alt="FACET Contact Mascot"
