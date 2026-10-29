@@ -95,7 +95,7 @@ export default function InsightsSection() {
             </div>
 
             <div className="pt-6 flex items-center justify-between border-t border-slate-200">
-              <span className="text-[12px] font-mono text-slate-500 font-bold uppercase tracking-wider">
+              <span className="text-[12px] font-display text-slate-500 font-bold uppercase tracking-wider">
                 {featuredArticle.author}
               </span>
               <span className="material-symbols-outlined text-primary group-hover:text-facet-red group-hover:translate-x-1 transition-all">
@@ -114,7 +114,7 @@ export default function InsightsSection() {
               >
                 <div>
                   <div className="flex items-center gap-3 mb-3">
-                    <span className="text-[11px] font-mono font-bold text-facet-red uppercase tracking-wider">
+                    <span className="text-[11px] font-display font-bold text-primary uppercase tracking-wider">
                       {art.reportNo}
                     </span>
                     <span className="text-slate-300">·</span>
@@ -158,7 +158,7 @@ export default function InsightsSection() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between pb-4 mb-6 border-b border-slate-200">
-              <span className="text-xs font-mono font-bold text-facet-red uppercase tracking-wider">
+              <span className="text-xs font-display font-bold text-primary uppercase tracking-wider">
                 {activeArticle.category}
               </span>
               <button

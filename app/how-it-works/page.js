@@ -36,13 +36,13 @@ export default function HowItWorksPage() {
               </p>
             </div>
 
-            <div className="w-full sm:w-auto flex justify-center lg:justify-end shrink-0">
-              <div className="relative w-56 h-56 sm:w-72 sm:h-72 lg:w-[320px] lg:h-[320px] xl:w-[360px] xl:h-[360px]">
+            <div className="w-full lg:w-auto flex justify-center lg:justify-end shrink-0">
+              <div className="relative w-72 h-72 sm:w-96 sm:h-96 lg:w-[420px] lg:h-[420px] xl:w-[480px] xl:h-[480px]">
                 <Image
                   src="/images/mascots/how-it-works.png"
                   alt="FACET How It Works Mascot"
                   fill
-                  className="object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.45)] select-none pointer-events-none"
+                  className="object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.55)] select-none pointer-events-none"
                   priority
                 />
               </div>
