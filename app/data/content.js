@@ -1,18 +1,21 @@
-// FACET Verify - Content Database & Data Definitions
-// Structured strictly according to website.md blueprint
+// FACET - Content Database & Data Definitions
+// Structured strictly according to website.md blueprint and latest executive guidelines
 
 export const BRAND = {
-  name: "FACET Verify",
+  name: "FACET",
   shortName: "FACET",
   descriptor: "Due Diligence & Investigative Intelligence",
+  fullFormPlaceholder: "FACET · Due Diligence & Investigative Intelligence",
+  fullFormNote: "Confirmed full corporate form to be updated upon final confirmation by Rittik Mahakul.",
   tagline: "Make Confident Decisions. See the Full Picture.",
   heroHeadline: "Make Confident Decisions. See the Full Picture.",
-  heroSubheadline: "FACET Verify combines structured research, public-record verification and investigative analysis to help clients understand property, people, businesses, legal exposure and transaction risk before making important decisions.",
+  heroSubheadline: "FACET combines structured research, public-record verification and investigative analysis to help clients understand property, people, businesses, legal exposure and transaction risk before making important decisions.",
   corePromise: "Clear scope. Sourced findings. Practical risk context.",
   email: "enquiries@facetverify.com",
-  phone: "+91 22 4970 8200",
-  address: "Bandra Kurla Complex (BKC), Mumbai, Maharashtra 400051",
-  disclaimerSnippet: "FACET Verify reports are prepared for agreed scope using lawfully accessible sources. They do not constitute formal legal opinions or title guarantees.",
+  phone: "Dedicated Engagement Desk via enquiries@facetverify.com",
+  whatsappNote: "Direct WhatsApp Client Desk available upon bilateral NDA execution",
+  address: "Mumbai Operations Hub · Global Research Corridors (US, UK, Europe & India)",
+  disclaimerSnippet: "FACET reports are prepared for agreed scope using lawfully accessible sources. They do not constitute formal legal opinions or title guarantees.",
 };
 
 export const SERVICES = [
@@ -21,257 +24,185 @@ export const SERVICES = [
     number: "01",
     slug: "property-due-diligence",
     title: "Property & Real Estate Due Diligence",
-    shortDesc: "Review ownership records, encumbrances, land records, relevant approvals and property-linked litigation.",
-    heroHeadline: "Understand the Property Before You Commit.",
-    intro: "Property transactions can involve multiple records, owners, approvals and potential disputes. FACET Verify helps clients organise and assess relevant property information through a scoped review of available records and supporting documents.",
+    isCoreFlagship: true,
+    badge: "Core Flagship Service",
+    shortDesc: "Comprehensive property diligence covering 30-year title deeds, encumbrances, revenue records, municipal sanctions, and integrated Seller, Promoter & Landowner verification.",
+    heroHeadline: "Understand the Property and the People Behind It Before You Commit.",
+    intro: "Property transactions in India and cross-border real estate require examining both the physical property records and the individuals or corporate sellers behind the transaction. FACET delivers an integrated due diligence review that examines historical title deeds, revenue mutation extracts, registered encumbrances, court disputes, and the integrity, corporate affiliations, and dispute history of the sellers, promoters, and landowners.",
     scopeAreas: [
-      "Title and ownership-chain research (historical deed registers)",
-      "Encumbrance certificates and recorded charge checks",
-      "RoR (Record of Rights), mutation register and land-record verification",
-      "Property-linked litigation and court dispute searches",
-      "RERA registration, project filings and regulatory disclosures",
-      "Land-use, zoning masterplan and conversion order validation",
-      "Survey number and boundary record cross-referencing",
-      "Building plan sanctions and commencement/occupancy document review",
-      "Property tax and statutory local authority dues checks",
-      "Mortgage and bank charge verification for collateral support"
+      "Title and ownership-chain research (historical 30-year deed registers and conveyances)",
+      "Encumbrance certificates (EC) and recorded charges cross-checked across Sub-Registrar Offices and CERSAI",
+      "Revenue records: Record of Rights (RoR), 7/12 extracts, mutation registers, Pahani, Jamabandi, and Patta verification",
+      "Seller, Promoter & Landowner Due Diligence: Identity disambiguation, PAN/DIN verification, and promoter background scrutiny",
+      "Corporate promoter affiliations: Directorships, parent/subsidiary holdings, and MCA-21 master data cross-referencing",
+      "Litigation screening across district courts, High Courts, revenue tribunals, and e-Courts dockets",
+      "Insolvency and debt recovery checks: NCLT / IBC cause lists, DRT dockets, and willful defaulter listings",
+      "RERA registration, project disclosures, appellate tribunal orders, and compliance track record",
+      "Land-use classification, zoning masterplans, agricultural-to-non-agricultural (NA) conversion orders, and buffer zones",
+      "Municipal building plan sanctions, commencement certificates (CC), and occupancy certificates (OC)",
+      "Power of Attorney (PoA) validity, ancestral heirship family tree corroboration, and prior agreement-to-sell (ATS) history",
+      "Property tax, municipal cess, and statutory local authority dues clearance"
     ],
     deliverables: [
-      "Comprehensive scope and record coverage schedule",
-      "Chronological ownership and transfer deed summary",
-      "Identified discrepancies, boundary notes and documentation gaps",
-      "Litigation and encumbrance findings within agreed jurisdiction",
-      "Source citation schedule and retrieved public record copies",
-      "Key questions requiring legal review by client's advocate or surveyor"
+      "Executive risk overview with clear Red / Amber / Green risk classifications",
+      "Chronological ownership deed chain summary across 30-year search window",
+      "Comprehensive Seller, Promoter & Landowner profile with corporate network map and dispute status",
+      "Identified encumbrances, liens, mortgage entries, and court stay orders with CNR case numbers",
+      "Zoning, masterplan reservations, setback compliance notes, and boundary documentation gaps",
+      "Indexed primary source exhibit copies and retrieved public record certified extracts",
+      "Targeted list of specific risk items and title questions requiring client's legal counsel review"
     ],
     process: [
-      "Collection of property identifiers, survey numbers and revenue village details",
-      "Independent multi-decade deed register search via relevant Sub-Registrar Offices",
-      "Revenue record cross-check (Pahani / 7/12 extract / Jamabandi / Patta)",
-      "Litigation screening across district courts, High Courts, and revenue tribunals",
-      "Consolidation into an executive risk overview with primary source citations"
+      "Intake of survey numbers, revenue village, district, and seller/promoter corporate identifiers",
+      "Multi-decade deed register search via relevant Sub-Registrar Offices and state e-governance portals",
+      "Revenue mutation reconciliation (Pahani / 7/12 extract / Patta) and genealogical heirship verification",
+      "Promoter corporate network mapping via Ministry of Corporate Affairs and DIN registries",
+      "Cross-jurisdictional litigation search across District Courts, High Courts, NCLT, and specialized tribunals",
+      "Synthesis into an evidence-backed deliverable distinguishing confirmed public records from unproven claims"
     ],
-    limitations: "Record availability and computerisation status vary significantly across Indian states, districts and municipal bodies. A FACET Verify report is an investigative research deliverable and does not replace a formal legal title certificate issued by an advocate.",
-    cta: "Request Property Due Diligence",
-    decisionCategory: "Property Transaction"
-  },
-  {
-    id: "seller-promoter-due-diligence",
-    number: "02",
-    slug: "seller-promoter-due-diligence",
-    title: "Seller, Promoter & Landowner Due Diligence",
-    shortDesc: "Assess available background information, ownership links, disputes, affiliations and reputational indicators connected to the people behind a transaction.",
-    heroHeadline: "Understand Who Stands Behind the Transaction.",
-    intro: "A property's records are only one part of a transaction. FACET Verify conducts a defined review of relevant seller, promoter or landowner information to help clients identify connections, disputes, inconsistencies and other risk indicators.",
-    scopeAreas: [
-      "Identity and subject disambiguation using authorized public identifiers",
-      "Historical ownership and transaction-pattern research",
-      "Corporate affiliations, DIN records, directorships and connected entities",
-      "Litigation, tribunal and regulatory proceedings screening",
-      "Publicly reported financial distress, insolvency (IBC) and debt recovery indicators",
-      "Adverse media, public record scrutiny and reputational intelligence",
-      "Related-party links, conflict-of-interest indicators and cross-holdings",
-      "Comparison of client-provided representations against accessible public records"
-    ],
-    deliverables: [
-      "Subject identity profile and verification scope notes",
-      "Entity ownership and corporate directorship network map",
-      "Litigation and regulatory docket summary with case status",
-      "Source-linked findings catalogued by risk severity",
-      "Inconsistencies identified between disclosures and public filings",
-      "Risk observations with explicit evidence boundaries"
-    ],
-    process: [
-      "Identifier verification across official registers and public disclosures",
-      "Corporate network mapping via Ministry of Corporate Affairs filings",
-      "Civil, commercial and criminal litigation search across state jurisdictions",
-      "OSINT and public media screening for disputes and regulatory sanctions",
-      "Synthesized profile distinguishing confirmed facts from allegations"
-    ],
-    limitations: "Reports distinguish established public records from allegations or ongoing proceedings. Analysis is strictly evidence-led and relies on lawfully accessible records.",
-    cta: "Request Counterparty Due Diligence",
-    decisionCategory: "Counterparty & Promoters"
+    limitations: "Public record completeness, digitisation depth, and archival indexing vary across Indian states, districts, and municipal authorities. A FACET report is an independent investigative intelligence deliverable and does not replace a statutory title certificate issued by an enrolled advocate.",
+    cta: "Request Property Due Diligence Scope",
+    decisionCategory: "Property & Real Estate"
   },
   {
     id: "litigation-regulatory-due-diligence",
-    number: "03",
+    number: "02",
     slug: "litigation-regulatory-due-diligence",
     title: "Litigation, Legal & Regulatory Due Diligence",
-    shortDesc: "Research relevant court, tribunal and regulatory records to help clients understand disclosed and identified legal exposure.",
+    shortDesc: "Research relevant court, tribunal, and regulatory records across federal, state, and appellate forums to uncover disclosed and undisclosed legal exposure.",
     heroHeadline: "See the Legal Issues That May Matter to Your Decision.",
-    intro: "Court and regulatory records can be spread across multiple judicial forums and regional systems. FACET Verify provides scoped research and structured reporting on relevant records to support commercial, financial and legal review.",
+    intro: "Judicial and regulatory dockets are frequently spread across disparate court jurisdictions, specialized appellate tribunals, and regional registers. FACET provides systematic research and structured reporting on judicial records to support commercial, financial, and legal decisions.",
     scopeAreas: [
-      "Civil suits, commercial disputes and recovery proceedings",
-      "Relevant criminal proceedings and statutory complaint records",
-      "Property, land partition and revenue authority disputes",
-      "Tribunals: NCLT (insolvency), NCLAT, DRT, and Consumer Commissions",
-      "Regulatory orders, notices and enforcement disclosures (SEBI, RBI, ED where public)",
-      "RERA complaints, appellate tribunal orders and compliance notices",
-      "Directorship-linked and key managerial personnel proceedings",
-      "Judgment history, decree status and interim stay orders where accessible"
+      "Civil suits, commercial division claims, and contractual breach proceedings",
+      "Criminal complaints, statutory economic offense filings, and serious fraud investigation disclosures",
+      "Property disputes, partition suits, and revenue authority recovery proceedings",
+      "Specialized tribunals: NCLT (insolvency), NCLAT, DRT (debt recovery), SAT, and Consumer Forums",
+      "Regulatory orders, enforcement notices, and statutory sanctions (SEBI, RBI, ED where publicly disclosed)",
+      "RERA complaints, appellate tribunal orders, and consumer grievance adjudications",
+      "Director-linked proceedings and key managerial personnel litigation exposure",
+      "Interim stay orders, injunction decrees, attachment orders, and execution petitions"
     ],
     deliverables: [
-      "Search parameters, forum coverage and jurisdictional scope",
-      "Structured docket of identified cases with CNR numbers and dates",
-      "Status summary (pending, dismissed, stayed, disposed) where available",
-      "Party matching notes and disambiguation analysis",
-      "Certified or public record downloads where accessible",
-      "Critical open items flagged for client's legal counsel"
+      "Search parameters, forum coverage, and jurisdictional search boundaries schedule",
+      "Structured docket of identified proceedings with CNR numbers, filing dates, and current status",
+      "Party disambiguation analysis separating nominal name matches from confirmed subjects",
+      "Public court order extracts, interim injunction notices, and disposed decree summaries",
+      "Critical legal risk observations flagged for client litigation counsel review"
     ],
     process: [
-      "Jurisdictional forum identification based on subject footprint",
-      "Name-variant and corporate-identifier database indexing across e-Courts and High Courts",
-      "Tribunal docket inspection (NCLT, DRT, RERA, SAT)",
-      "Case history timeline extraction and interim injunction analysis",
-      "Synthesis into risk-categorized legal exposure docket"
+      "Subject footprint mapping across operational jurisdictions and residential locations",
+      "Multi-variant name and corporate identifier database indexing across e-Courts, High Courts, and Supreme Court",
+      "Tribunal cause-list inspection across NCLT, DRT, RERA, and consumer dispute registries",
+      "Case history timeline extraction and interim relief analysis",
+      "Consolidation into an executive legal exposure matrix"
     ],
-    limitations: "Litigation searches are subject to naming variations, system indexing limitations, and regional court record digitisation. A search indicating no records does not guarantee total absence of pending claims.",
+    limitations: "Litigation searches are subject to naming variations, system indexing limitations, and regional court record digitisation. A search indicating no active records does not guarantee total absence of pending claims.",
     cta: "Request Litigation Research",
     decisionCategory: "Legal & Disputes"
   },
   {
     id: "vendor-third-party-due-diligence",
-    number: "04",
+    number: "03",
     slug: "vendor-third-party-due-diligence",
     title: "Vendor, Supplier & Third-Party Due Diligence",
-    shortDesc: "Review business legitimacy, ownership, management, litigation and other defined risk factors before onboarding or renewing a relationship.",
+    shortDesc: "Review business legitimacy, corporate ownership, management integrity, and statutory filings before onboarding or renewing critical relationships.",
     heroHeadline: "Know More About the Partners You Depend On.",
-    intro: "A supplier or business partner can introduce operational, financial, legal and reputational risk. FACET Verify helps organisations assess selected third parties against a defined review framework before entering or renewing an engagement.",
+    intro: "A supplier, operational partner, or vendor can introduce significant legal, financial, operational, and reputational risk. FACET helps organizations evaluate selected third parties against a defined review framework before onboarding or renewing an engagement.",
     scopeAreas: [
-      "Business registration, active corporate status and operating footprint",
-      "Ultimate beneficial ownership (UBO) indicators and board composition",
-      "Litigation, labor dispute and contractual enforcement records",
-      "Adverse media, regulatory censure and operational complaints",
-      "Publicly available financial distress indicators and statutory defaults",
-      "Sanctions, watchlists and debarment screening where lawfully accessible",
-      "Related-party linkages and conflict-of-interest analysis with internal stakeholders",
-      "Sub-contractor and key channel-partner integrity checks"
+      "Corporate registration, active business status, and operational premises verification",
+      "Ultimate beneficial ownership (UBO) indicators and board of directors composition",
+      "Commercial litigation, labor disputes, and contract enforcement dockets",
+      "Adverse media, public customer grievances, and operational complaint records",
+      "Publicly available financial distress indicators, tax filings, and statutory defaults",
+      "Sanctions, watchlists, and debarment screening where lawfully accessible",
+      "Related-party linkages and conflict-of-interest analysis with client internal stakeholders",
+      "Key channel-partner and sub-contractor integrity reviews"
     ],
     deliverables: [
-      "Entity identity verification and registry matching summary",
-      "Standardized risk checklist across 6 operational categories",
-      "Findings catalogued by severity (Critical / High / Medium / Low)",
-      "Primary source documentation and filing copies",
-      "Open flags requiring vendor clarification or warranties",
-      "Recommended ongoing monitoring cadence"
+      "Entity identity verification and official registry matching summary",
+      "Standardized third-party risk assessment across 6 operational dimensions",
+      "Risk findings catalogued by severity (Critical / High / Medium / Low)",
+      "Primary registry filings and statutory disclosure copies",
+      "Open risk flags requiring vendor warranties or contractual representations"
     ],
     process: [
-      "Verification of GSTIN, PAN, CIN and operational premises",
-      "Director background and cross-company involvement review",
-      "Judicial search for breach-of-contract and vendor payment disputes",
+      "Verification of GSTIN, PAN, CIN, and registered business addresses",
+      "Director background and cross-company affiliation review",
+      "Judicial search for breach of contract and recovery claims",
       "Compliance audit against public debarment lists and default dockets",
-      "Deliverable packaging tailored to procurement compliance committees"
+      "Synthesized report tailored for procurement and risk committees"
     ],
-    limitations: "Review is limited to public records and client-authorized data. Does not include intrusive physical surveillance or unauthorized audit of proprietary accounts.",
+    limitations: "Review relies strictly on lawfully accessible public records and client-authorized data. Does not include intrusive surveillance or proprietary accounting system access.",
     cta: "Assess a Vendor or Third Party",
     decisionCategory: "Vendors & Supply Chain"
   },
   {
     id: "fraud-investigative-intelligence",
-    number: "05",
+    number: "04",
     slug: "fraud-investigative-intelligence",
     title: "Fraud Risk & Investigative Intelligence",
-    shortDesc: "Investigate defined concerns, compare information across sources and document inconsistencies, relationships and risk indicators.",
+    shortDesc: "Investigate defined anomalies, compare information across repositories, and document inconsistencies, undisclosed relationships, and risk indicators.",
     heroHeadline: "Investigate the Questions a Basic Search Cannot Resolve.",
-    intro: "When information does not align, organisations require structured investigative analysis. FACET Verify scopes research into potential misrepresentation, opaque relationships, circular transactions and compliance concerns using ethical, lawful methods.",
+    intro: "When representations do not align with observable facts, organizations require structured investigative analysis. FACET scopes research into potential misrepresentation, opaque corporate structures, undisclosed affiliations, and anomalous transactions using rigorous, lawful methods.",
     scopeAreas: [
-      "Defined fraud and misrepresentation allegations investigation",
-      "Open-source intelligence (OSINT) and public record verification",
-      "Inconsistency and anomaly detection across disclosures and filings",
-      "Complex relationship and shadow-entity network mapping",
-      "Transaction-pattern analysis supported by accessible filings and registers",
-      "Corporate misconduct, undisclosed kickbacks and conflict-of-interest reviews",
+      "Defined misrepresentation, anomalous transaction, and integrity concern investigation",
+      "Open-source intelligence (OSINT) and multi-source public record verification",
+      "Inconsistency and anomaly detection across statutory filings, deeds, and disclosures",
+      "Complex corporate relationship and shadow-entity network mapping",
+      "Transaction-pattern analysis supported by accessible filings and registries",
+      "Undisclosed conflicts of interest, kickback indicators, and related-party transactions",
       "Chronology building and multi-source evidence reconciliation",
-      "Forensic investigative support for legal counsel or internal audit"
+      "Forensic investigative support for legal counsel, audit committees, and decision-makers"
     ],
     deliverables: [
-      "Investigation objectives and agreed methodology document",
-      "Comprehensive evidentiary audit trail and source log",
-      "Visual timeline of events and entity-relationship chart",
-      "Separation of confirmed facts from allegations and analytical indicators",
-      "Critical evidentiary gaps and areas requiring formal discovery",
-      "Actionable recommendations for board or legal risk mitigation"
+      "Investigation objectives and agreed methodology documentation",
+      "Comprehensive evidentiary audit trail and primary source log",
+      "Visual timeline of events and entity-relationship connection charts",
+      "Clean separation of confirmed public facts from allegations and analytical indicators",
+      "Critical evidence gaps and recommended avenues for formal legal discovery"
     ],
     process: [
-      "Intake of specific allegation, anomaly or transaction anomaly",
-      "Multi-source corroboration combining corporate records, land deeds, and public data",
-      "Discrepancy reconciliation between claimed profiles and recorded filings",
-      "Network analysis linking individuals, shell companies, and common addresses",
+      "Intake of specific allegation, anomaly, or transaction context under strict bilateral NDA",
+      "Multi-source corroboration combining corporate filings, land deeds, and judicial archives",
+      "Discrepancy reconciliation between claimed profiles and public disclosures",
+      "Network analysis linking individuals, entities, and common addresses",
       "Defensible, evidence-backed investigative report production"
     ],
-    limitations: "FACET Verify strictly operates within legal and ethical boundaries. We do not access private telephone records, encrypted communications, hacked data, or restricted banking systems.",
+    limitations: "FACET strictly operates within legal and ethical boundaries. We do not access private telephone records, encrypted communications, hacked data, or restricted banking systems.",
     cta: "Discuss an Investigation",
-    decisionCategory: "Asset & Wealth Trace"
-  },
-  {
-    id: "ma-investment-due-diligence",
-    number: "06",
-    slug: "ma-investment-due-diligence",
-    title: "M&A, Investment & Transaction Due Diligence",
-    shortDesc: "Support pre-investment and transaction decisions with target, promoter, ownership, litigation and reputation research.",
-    heroHeadline: "Know the Target Beyond the Pitch.",
-    intro: "Before capital is committed, investors, PE funds and acquisition teams need an independent view of the people, ownership structure, legal exposure and reputational realities behind a deal. FACET Verify delivers deep investigative due diligence.",
-    scopeAreas: [
-      "Target-company corporate history, capitalization and corporate filings",
-      "Founder, promoter and key management background scrutiny",
-      "Ownership hierarchy, shell structures and beneficial interest mapping",
-      "Material litigation, insolvency petitions (NCLT) and regulatory actions",
-      "Adverse media, whistleblower claims and reputational indicators",
-      "Related-party transactions, uncommercial contracts and fund diversion flags",
-      "Property and key physical asset ownership verification",
-      "Corroboration of representations made in the preliminary pitch or data room"
-    ],
-    deliverables: [
-      "Investment-tailored risk appraisal report",
-      "Founder and executive leadership investigative dossiers",
-      "Workstream-by-workstream findings matrix with risk severity ratings",
-      "Material red flags and potential deal-breaker observations",
-      "Complete documentary annexure with registry filings",
-      "Targeted questionnaire for seller disclosure letters and legal warranties"
-    ],
-    process: [
-      "Alignment with investment thesis, deal timeline and key sensitivities",
-      "Deep-dive background intelligence on founders, key executives and major shareholders",
-      "Exhaustive search of corporate filings, charges, share pledges and directorships",
-      "Regulatory enforcement screening across national and state bodies",
-      "Executive summary presentation tailored for Investment Committees"
-    ],
-    limitations: "This is investigative diligence support. Formal legal opinions, statutory audit reviews, tax structuring, and actuarial valuations must be provided by respective chartered firms.",
-    cta: "Scope an Investment Review",
-    decisionCategory: "M&A & Private Equity"
+    decisionCategory: "Investigative Intelligence"
   },
   {
     id: "asset-ownership-intelligence",
-    number: "07",
+    number: "05",
     slug: "asset-ownership-intelligence",
     title: "Asset, Ownership & Wealth Intelligence",
-    shortDesc: "Research lawfully accessible property and corporate ownership information, related interests and relevant asset-related records.",
+    shortDesc: "Research lawfully accessible property, corporate shareholding, and registered charges to map ownership interests and financial connections.",
     heroHeadline: "Understand Ownership, Interests and Connections.",
-    intro: "Understanding asset ownership requires looking across disjointed property records, corporate shareholding registries, directorship databases and judicial proceedings. FACET Verify conducts defined research into lawfully accessible data.",
+    intro: "Understanding true asset ownership requires synthesizing disparate land records, corporate shareholding registries, directorship databases, and judicial proceedings. FACET conducts defined research into lawfully accessible data to support credit, investment, and dispute decisions.",
     scopeAreas: [
       "Identified real estate and property ownership trail research",
-      "Corporate shareholdings, equity stakes and subsidiary networks",
-      "Associated companies, LLPs, partnerships and directorship holdings",
-      "Publicly recorded charges, mortgages and secured debt filings (MCA Index of Charges)",
-      "Asset-linked litigation, attachment orders and debt recovery proceedings",
+      "Corporate shareholdings, equity stakes, and subsidiary holding networks",
+      "Associated companies, LLPs, partnership firms, and directorship interests",
+      "Publicly recorded charges, mortgages, and secured debt filings (MCA Index of Charges & CERSAI)",
+      "Asset-linked litigation, attachment orders, and debt recovery proceedings",
       "Discrepancies between public declarations and registered asset holdings",
-      "Corporate group holding structures and SPVs",
-      "Lawfully accessible public registry data to support legal enforcement"
+      "Special Purpose Vehicles (SPVs) and holding structures",
+      "Lawfully accessible public registry data to support recovery counsel"
     ],
     deliverables: [
-      "Agreed scope and jurisdictional search boundaries",
+      "Agreed scope and jurisdictional search boundaries schedule",
       "Identified asset catalog with location, registered title, and charge status",
-      "Visual corporate shareholding and asset link map",
-      "Encumbrance and judicial restraint order notations",
-      "Clear documentation of unverified claims or inaccessible registers",
-      "Recommended avenues for formal legal attachment"
+      "Visual corporate shareholding and beneficial interest map",
+      "Encumbrance notes and court attachment order documentation",
+      "Documented limitations of unverified claims or inaccessible registries"
     ],
     process: [
       "Subject profile confirmation and jurisdiction scoping",
       "Systematic search across land revenue registries and corporate equity disclosures",
       "Charge search via MCA registry to identify encumbered vs unencumbered assets",
       "Reconciliation with court records for existing attachment or insolvency orders",
-      "Organised intelligence report structured for litigation or recovery counsel"
+      "Organized intelligence report structured for litigation or recovery counsel"
     ],
     limitations: "Does not promise uncovering secret offshore numbered accounts or private personal bank balances. Only lawfully accessible registries and public disclosures are searched.",
     cta: "Request Asset & Ownership Research",
@@ -600,23 +531,126 @@ export const FAQS = [
 ];
 
 export const GLOBAL_JURISDICTIONS = [
-  "United States (Federal & All 50 States)",
-  "United Kingdom & Crown Dependencies",
-  "European Union & Western Europe",
-  "India (National & All States)",
-  "Multi-Country / Global Corridors (US, EU, UK & India)",
-  "Asia-Pacific & Middle East (Scoped Mandates)"
+  {
+    region: "United States",
+    code: "USA",
+    description: "Federal SEC EDGAR, PACER bankruptcy & district court dockets, UCC filings, FinCEN regulatory indicators, and all 50 State Secretary of State entity registries."
+  },
+  {
+    region: "United Kingdom",
+    code: "UK",
+    description: "Distinct statutory framework post-Brexit: Companies House corporate filings, Insolvency Service, HM Land Registry (England & Wales / Scotland), High Court of Justice dockets, and Crown Dependencies (Jersey, Guernsey, Isle of Man)."
+  },
+  {
+    region: "European Union & Continental Europe",
+    code: "EU",
+    description: "Civil law company registers across EU member states (Handelsregister Germany, Infogreffe France, BORME Spain), European Business Register (EBR), and national insolvency gazettes."
+  },
+  {
+    region: "India",
+    code: "IND",
+    description: "Ministry of Corporate Affairs (MCA-21), e-Courts & High Courts, National Company Law Tribunal (NCLT), Sub-Registrar deed archives, and state land revenue portals (Mahabhulekh, Bhoomi, Dharani, AnyROR)."
+  }
 ];
 
 export const INDIAN_STATES = [
-  "United States (Delaware / NY / CA / Nationwide)",
-  "United Kingdom & Western Europe",
-  "India (Pan-India / Multi-State)",
-  "Multi-Country Scope (US / EU / India)",
   "Maharashtra (Mumbai / Pune)",
   "Karnataka (Bengaluru)",
   "Delhi NCR (Delhi / Gurugram / Noida)",
   "Tamil Nadu (Chennai)",
   "Telangana (Hyderabad)",
-  "Gujarat (Ahmedabad / GIFT City)"
+  "Gujarat (Ahmedabad / GIFT City)",
+  "Uttar Pradesh",
+  "Haryana",
+  "West Bengal (Kolkata)",
+  "Rajasthan",
+  "Pan-India / Multi-State Scope"
 ];
+
+// Defined Fixed-Price Core Report & Separately Priced Optional Add-On Modules
+export const PRICING_MODEL = {
+  coreReport: {
+    title: "Core Due Diligence Report",
+    subtitle: "Fixed-Price Baseline Deliverable",
+    description: "A comprehensive baseline investigation delivering essential public-record verification, 30-year deed continuity, active encumbrance review, primary litigation screening, and executive risk flags.",
+    deliverables: [
+      "Executive risk overview with Red / Amber / Green risk ratings",
+      "Primary 30-year deed continuity and conveyance summary",
+      "Sub-Registrar encumbrance certificate (EC) and recorded charge verification",
+      "Revenue record cross-check (7/12 extract / RoR / Patta)",
+      "High Court and District Court civil/commercial dispute search",
+      "Directorship and corporate master data verification",
+      "Primary source citation log and document exhibits"
+    ],
+    billingType: "Transparent Fixed Fee (Quoted upon intake parameters)"
+  },
+  optionalModules: [
+    {
+      id: "mod-seller-promoter",
+      name: "Seller, Promoter & Landowner Deep-Dive",
+      category: "Counterparty Risk",
+      description: "Exhaustive promoter vetting: MCA network mapping, DIN directorships, cross-entity defaults, NCLT insolvency petitions, and undisclosed conflict-of-interest analysis."
+    },
+    {
+      id: "mod-tribunal-litigation",
+      name: "Specialized Tribunal & Multi-Forum Litigation Scan",
+      category: "Legal & Disputes",
+      description: "Expanded search across NCLT (insolvency), DRT (debt recovery), RERA appellate authorities, consumer dispute forums, and appellate High Court dockets."
+    },
+    {
+      id: "mod-physical-archive",
+      name: "On-the-Ground Sub-Registrar & Revenue Archive Inspection",
+      category: "Physical Field Research",
+      description: "Physical inspection of manual deed index volumes, Tehsil mutation registers, and municipal sanction files where records pre-date digital availability."
+    },
+    {
+      id: "mod-zoning-masterplan",
+      name: "Zoning, Master Plan & Municipal Conversion Verification",
+      category: "Regulatory & Land Use",
+      description: "Demarcation verification, green buffer zone reservations, town planning masterplan compliance, and agricultural-to-non-agricultural (NA) conversion order audit."
+    },
+    {
+      id: "mod-adverse-media-osint",
+      name: "Adverse Media & OSINT Reputational Intelligence",
+      category: "Investigative Intelligence",
+      description: "Deep open-source intelligence covering historical controversies, grey-market claims, regulatory censures, and whistleblower disclosures."
+    },
+    {
+      id: "mod-asset-charge-trace",
+      name: "Corporate Asset, Charge & Secured Debt Mapping",
+      category: "Asset & Wealth Trace",
+      description: "CERSAI registration checks, MCA Index of Charges scrutiny, unencumbered asset identification, and court attachment order notations."
+    }
+  ],
+  turnaroundOptions: [
+    {
+      cadence: "Standard Delivery",
+      timeline: "7–10 Business Days",
+      description: "Comprehensive multi-source verification and rigorous peer review across primary physical and digital repositories.",
+      feeStructure: "Standard Fixed Fee Schedule"
+    },
+    {
+      cadence: "Priority Delivery",
+      timeline: "4–6 Business Days",
+      description: "Dedicated priority research team assignment with parallelized retrieval workflows across registries.",
+      feeStructure: "Priority Schedule (+25% surcharge)"
+    },
+    {
+      cadence: "Expedited Delivery",
+      timeline: "2–3 Business Days",
+      description: "Fast-track digital docket screening, urgent lien search, and accelerated executive briefing for critical deadlines.",
+      feeStructure: "Expedited Schedule (+50% surcharge)"
+    },
+    {
+      cadence: "Active Deal Window",
+      timeline: "Custom Milestone Cadence",
+      description: "Phased interim delivery schedule synchronized with Investment Committee (IC) dates, binding bid cutoffs, or escrow release.",
+      feeStructure: "Custom Scoped Engagement"
+    }
+  ],
+  confidentialityProtocol: {
+    title: "Bilateral Non-Disclosure Agreement (NDA)",
+    description: "All client engagements are conducted under a legally binding bilateral NDA executed prior to the receipt of confidential targets, property survey numbers, or counterparty identifiers. Client identity is strictly decoupled from public registry enquiries."
+  }
+};
+

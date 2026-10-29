@@ -13,13 +13,15 @@ export default function ScopeBuilder({ initialServiceId = "", onClose, isModal =
     serviceId: initialServiceId || (SERVICES[0] && SERVICES[0].id) || "property-due-diligence",
     subjectType: "Property / Land Parcel",
     subjectIdentifier: "",
-    jurisdiction: "United States (Federal & State)",
-    urgency: "Standard (5–7 Business Days)",
+    jurisdiction: "India - Pan-India / Multi-State Scope",
+    urgency: "Standard Delivery (7–10 Business Days)",
     transactionValue: "",
+    includeCoreReport: true,
     researchAreas: [
-      "Title & Deed Chain",
-      "Litigation & Court Disputes",
-      "Encumbrance & Lien Verification",
+      "30-Year Title & Conveyance Chain",
+      "Encumbrance & Lien Verification (SRO/CERSAI)",
+      "Seller, Promoter & Landowner Deep-Dive",
+      "Primary Litigation & Dispute Screening",
     ],
     contactName: "",
     company: "",
@@ -31,23 +33,32 @@ export default function ScopeBuilder({ initialServiceId = "", onClose, isModal =
   });
 
   const jurisdictionsList = [
-    "United States (Federal & State)",
-    "United Kingdom (England & Wales / Companies House)",
-    "European Union (Cross-Border)",
-    "India - National / Multi-State",
-    ...INDIAN_STATES.map((s) => `India - ${s}`),
-    "Other International Jurisdiction",
+    "India - Pan-India / Multi-State Scope",
+    "India - Maharashtra (Mumbai / Pune)",
+    "India - Karnataka (Bengaluru)",
+    "India - Delhi NCR (Delhi / Gurugram / Noida)",
+    "India - Tamil Nadu (Chennai)",
+    "India - Telangana (Hyderabad)",
+    "India - Gujarat (Ahmedabad / GIFT City)",
+    "United States (Federal SEC & All 50 States)",
+    "United Kingdom (Companies House, Land Registry & High Court)",
+    "European Union (Civil Law Corporate Registers & EBR)",
+    "Cross-Border Corridors (US / UK / EU / India)",
   ];
 
-  const availableResearchAreas = [
-    { id: "title", label: "Title & Deed Chain", desc: "Historical transfers, registered deeds & conveyance" },
-    { id: "litigation", label: "Litigation & Court Disputes", desc: "Federal, state, district & appellate tribunal dockets" },
-    { id: "encumbrance", label: "Encumbrance & Lien Verification", desc: "Charges, mortgages, registered liens & hypothecations" },
-    { id: "regulatory", label: "Regulatory & Statutory Filings", desc: "Enforcement actions, sanctions & compliance filings" },
-    { id: "promoter", label: "Promoter Background & Directorships", desc: "Corporate track record, DIN, and cross-affiliations" },
-    { id: "ubo", label: "UBO & Beneficial Ownership Network", desc: "Holding chains, shell detection, and cap table vetting" },
-    { id: "insolvency", label: "Bankruptcy & Insolvency Registry", desc: "Chapter 11, IBC insolvency filings, and distress flags" },
-    { id: "osint", label: "Adverse Media & OSINT Intelligence", desc: "Reputational intelligence, controversies, and grey-market checks" },
+  const corePillars = [
+    { label: "30-Year Title & Conveyance Chain", desc: "Continuous deed transfers, prior conveyances & registration rolls" },
+    { label: "Encumbrance & Lien Verification (SRO/CERSAI)", desc: "Form 15/16 certificates, registered charges & bank mortgages" },
+    { label: "Primary Litigation & Dispute Screening", desc: "District court, High Court, and judicial forum registry check" },
+  ];
+
+  const optionalAddOnModules = [
+    { id: "promoter", label: "Seller, Promoter & Landowner Deep-Dive", desc: "Identity disambiguation, DIN directorships, cross-entity defaults & POA history", category: "Counterparty" },
+    { id: "tribunals", label: "Specialized Tribunal Scan (NCLT, DRT, RERA)", desc: "Corporate insolvency (IBC), debt recovery, and real estate authority complaints", category: "Tribunals" },
+    { id: "physical-archive", label: "On-the-Ground Sub-Registrar Archive Inspection", desc: "Physical inspection of manual deed index volumes and Tehsil mutation rolls", category: "Field Research" },
+    { id: "zoning", label: "Zoning, Master Plan & Municipal Sanction Verification", desc: "Development masterplan buffer zones, NA conversion orders & building plan sanctions", category: "Land Use" },
+    { id: "osint", label: "Adverse Media & OSINT Reputational Intelligence", desc: "Open-source investigation, grey-market claims, and regulatory sanctions", category: "Intelligence" },
+    { id: "assets", label: "Asset, Ownership & Secured Debt Mapping", desc: "CERSAI registration checks, MCA Index of Charges & unencumbered asset identification", category: "Asset Trace" },
   ];
 
   const handleCheckboxToggle = (label) => {
@@ -158,7 +169,7 @@ export default function ScopeBuilder({ initialServiceId = "", onClose, isModal =
             <strong className="text-[#0B2545]">{formData.jurisdiction}</strong> and prepare a formal scope schedule, deliverables list, turnaround time, and fee estimate within 24 business hours.
           </p>
 
-          <div className="p-5 bg-slate-50 rounded-xl border border-slate-200 text-left text-[14px] text-slate-700 space-y-2 mb-8">
+          <div className="p-5 bg-slate-50 rounded-xl border border-slate-200 text-left text-[14px] text-slate-700 space-y-2 mb-6">
             <div className="flex items-center justify-between pb-2 border-b border-slate-200">
               <span className="font-bold text-[#0B2545]">Inquiry Reference:</span>
               <span className="font-mono text-blue-600 font-semibold">
@@ -178,9 +189,39 @@ export default function ScopeBuilder({ initialServiceId = "", onClose, isModal =
               <span className="font-medium text-[#0B2545]">{formData.jurisdiction}</span>
             </div>
             <div>
+              <span className="font-semibold text-slate-500">Turnaround Window:</span>{" "}
+              <span className="font-medium text-[#0B2545]">{formData.urgency}</span>
+            </div>
+            <div>
               <span className="font-semibold text-slate-500">Contact Email:</span>{" "}
               <span className="font-medium text-[#0B2545]">{formData.email}</span>
             </div>
+          </div>
+
+          {/* Next Steps Road Map */}
+          <div className="p-5 bg-blue-50/60 rounded-xl border border-blue-200/80 text-left mb-8">
+            <div className="font-display font-bold text-xs uppercase tracking-wider text-[#0B2545] mb-3 flex items-center gap-2">
+              <span className="material-symbols-outlined text-[16px] text-blue-600">route</span>
+              Next Steps &amp; Engagement Cadence
+            </div>
+            <ol className="space-y-2 text-[13px] text-slate-700">
+              <li className="flex items-start gap-2">
+                <span className="w-5 h-5 rounded-full bg-blue-100 text-blue-800 font-bold text-[11px] flex items-center justify-center shrink-0 mt-0.5">1</span>
+                <span><strong className="text-[#0B2545]">Intake Feasibility:</strong> Preliminary verification of accessible statutory repositories and record digitisation across the target jurisdiction.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-5 h-5 rounded-full bg-blue-100 text-blue-800 font-bold text-[11px] flex items-center justify-center shrink-0 mt-0.5">2</span>
+                <span><strong className="text-[#0B2545]">Bilateral NDA:</strong> Mutual non-disclosure agreement issued for signature before receiving confidential identifier documents.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-5 h-5 rounded-full bg-blue-100 text-blue-800 font-bold text-[11px] flex items-center justify-center shrink-0 mt-0.5">3</span>
+                <span><strong className="text-[#0B2545]">Scope &amp; Fixed-Fee Quote:</strong> Itemized scope schedule, exclusions, and transparent fee schedule returned within 24 business hours.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="w-5 h-5 rounded-full bg-blue-100 text-blue-800 font-bold text-[11px] flex items-center justify-center shrink-0 mt-0.5">4</span>
+                <span><strong className="text-[#0B2545]">Delivery &amp; Debrief:</strong> Encrypted PDF report delivered with primary source exhibits and dedicated analyst briefing.</span>
+              </li>
+            </ol>
           </div>
 
           <button
@@ -416,7 +457,7 @@ export default function ScopeBuilder({ initialServiceId = "", onClose, isModal =
 
                   <div>
                     <label htmlFor="scope-urgency" className="block text-xs font-bold uppercase tracking-wider text-[#0B2545] mb-2">
-                      Required Turnaround Cadence
+                      Required Turnaround Cadence <span className="text-red-500">*</span>
                     </label>
                     <select
                       id="scope-urgency"
@@ -424,25 +465,56 @@ export default function ScopeBuilder({ initialServiceId = "", onClose, isModal =
                       onChange={(e) => setFormData({ ...formData, urgency: e.target.value })}
                       className="w-full px-4 py-3.5 rounded-xl bg-slate-50 border border-slate-200 text-[#0B2545] font-medium text-[15px] focus:bg-white focus:border-[#0B2545] focus:ring-2 focus:ring-[#0B2545]/10 outline-none transition-all cursor-pointer"
                     >
-                      <option value="Standard (5–7 Business Days)">Standard (5–7 Business Days)</option>
-                      <option value="Priority (3–4 Business Days)">Priority (3–4 Business Days)</option>
-                      <option value="Expedited Deal Timeline">Expedited / Active Deal Window</option>
+                      <option value="Standard Delivery (7–10 Business Days)">Standard Delivery (7–10 Business Days) · Standard Fee</option>
+                      <option value="Priority Delivery (4–6 Business Days)">Priority Delivery (4–6 Business Days) · +25% Surcharge</option>
+                      <option value="Expedited Delivery (2–3 Business Days)">Expedited Delivery (2–3 Business Days) · +50% Surcharge</option>
+                      <option value="Active Deal Window (Milestone Cadence)">Active Deal Window · Custom Milestone Schedule</option>
                     </select>
                   </div>
                 </div>
 
+                {/* Core Report Inclusions Banner */}
+                <div className="p-4 sm:p-5 rounded-xl bg-slate-50 border border-slate-200">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-display font-bold uppercase tracking-wider text-[#0B2545] flex items-center gap-2">
+                      <span className="material-symbols-outlined text-[18px] text-emerald-600">verified</span>
+                      Baseline Fixed-Price Core Deliverable
+                    </span>
+                    <span className="text-[11px] font-mono font-bold text-slate-500 bg-white px-2.5 py-0.5 rounded-full border border-slate-200">
+                      Standard Inclusions
+                    </span>
+                  </div>
+                  <p className="text-[13px] text-slate-600 leading-relaxed mb-3">
+                    Every baseline mandate includes comprehensive 30-year deed continuity, Sub-Registrar / CERSAI encumbrance verification, and primary civil court dispute screening.
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-slate-700">
+                    {corePillars.map((cp) => (
+                      <div key={cp.label} className="p-2.5 rounded-lg bg-white border border-slate-200 flex items-start gap-2">
+                        <span className="text-emerald-500 font-bold">✓</span>
+                        <span className="font-medium leading-tight">{cp.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Optional Separately-Priced Add-On Research Modules */}
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <label className="block text-xs font-bold uppercase tracking-wider text-[#0B2545]">
-                      Select Research Modules Required <span className="text-red-500">*</span>
-                    </label>
-                    <span className="text-xs text-blue-600 font-semibold">
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-wider text-[#0B2545]">
+                        Optional Research Add-On Modules
+                      </label>
+                      <span className="text-xs text-slate-500">
+                        Separately priced modules to expand depth according to your deal risk profile
+                      </span>
+                    </div>
+                    <span className="text-xs text-blue-600 font-semibold shrink-0">
                       {formData.researchAreas.length} selected
                     </span>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {availableResearchAreas.map((area) => {
+                    {optionalAddOnModules.map((area) => {
                       const isSelected = formData.researchAreas.includes(area.label);
                       return (
                         <div
@@ -462,10 +534,12 @@ export default function ScopeBuilder({ initialServiceId = "", onClose, isModal =
                             {isSelected && "✓"}
                           </div>
                           <div>
-                            <span className="font-display font-bold text-[14px] block leading-snug">
-                              {area.label}
-                            </span>
-                            <span className="font-body text-[12px] text-slate-500 leading-tight block mt-0.5">
+                            <div className="flex items-center justify-between gap-2">
+                              <span className="font-display font-bold text-[14px] block leading-snug">
+                                {area.label}
+                              </span>
+                            </div>
+                            <span className="font-body text-[12px] text-slate-500 leading-tight block mt-1">
                               {area.desc}
                             </span>
                           </div>

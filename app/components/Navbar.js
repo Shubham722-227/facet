@@ -42,36 +42,14 @@ export default function Navbar({ onOpenConsultation }) {
       }`}
     >
       <div className="h-20 w-full px-4 sm:px-8 lg:px-12 flex items-center justify-between max-w-[1440px] mx-auto">
-        {/* Brand Logo with dynamic white / blue asset */}
+        {/* Brand Logo: Display ONLY FACET */}
         <div className="flex items-center gap-6">
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="flex items-center gap-3">
-              <img
-                src={isTransparent ? "/complete-logo-white.svg" : "/complete-logo.svg"}
-                alt="FACET Verify"
-                className="h-10 w-auto object-contain transition-all duration-300 group-hover:scale-105"
-              />
-              <div
-                className={`flex flex-col border-l pl-3 transition-colors duration-300 ${
-                  isTransparent ? "border-white/20" : "border-slate-300"
-                }`}
-              >
-                <span
-                  className={`font-display font-black text-[15px] tracking-wider leading-none transition-colors duration-300 ${
-                    isTransparent ? "text-white" : "text-primary"
-                  }`}
-                >
-                  VERIFY
-                </span>
-                <span
-                  className={`text-[9px] uppercase tracking-widest font-extrabold mt-0.5 transition-colors duration-300 ${
-                    isTransparent ? "text-blue-200/90" : "text-on-surface-muted"
-                  }`}
-                >
-                  Due Diligence
-                </span>
-              </div>
-            </div>
+          <Link href="/" className="flex items-center group">
+            <img
+              src={isTransparent ? "/complete-logo-white.svg" : "/complete-logo.svg"}
+              alt="FACET"
+              className="h-10 w-auto object-contain transition-all duration-300 group-hover:scale-105"
+            />
           </Link>
         </div>
 

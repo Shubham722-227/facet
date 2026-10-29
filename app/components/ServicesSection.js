@@ -61,7 +61,7 @@ export default function ServicesSection({ onSelectForQuote }) {
               timelineRef={sectionRef}
               className="font-body text-[16px] sm:text-[17px] text-[#4B5563] mt-3 leading-relaxed font-normal"
             >
-              Jurisdiction-specific public-record verification, registry analysis, and investigative intelligence across the US, Europe, the UK, and India.
+              Jurisdiction-specific public-record verification, statutory registry analysis, and investigative intelligence across the United States, the United Kingdom, Continental Europe, and India.
             </TimelineContent>
           </div>
 
@@ -84,129 +84,203 @@ export default function ServicesSection({ onSelectForQuote }) {
           </TimelineContent>
         </div>
 
-        {/* 3-Column Bento Grid Structure (7 Core Verticals - Equal Height Matching) */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-stretch w-full pb-6">
+        {/* Bento Grid Structure: Core Flagship Spotlight + 4 Strategic Practices */}
+        <div className="flex flex-col gap-6 w-full pb-6">
           
-          {/* COLUMN 1 */}
-          <div className="flex flex-col gap-5 h-full">
-            
-            {/* Card 1: Property & Real Estate (Flex 1.35) */}
-            <TimelineContent
-              animationNum={0}
-              customVariants={revealVariants}
-              timelineRef={sectionRef}
-              className="flex-[1.35] flex flex-col justify-between relative bg-[#0B2545] text-white overflow-hidden rounded-2xl border border-[#133966] p-6 sm:p-7 shadow-md hover:shadow-xl transition-all duration-300 group"
-            >
-              <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff12_1px,transparent_1px),linear-gradient(to_bottom,#ffffff12_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_0%,#000_70%,transparent_110%)] pointer-events-none" />
+          {/* 1. CORE FLAGSHIP SERVICE: Property & Real Estate Due Diligence */}
+          <TimelineContent
+            animationNum={0}
+            customVariants={revealVariants}
+            timelineRef={sectionRef}
+            className="w-full relative bg-gradient-to-br from-[#0B2545] via-[#0F325E] to-[#133966] text-white overflow-hidden rounded-3xl border border-[#1E4D82] p-8 sm:p-10 lg:p-12 shadow-xl hover:shadow-2xl transition-all duration-300 group"
+          >
+            {/* Ambient Lighting & Blueprint Grid */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_75%_60%_at_50%_0%,#000_70%,transparent_110%)] pointer-events-none" />
+            <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               
-              <div className="relative z-10">
-                <div className="flex items-center justify-between mb-5">
-                  <div className="w-11 h-11 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-sky-300 group-hover:bg-white group-hover:text-[#0B2545] transition-all">
-                    <span className="material-symbols-outlined text-[22px]">real_estate_agent</span>
+              {/* Left Column of Flagship: Headline, Badge, Core Description */}
+              <div className="lg:col-span-7 space-y-5">
+                <div className="flex flex-wrap items-center gap-3">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-400/20 border border-sky-300/30 text-sky-200 font-display font-bold text-[12px] uppercase tracking-wider">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    Core Flagship Practice
                   </div>
-                  <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-sky-200 bg-white/10 px-2.5 py-1 rounded-full border border-white/15">
-                    Land &amp; Real Assets
+                  <span className="text-[12px] font-mono uppercase text-blue-200/80 font-medium">
+                    Integrated Real Estate &amp; Counterparty Diligence
                   </span>
                 </div>
 
-                <h3 className="font-display font-extrabold text-[20px] sm:text-[22px] text-white mb-2.5 leading-snug group-hover:text-sky-200 transition-colors">
+                <h3 className="font-display font-extrabold text-[28px] sm:text-[34px] lg:text-[38px] text-white leading-tight">
                   Property &amp; Real Estate Due Diligence
                 </h3>
 
-                <p className="font-body text-slate-200 text-[14px] sm:text-[15px] leading-relaxed font-light">
-                  Review ownership chains, title encumbrances, land revenue records, and property-linked litigation across target jurisdictions.
+                <p className="font-body text-slate-200 text-[16px] sm:text-[17px] leading-relaxed max-w-2xl font-light">
+                  A multi-layered review integrating historical 30-year deed continuity, Sub-Registrar encumbrance rolls, revenue records (7/12, RoR, Patta), zoning masterplans, and comprehensive <strong>Seller, Promoter &amp; Landowner Due Diligence</strong> before transactions close.
                 </p>
+
+                <div className="pt-2 flex flex-wrap items-center gap-4">
+                  <Link
+                    href="/services/property-due-diligence"
+                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white text-[#0B2545] font-display font-bold text-[14px] hover:bg-slate-100 transition-all shadow-md group/btn cursor-pointer"
+                  >
+                    <span>Explore Flagship Methodology</span>
+                    <span className="material-symbols-outlined text-[18px] group-hover/btn:translate-x-1 transition-transform">
+                      arrow_forward
+                    </span>
+                  </Link>
+
+                  <button
+                    type="button"
+                    onClick={onSelectForQuote}
+                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-display font-bold text-[14px] border border-white/20 transition-all cursor-pointer"
+                  >
+                    <span>Request Property Scope</span>
+                  </button>
+                </div>
               </div>
 
-              <div className="relative z-10 pt-5 mt-6 border-t border-white/15 flex items-center justify-between">
-                <Link
-                  href="/services/property-due-diligence"
-                  className="font-display font-bold text-[13px] sm:text-[14px] text-white hover:text-sky-200 transition-colors inline-flex items-center gap-1.5"
-                >
-                  <span>Explore Property Diligence</span>
-                  <span className="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">
-                    arrow_forward
-                  </span>
-                </Link>
-                <span className="w-2 h-2 rounded-full bg-emerald-400" title="Active Methodology" />
-              </div>
-            </TimelineContent>
+              {/* Right Column of Flagship: Integrated Scope Checklist & Highlights */}
+              <div className="lg:col-span-5 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-7 space-y-4">
+                <div className="text-xs font-mono font-bold uppercase tracking-widest text-sky-300 pb-2 border-b border-white/10">
+                  Integrated Scope Pillars
+                </div>
 
-            {/* Card 2: Seller & Promoter Due Diligence (Flex 1) */}
+                <div className="space-y-3 text-[14px] text-slate-200">
+                  <div className="flex items-start gap-3">
+                    <span className="material-symbols-outlined text-emerald-400 text-[18px] shrink-0 mt-0.5">verified</span>
+                    <div>
+                      <strong className="text-white block font-display">30-Year Ownership Deed Registers</strong>
+                      <span className="text-xs text-slate-300">Continuous title transfers, conveyance rolls &amp; boundary demarcation</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <span className="material-symbols-outlined text-sky-400 text-[18px] shrink-0 mt-0.5">person_search</span>
+                    <div>
+                      <strong className="text-white block font-display">Seller, Promoter &amp; Landowner Scrutiny</strong>
+                      <span className="text-xs text-slate-300">Identity disambiguation, DIN directorships, cross-entity debt &amp; PoA checks</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <span className="material-symbols-outlined text-blue-300 text-[18px] shrink-0 mt-0.5">lock_open</span>
+                    <div>
+                      <strong className="text-white block font-display">Encumbrance &amp; Charge Cross-Verification</strong>
+                      <span className="text-xs text-slate-300">Sub-Registrar Form 15/16 ECs, CERSAI bank charges &amp; municipal tax clearance</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <span className="material-symbols-outlined text-amber-400 text-[18px] shrink-0 mt-0.5">gavel</span>
+                    <div>
+                      <strong className="text-white block font-display">Litigation &amp; Land-Use Permissions</strong>
+                      <span className="text-xs text-slate-300">District/High Court dispute screening, NA conversion &amp; masterplan buffers</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </TimelineContent>
+
+          {/* 2. THE 4 STRATEGIC PRACTICE AREAS (2x2 Balanced Grid) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+            
+            {/* Card 2: Litigation, Legal & Regulatory */}
             <TimelineContent
               animationNum={1}
               customVariants={revealVariants}
               timelineRef={sectionRef}
-              className="flex-1 flex flex-col justify-between relative bg-gradient-to-br from-[#134074] via-[#103B6D] to-[#1E3A8A] text-white overflow-hidden rounded-2xl border border-blue-400/25 p-6 shadow-md hover:shadow-xl transition-all duration-300 group"
+              className="flex flex-col justify-between relative bg-white text-slate-800 overflow-hidden rounded-2xl border border-slate-200 p-7 shadow-xs hover:shadow-lg hover:border-[#0B2545]/30 transition-all duration-300 group"
             >
-              <div className="relative z-10">
+              <div>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-white/15 border border-white/25 flex items-center justify-center text-white group-hover:bg-white group-hover:text-[#134074] transition-all">
-                    <span className="material-symbols-outlined text-[20px]">person_search</span>
+                  <div className="w-11 h-11 rounded-xl bg-[#0B2545]/5 border border-[#0B2545]/10 flex items-center justify-center text-[#0B2545] group-hover:bg-[#0B2545] group-hover:text-white transition-all">
+                    <span className="material-symbols-outlined text-[22px]">gavel</span>
                   </div>
-                  <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-blue-100 bg-white/15 px-2.5 py-0.5 rounded-full border border-white/20">
-                    Counterparty &amp; Promoters
+                  <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 bg-slate-100 px-3 py-1 rounded-full border border-slate-200">
+                    Practice 02 // Legal Forums
                   </span>
                 </div>
 
-                <h3 className="font-display font-bold text-[18px] sm:text-[19px] text-white mb-2 leading-snug">
-                  Seller, Promoter &amp; Landowner Due Diligence
+                <h3 className="font-display font-extrabold text-[20px] text-[#0B2545] mb-2.5 leading-snug group-hover:text-[#134074] transition-colors">
+                  Litigation, Legal &amp; Regulatory Due Diligence
                 </h3>
 
-                <p className="font-body text-blue-100 text-[13px] sm:text-[14px] leading-relaxed">
-                  Scrutinize counterparty background, corporate shareholdings, dispute history, and reputational indicators.
+                <p className="font-body text-slate-600 text-[14px] sm:text-[15px] leading-relaxed mb-4">
+                  Systematic docket search across federal, state, district, and appellate tribunals (NCLT, DRT, High Courts) to evaluate disclosed and undisclosed legal exposure.
                 </p>
+
+                <div className="space-y-1.5 pt-2 text-[13px] text-slate-500 font-medium">
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-slate-400" />
+                    <span>Civil, commercial division &amp; partition disputes</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-slate-400" />
+                    <span>Insolvency (IBC/NCLT) &amp; debt recovery tribunal dockets</span>
+                  </div>
+                </div>
               </div>
 
-              <div className="relative z-10 pt-4 mt-5 border-t border-white/20 flex items-center justify-between">
+              <div className="pt-5 mt-6 border-t border-slate-100 flex items-center justify-between">
                 <Link
-                  href="/services/seller-promoter-due-diligence"
-                  className="font-display font-bold text-[13px] sm:text-[14px] text-white hover:text-blue-200 transition-colors inline-flex items-center gap-1.5"
+                  href="/services/litigation-regulatory-due-diligence"
+                  className="font-display font-bold text-[14px] text-[#0B2545] group-hover:text-[#134074] transition-colors inline-flex items-center gap-1.5"
                 >
-                  <span>Explore Counterparty Diligence</span>
+                  <span>Explore Litigation Methodology</span>
                   <span className="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">
                     arrow_forward
                   </span>
                 </Link>
               </div>
             </TimelineContent>
-          </div>
 
-          {/* COLUMN 2 (3 Equal Stacked Cards) */}
-          <div className="flex flex-col gap-5 h-full">
-            
-            {/* Card 3: Litigation, Legal & Regulatory */}
+            {/* Card 3: Vendor, Supplier & Third-Party Diligence */}
             <TimelineContent
               animationNum={2}
               customVariants={revealVariants}
               timelineRef={sectionRef}
-              className="flex-1 flex flex-col justify-between relative bg-white text-slate-800 overflow-hidden rounded-2xl border border-slate-200 p-6 shadow-2xs hover:shadow-md hover:border-[#134074]/30 transition-all duration-300 group"
+              className="flex flex-col justify-between relative bg-white text-slate-800 overflow-hidden rounded-2xl border border-slate-200 p-7 shadow-xs hover:shadow-lg hover:border-[#0B2545]/30 transition-all duration-300 group"
             >
               <div>
-                <div className="flex items-center justify-between mb-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-[#0B2545]/5 border border-[#0B2545]/10 flex items-center justify-center text-[#0B2545] group-hover:bg-[#0B2545] group-hover:text-white transition-all">
-                    <span className="material-symbols-outlined text-[20px]">gavel</span>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-11 h-11 rounded-xl bg-[#0B2545]/5 border border-[#0B2545]/10 flex items-center justify-center text-[#0B2545] group-hover:bg-[#0B2545] group-hover:text-white transition-all">
+                    <span className="material-symbols-outlined text-[22px]">verified_user</span>
                   </div>
-                  <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">
-                    Legal &amp; Regulatory
+                  <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 bg-slate-100 px-3 py-1 rounded-full border border-slate-200">
+                    Practice 03 // Supply Chain
                   </span>
                 </div>
 
-                <h3 className="font-display font-bold text-[17px] sm:text-[18px] text-[#0B2545] mb-2 leading-snug group-hover:text-[#134074] transition-colors">
-                  Litigation, Legal &amp; Regulatory Due Diligence
+                <h3 className="font-display font-extrabold text-[20px] text-[#0B2545] mb-2.5 leading-snug group-hover:text-[#134074] transition-colors">
+                  Vendor, Supplier &amp; Third-Party Due Diligence
                 </h3>
 
-                <p className="font-body text-slate-600 text-[13px] sm:text-[14px] leading-relaxed">
-                  Search court and tribunal dockets across federal, state, and appellate forums to identify disclosed and undisclosed legal exposure.
+                <p className="font-body text-slate-600 text-[14px] sm:text-[15px] leading-relaxed mb-4">
+                  Review business standing, active corporate registrations, beneficial ownership (UBO), and statutory defaults before onboarding or renewing critical relationships.
                 </p>
+
+                <div className="space-y-1.5 pt-2 text-[13px] text-slate-500 font-medium">
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-slate-400" />
+                    <span>Ultimate beneficial ownership (UBO) &amp; board vetting</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-slate-400" />
+                    <span>Sanctions, watchlists &amp; public debarment screening</span>
+                  </div>
+                </div>
               </div>
 
-              <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
+              <div className="pt-5 mt-6 border-t border-slate-100 flex items-center justify-between">
                 <Link
-                  href="/services/litigation-regulatory-due-diligence"
-                  className="font-display font-bold text-[13px] sm:text-[14px] text-[#0B2545] group-hover:text-[#134074] transition-colors inline-flex items-center gap-1.5"
+                  href="/services/vendor-third-party-due-diligence"
+                  className="font-display font-bold text-[14px] text-[#0B2545] group-hover:text-[#134074] transition-colors inline-flex items-center gap-1.5"
                 >
-                  <span>Explore Litigation Research</span>
+                  <span>Explore Third-Party Methodology</span>
                   <span className="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">
                     arrow_forward
                   </span>
@@ -214,38 +288,49 @@ export default function ServicesSection({ onSelectForQuote }) {
               </div>
             </TimelineContent>
 
-            {/* Card 4: Vendor & Third-Party Diligence */}
+            {/* Card 4: Fraud Risk & Investigative Intelligence */}
             <TimelineContent
               animationNum={3}
               customVariants={revealVariants}
               timelineRef={sectionRef}
-              className="flex-1 flex flex-col justify-between relative bg-white text-slate-800 overflow-hidden rounded-2xl border border-slate-200 p-6 shadow-2xs hover:shadow-md hover:border-[#134074]/30 transition-all duration-300 group"
+              className="flex flex-col justify-between relative bg-white text-slate-800 overflow-hidden rounded-2xl border border-slate-200 p-7 shadow-xs hover:shadow-lg hover:border-[#0B2545]/30 transition-all duration-300 group"
             >
               <div>
-                <div className="flex items-center justify-between mb-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-[#0B2545]/5 border border-[#0B2545]/10 flex items-center justify-center text-[#0B2545] group-hover:bg-[#0B2545] group-hover:text-white transition-all">
-                    <span className="material-symbols-outlined text-[20px]">verified_user</span>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-11 h-11 rounded-xl bg-[#0B2545]/5 border border-[#0B2545]/10 flex items-center justify-center text-[#0B2545] group-hover:bg-[#0B2545] group-hover:text-white transition-all">
+                    <span className="material-symbols-outlined text-[22px]">manage_search</span>
                   </div>
-                  <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">
-                    Vendors &amp; Supply Chain
+                  <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 bg-slate-100 px-3 py-1 rounded-full border border-slate-200">
+                    Practice 04 // Forensic Review
                   </span>
                 </div>
 
-                <h3 className="font-display font-bold text-[17px] sm:text-[18px] text-[#0B2545] mb-2 leading-snug group-hover:text-[#134074] transition-colors">
-                  Vendor, Supplier &amp; Third-Party Due Diligence
+                <h3 className="font-display font-extrabold text-[20px] text-[#0B2545] mb-2.5 leading-snug group-hover:text-[#134074] transition-colors">
+                  Fraud Risk &amp; Investigative Intelligence
                 </h3>
 
-                <p className="font-body text-slate-600 text-[13px] sm:text-[14px] leading-relaxed">
-                  Verify business standing, management integrity, and statutory filings before onboarding critical operational partners.
+                <p className="font-body text-slate-600 text-[14px] sm:text-[15px] leading-relaxed mb-4">
+                  Structured investigative analysis comparing filings across repositories to identify circular arrangements, shadow networks, undisclosed conflicts, and anomalies.
                 </p>
+
+                <div className="space-y-1.5 pt-2 text-[13px] text-slate-500 font-medium">
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-slate-400" />
+                    <span>Discrepancy detection across corporate &amp; revenue filings</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-slate-400" />
+                    <span>Open-source intelligence (OSINT) &amp; relationship mapping</span>
+                  </div>
+                </div>
               </div>
 
-              <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
+              <div className="pt-5 mt-6 border-t border-slate-100 flex items-center justify-between">
                 <Link
-                  href="/services/vendor-third-party-due-diligence"
-                  className="font-display font-bold text-[13px] sm:text-[14px] text-[#0B2545] group-hover:text-[#134074] transition-colors inline-flex items-center gap-1.5"
+                  href="/services/fraud-investigative-intelligence"
+                  className="font-display font-bold text-[14px] text-[#0B2545] group-hover:text-[#134074] transition-colors inline-flex items-center gap-1.5"
                 >
-                  <span>Explore Third-Party Diligence</span>
+                  <span>Explore Investigative Intelligence</span>
                   <span className="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">
                     arrow_forward
                   </span>
@@ -258,31 +343,42 @@ export default function ServicesSection({ onSelectForQuote }) {
               animationNum={4}
               customVariants={revealVariants}
               timelineRef={sectionRef}
-              className="flex-1 flex flex-col justify-between relative bg-white text-slate-800 overflow-hidden rounded-2xl border border-slate-200 p-6 shadow-2xs hover:shadow-md hover:border-[#134074]/30 transition-all duration-300 group"
+              className="flex flex-col justify-between relative bg-white text-slate-800 overflow-hidden rounded-2xl border border-slate-200 p-7 shadow-xs hover:shadow-lg hover:border-[#0B2545]/30 transition-all duration-300 group"
             >
               <div>
-                <div className="flex items-center justify-between mb-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-[#0B2545]/5 border border-[#0B2545]/10 flex items-center justify-center text-[#0B2545] group-hover:bg-[#0B2545] group-hover:text-white transition-all">
-                    <span className="material-symbols-outlined text-[20px]">account_tree</span>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-11 h-11 rounded-xl bg-[#0B2545]/5 border border-[#0B2545]/10 flex items-center justify-center text-[#0B2545] group-hover:bg-[#0B2545] group-hover:text-white transition-all">
+                    <span className="material-symbols-outlined text-[22px]">account_tree</span>
                   </div>
-                  <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">
-                    Asset &amp; Ownership
+                  <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 bg-slate-100 px-3 py-1 rounded-full border border-slate-200">
+                    Practice 05 // Asset Trace
                   </span>
                 </div>
 
-                <h3 className="font-display font-bold text-[17px] sm:text-[18px] text-[#0B2545] mb-2 leading-snug group-hover:text-[#134074] transition-colors">
+                <h3 className="font-display font-extrabold text-[20px] text-[#0B2545] mb-2.5 leading-snug group-hover:text-[#134074] transition-colors">
                   Asset, Ownership &amp; Wealth Intelligence
                 </h3>
 
-                <p className="font-body text-slate-600 text-[13px] sm:text-[14px] leading-relaxed">
-                  Map lawfully accessible property holdings, corporate ownership links, beneficial structures, and public filings.
+                <p className="font-body text-slate-600 text-[14px] sm:text-[15px] leading-relaxed mb-4">
+                  Research lawfully accessible real estate holdings, corporate equity stakes, SPV holding networks, and registered charges to support recovery and enforcement counsel.
                 </p>
+
+                <div className="space-y-1.5 pt-2 text-[13px] text-slate-500 font-medium">
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-slate-400" />
+                    <span>Corporate shareholding trees &amp; directorship stakes</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-slate-400" />
+                    <span>CERSAI &amp; MCA Index of Charges secured debt mapping</span>
+                  </div>
+                </div>
               </div>
 
-              <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
+              <div className="pt-5 mt-6 border-t border-slate-100 flex items-center justify-between">
                 <Link
                   href="/services/asset-ownership-intelligence"
-                  className="font-display font-bold text-[13px] sm:text-[14px] text-[#0B2545] group-hover:text-[#134074] transition-colors inline-flex items-center gap-1.5"
+                  className="font-display font-bold text-[14px] text-[#0B2545] group-hover:text-[#134074] transition-colors inline-flex items-center gap-1.5"
                 >
                   <span>Explore Asset Intelligence</span>
                   <span className="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">
@@ -291,91 +387,7 @@ export default function ServicesSection({ onSelectForQuote }) {
                 </Link>
               </div>
             </TimelineContent>
-          </div>
 
-          {/* COLUMN 3 */}
-          <div className="flex flex-col gap-5 h-full">
-            
-            {/* Card 6: M&A, Investment & Transaction (Flex 1) */}
-            <TimelineContent
-              animationNum={5}
-              customVariants={revealVariants}
-              timelineRef={sectionRef}
-              className="flex-1 flex flex-col justify-between relative bg-gradient-to-br from-[#134074] via-[#103B6D] to-[#1E3A8A] text-white overflow-hidden rounded-2xl border border-blue-400/25 p-6 shadow-md hover:shadow-xl transition-all duration-300 group"
-            >
-              <div className="relative z-10">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-white/15 border border-white/25 flex items-center justify-center text-white group-hover:bg-white group-hover:text-[#134074] transition-all">
-                    <span className="material-symbols-outlined text-[20px]">handshake</span>
-                  </div>
-                  <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-blue-100 bg-white/15 px-2.5 py-0.5 rounded-full border border-white/20">
-                    M&amp;A &amp; Private Equity
-                  </span>
-                </div>
-
-                <h3 className="font-display font-bold text-[18px] sm:text-[19px] text-white mb-2 leading-snug">
-                  M&amp;A, Investment &amp; Transaction Due Diligence
-                </h3>
-
-                <p className="font-body text-blue-100 text-[13px] sm:text-[14px] leading-relaxed">
-                  Support transaction decisions with country-specific target scrutiny, founder track-record vetting, and regulatory filings.
-                </p>
-              </div>
-
-              <div className="relative z-10 pt-4 mt-5 border-t border-white/20 flex items-center justify-between">
-                <Link
-                  href="/services/ma-investment-due-diligence"
-                  className="font-display font-bold text-[13px] sm:text-[14px] text-white hover:text-blue-200 transition-colors inline-flex items-center gap-1.5"
-                >
-                  <span>Explore Transaction Diligence</span>
-                  <span className="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">
-                    arrow_forward
-                  </span>
-                </Link>
-              </div>
-            </TimelineContent>
-
-            {/* Card 7: Fraud Risk & Investigative Intelligence (Flex 1.35) */}
-            <TimelineContent
-              animationNum={6}
-              customVariants={revealVariants}
-              timelineRef={sectionRef}
-              className="flex-[1.35] flex flex-col justify-between relative bg-[#0B2545] text-white overflow-hidden rounded-2xl border border-[#133966] p-6 sm:p-7 shadow-md hover:shadow-xl transition-all duration-300 group"
-            >
-              <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff12_1px,transparent_1px),linear-gradient(to_bottom,#ffffff12_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_0%,#000_70%,transparent_110%)] pointer-events-none" />
-              
-              <div className="relative z-10">
-                <div className="flex items-center justify-between mb-5">
-                  <div className="w-11 h-11 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-teal-300 group-hover:bg-white group-hover:text-[#0B2545] transition-all">
-                    <span className="material-symbols-outlined text-[22px]">manage_search</span>
-                  </div>
-                  <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-teal-200 bg-white/10 px-2.5 py-1 rounded-full border border-white/15">
-                    Investigative Intelligence
-                  </span>
-                </div>
-
-                <h3 className="font-display font-extrabold text-[20px] sm:text-[22px] text-white mb-2.5 leading-snug group-hover:text-teal-200 transition-colors">
-                  Fraud Risk &amp; Investigative Intelligence
-                </h3>
-
-                <p className="font-body text-slate-200 text-[14px] sm:text-[15px] leading-relaxed font-light">
-                  Investigate discrepancies across official repositories to document undisclosed affiliations, conflicts, and anomalous risk indicators.
-                </p>
-              </div>
-
-              <div className="relative z-10 pt-5 mt-6 border-t border-white/15 flex items-center justify-between">
-                <Link
-                  href="/services/fraud-investigative-intelligence"
-                  className="font-display font-bold text-[13px] sm:text-[14px] text-white hover:text-teal-200 transition-colors inline-flex items-center gap-1.5"
-                >
-                  <span>Explore Investigative Intelligence</span>
-                  <span className="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">
-                    arrow_forward
-                  </span>
-                </Link>
-                <span className="w-2 h-2 rounded-full bg-teal-400" title="Forensic Scrutiny" />
-              </div>
-            </TimelineContent>
           </div>
 
         </div>

@@ -49,7 +49,7 @@ export default function Hero({ onOpenConsultation }) {
 
             {/* Supporting Paragraph */}
             <p className="font-body text-[17px] sm:text-[18px] lg:text-[19px] text-slate-200 max-w-xl mb-8 leading-relaxed font-light">
-              FACET Verify helps organisations investigate relevant risks, understand ownership and relationships, and make more informed decisions through structured due diligence and investigative intelligence.
+              FACET helps organisations investigate relevant risks, understand ownership and relationships, and make more informed decisions through structured due diligence and investigative intelligence.
             </p>
 
             {/* Primary & Secondary Action CTAs */}

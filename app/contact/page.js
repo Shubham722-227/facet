@@ -74,31 +74,31 @@ export default function ContactPage() {
                     <span className="material-symbols-outlined text-[20px]">mail</span>
                   </div>
                   <div>
-                    <div className="font-display font-bold text-[15px] text-primary">Email Enquiries</div>
-                    <div className="font-body text-[15px] text-slate-600">{BRAND.email}</div>
-                    <div className="text-[12px] text-slate-400 mt-0.5">Scoping proposals within 1 business day</div>
+                    <div className="font-display font-bold text-[15px] text-primary">Corporate Enquiries &amp; Scoping</div>
+                    <div className="font-body text-[15px] text-slate-700 font-semibold">{BRAND.email}</div>
+                    <div className="text-[12px] text-slate-500 mt-0.5">Formal scope proposals &amp; feasibility assessment within 24 business hours</div>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-primary shrink-0">
-                    <span className="material-symbols-outlined text-[20px]">call</span>
+                    <span className="material-symbols-outlined text-[20px]">chat</span>
                   </div>
                   <div>
-                    <div className="font-display font-bold text-[15px] text-primary">Telephone / WhatsApp</div>
-                    <div className="font-body text-[15px] text-slate-600">{BRAND.phone}</div>
-                    <div className="text-[12px] text-slate-400 mt-0.5">Mon–Fri: 09:30–18:30 IST</div>
+                    <div className="font-display font-bold text-[15px] text-primary">WhatsApp &amp; Client Liaison Desk</div>
+                    <div className="font-body text-[14px] text-slate-700">Available upon bilateral NDA execution</div>
+                    <div className="text-[12px] text-slate-500 mt-0.5">Dedicated liaison for active deal windows &amp; urgent mandates</div>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-primary shrink-0">
-                    <span className="material-symbols-outlined text-[20px]">location_on</span>
+                    <span className="material-symbols-outlined text-[20px]">corporate_fare</span>
                   </div>
                   <div>
-                    <div className="font-display font-bold text-[15px] text-primary">Headquarters</div>
-                    <div className="font-body text-[15px] text-slate-600">{BRAND.address}</div>
-                    <div className="text-[12px] text-slate-400 mt-0.5">Appointments scheduled following mutual scoping</div>
+                    <div className="font-display font-bold text-[15px] text-primary">Operations &amp; Research Desks</div>
+                    <div className="font-body text-[14px] text-slate-700">{BRAND.address}</div>
+                    <div className="text-[12px] text-slate-500 mt-0.5">In-person consultations by prior appointment following mutual scoping</div>
                   </div>
                 </div>
               </div>

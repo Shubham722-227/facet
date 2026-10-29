@@ -17,9 +17,10 @@ export default function MandateCTA({ onOpenConsultation }) {
             {/* Content on the Left */}
             <div className="lg:col-span-7">
               <div className="flex items-center gap-3 mb-6">
-                <img src="/complete-logo-white.svg" alt="FACET Verify" className="h-9 w-auto" />
-                <span className="font-display font-bold text-blue-200 text-[13px] uppercase tracking-wider pl-3 border-l border-white/20">
-                  Start a Scoped Engagement
+                <img src="/logo.svg" alt="FACET" className="h-7 w-auto object-contain brightness-0 invert" />
+                <span className="font-display font-black text-xl tracking-wider text-white">FACET</span>
+                <span className="font-display font-semibold text-blue-200 text-[13px] uppercase tracking-wider pl-3 border-l border-white/20">
+                  Scoped Mandate Desk
                 </span>
               </div>
 
@@ -28,7 +29,7 @@ export default function MandateCTA({ onOpenConsultation }) {
               </h2>
 
               <p className="font-body text-[17px] sm:text-[19px] text-slate-300 mb-8 leading-relaxed">
-                Initiate due diligence across the United States, Europe, the UK, or India. Tell us what you are investigating, the target jurisdiction, transaction timeline, and critical risk questions. We will outline accessible public records, recommended scope, and estimated turnaround.
+                Initiate due diligence across the United States, the United Kingdom, Continental Europe, or India. Tell us what you are investigating, the target jurisdiction, transaction timeline, and critical risk questions. We will outline accessible public records, recommended scope, and estimated turnaround under bilateral NDA.
               </p>
 
               <div className="flex flex-wrap items-center gap-4 mb-8">
