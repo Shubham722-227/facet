@@ -106,7 +106,9 @@ export default function Hero({ onOpenConsultation }) {
               <div className="rounded-xl overflow-hidden border border-white/20 bg-[#0B2545]">
                 <img
                   src="/facet_dashboard.png"
-                  alt="FACET Verify Property Due Diligence Dashboard"
+                  alt="FACET Property Due Diligence Dashboard"
+                  loading="eager"
+                  decoding="async"
                   className="w-full h-auto object-contain block"
                 />
               </div>
@@ -116,7 +118,7 @@ export default function Hero({ onOpenConsultation }) {
         </div>
       </section>
 
-      {/* 5. Right-Side Oversized Dashboard Interface (Positioned just like previous version) */}
+      {/* 5. Right-Side Oversized Dashboard Interface */}
       <div
         className="hidden lg:block absolute top-[52%] -translate-y-1/2 left-[56%] xl:left-[55%] 2xl:left-[53%] w-[56vw] min-w-[780px] max-w-[1200px] z-10 select-none pointer-events-none"
         aria-hidden="true"
@@ -125,7 +127,9 @@ export default function Hero({ onOpenConsultation }) {
           <div className="rounded-xl overflow-hidden border border-white/20 bg-[#0B2545]">
             <img
               src="/facet_dashboard.png"
-              alt="FACET Verify Property Due Diligence Dashboard"
+              alt="FACET Property Due Diligence Dashboard"
+              loading="eager"
+              decoding="async"
               className="w-full h-auto object-cover object-left block"
             />
           </div>
