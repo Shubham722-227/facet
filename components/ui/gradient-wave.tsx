@@ -9,6 +9,20 @@ function normalizeColor(hexCode: number): number[] {
   ];
 }
 
+function isWebGLAvailable(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    const testCanvas = document.createElement("canvas");
+    return Boolean(
+      window.WebGLRenderingContext &&
+        (testCanvas.getContext("webgl") ||
+          testCanvas.getContext("experimental-webgl"))
+    );
+  } catch {
+    return false;
+  }
+}
+
 class MiniGl {
   canvas: HTMLCanvasElement;
   gl: WebGLRenderingContext;
@@ -24,8 +38,12 @@ class MiniGl {
 
   constructor(canvas: HTMLCanvasElement) {
     this.canvas = canvas;
-    const gl = this.canvas.getContext("webgl", { antialias: true });
-    if (!gl) throw new Error("WebGL not supported");
+    const gl = (this.canvas.getContext("webgl", { antialias: true }) ||
+      this.canvas.getContext("experimental-webgl")) as WebGLRenderingContext | null;
+    if (!gl) {
+      this.gl = null as any;
+      return;
+    }
     this.gl = gl;
 
     const context = this.gl;
@@ -699,6 +717,10 @@ export function GradientWave({
   useEffect(() => {
     if (!containerRef.current) return;
 
+    if (!isWebGLAvailable()) {
+      return;
+    }
+
     const canvas = document.createElement("canvas");
     Object.assign(canvas.style, {
       position: "absolute",
@@ -712,25 +734,36 @@ export function GradientWave({
 
     try {
       const gradient = new Gradient(canvas, colors);
+      if (!gradient.minigl?.gl) {
+        if (containerRef.current?.contains(canvas)) {
+          containerRef.current.removeChild(canvas);
+        }
+        return;
+      }
       gradientRef.current = gradient;
 
       // apply props to uniforms
-      gradient.mesh.material.uniforms.u_shadow_power.value = shadowPower;
-      gradient.mesh.material.uniforms.u_darken_top.value = darkenTop ? 1 : 0;
-      gradient.mesh.material.uniforms.u_global.value.noiseFreq.value =
-        noiseFrequency;
-      gradient.mesh.material.uniforms.u_global.value.noiseSpeed.value =
-        noiseSpeed;
+      if (gradient.mesh?.material?.uniforms) {
+        gradient.mesh.material.uniforms.u_shadow_power.value = shadowPower;
+        gradient.mesh.material.uniforms.u_darken_top.value = darkenTop ? 1 : 0;
+        gradient.mesh.material.uniforms.u_global.value.noiseFreq.value =
+          noiseFrequency;
+        gradient.mesh.material.uniforms.u_global.value.noiseSpeed.value =
+          noiseSpeed;
 
-      // deform settings (only if provided)
-      Object.assign(gradient.mesh.material.uniforms.u_vertDeform.value, {
-        ...gradient.mesh.material.uniforms.u_vertDeform.value,
-        ...deform,
-      });
+        // deform settings (only if provided)
+        Object.assign(gradient.mesh.material.uniforms.u_vertDeform.value, {
+          ...gradient.mesh.material.uniforms.u_vertDeform.value,
+          ...deform,
+        });
+      }
 
       if (isPlaying) gradient.start();
-    } catch (error) {
-      console.error("Failed to initialize gradient:", error);
+    } catch {
+      // Graceful fallback to CSS gradient without triggering console error overlays
+      if (containerRef.current?.contains(canvas)) {
+        containerRef.current.removeChild(canvas);
+      }
     }
 
     return () => {
