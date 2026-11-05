@@ -74,16 +74,16 @@ export default function Footer() {
           {/* Column 3: Commercial Model */}
           <div className="flex flex-col gap-2.5">
             <span className="text-[11px] font-mono uppercase tracking-widest text-slate-400 font-bold">
-              Pricing & Cadence
+              Engagement &amp; Delivery
             </span>
             <ul className="space-y-2 text-slate-300">
               <li>
-                <Link href="/pricing" className="hover:text-white transition-colors">
+                <Link href="/get-a-quote" className="hover:text-white transition-colors">
                   Fixed-Price Core Report
                 </Link>
               </li>
               <li>
-                <Link href="/pricing" className="hover:text-white transition-colors">
+                <Link href="/get-a-quote" className="hover:text-white transition-colors">
                   Optional Add-On Modules
                 </Link>
               </li>

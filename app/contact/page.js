@@ -10,6 +10,7 @@ import Image from "next/image";
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     org: "",
@@ -23,9 +24,38 @@ export default function ContactPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 600));
-    setLoading(false);
-    setSubmitted(true);
+    setErrorMessage("");
+
+    try {
+      const data = new FormData();
+      data.append("access_key", "d4972cd1-ceef-4e0d-a074-812d2a611661");
+      data.append("subject", `New Direct Contact Enquiry from ${formData.name}`);
+      data.append("from_name", "FACET Verify - Contact Desk");
+      data.append("name", formData.name);
+      data.append("organization", formData.org || "Not specified");
+      data.append("email", formData.email);
+      data.append("phone", formData.phone || "Not specified");
+      data.append("service_line", formData.service);
+      data.append("message", formData.brief);
+      data.append("bilateral_nda_requested", formData.nda ? "Yes" : "No");
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: data,
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setSubmitted(true);
+      } else {
+        setErrorMessage(result.message || "Failed to submit enquiry. Please try again or email info@facetverify.com.");
+      }
+    } catch (err) {
+      setErrorMessage("Network error occurred while submitting. Please check your connection or contact info@facetverify.com.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -277,6 +307,12 @@ export default function ContactPage() {
                       Please send a standard bilateral Non-Disclosure Agreement (NDA) prior to receiving detailed deal identifiers.
                     </label>
                   </div>
+
+                  {errorMessage && (
+                    <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-xs font-semibold text-red-700">
+                      {errorMessage}
+                    </div>
+                  )}
 
                   <button
                     type="submit"

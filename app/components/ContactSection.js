@@ -15,15 +15,44 @@ export default function ContactSection() {
     message: "",
     consent: true
   });
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email) return;
 
     setLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 800));
-    setLoading(false);
-    setSubmitted(true);
+    setErrorMessage("");
+
+    try {
+      const data = new FormData();
+      data.append("access_key", "d4972cd1-ceef-4e0d-a074-812d2a611661");
+      data.append("subject", `New Contact Section Enquiry from ${formData.name}`);
+      data.append("from_name", "FACET Verify - Contact Section");
+      data.append("name", formData.name);
+      data.append("company", formData.company || "Not specified");
+      data.append("email", formData.email);
+      data.append("phone", formData.phone || "Not specified");
+      data.append("service_line", formData.service);
+      data.append("message", formData.message);
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: data,
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setSubmitted(true);
+      } else {
+        setErrorMessage(result.message || "Failed to submit. Please try again or email info@facetverify.com.");
+      }
+    } catch (err) {
+      setErrorMessage("Network error occurred. Please try again or contact info@facetverify.com.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

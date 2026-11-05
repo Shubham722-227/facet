@@ -6,6 +6,7 @@ import { SERVICES } from "../data/content";
 export default function ConsultationModal({ isOpen, onClose }) {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [formData, setFormData] = useState({
     mandateType: "Property & Real Estate Due Diligence",
     targetEntity: "",
@@ -25,9 +26,40 @@ export default function ConsultationModal({ isOpen, onClose }) {
     if (!formData.name || !formData.email) return;
 
     setLoading(true);
-    await new Promise((res) => setTimeout(res, 600));
-    setLoading(false);
-    setSubmitted(true);
+    setErrorMessage("");
+
+    try {
+      const data = new FormData();
+      data.append("access_key", "e1cab7d1-fa49-4dd4-b583-547fbb161064");
+      data.append("subject", `New Consultation Scope Request from ${formData.name} (${formData.mandateType})`);
+      data.append("from_name", "FACET Verify - Consultation Modal");
+      data.append("name", formData.name);
+      data.append("email", formData.email);
+      data.append("phone", formData.phone || "Not specified");
+      data.append("organization", formData.organization || "Not specified");
+      data.append("mandate_vertical", formData.mandateType);
+      data.append("target_entity_or_property", formData.targetEntity || "Not specified");
+      data.append("jurisdictions", formData.jurisdictions);
+      data.append("urgency", formData.urgency);
+      data.append("bilateral_nda_required", formData.ndaRequired ? "Yes" : "No");
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: data,
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setSubmitted(true);
+      } else {
+        setErrorMessage(result.message || "Failed to submit request. Please try again or email info@facetverify.com.");
+      }
+    } catch (err) {
+      setErrorMessage("Network error occurred. Please check your connection or email info@facetverify.com.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -201,6 +233,12 @@ export default function ConsultationModal({ isOpen, onClose }) {
                 Non-Disclosure Agreement (NDA) requested prior to sharing detailed target transaction documentation.
               </label>
             </div>
+
+            {errorMessage && (
+              <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-xs font-semibold text-red-700">
+                {errorMessage}
+              </div>
+            )}
 
             <button
               type="submit"

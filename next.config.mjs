@@ -19,6 +19,11 @@ const nextConfig = {
         destination: "/industries",
         permanent: true,
       },
+      {
+        source: "/pricing",
+        destination: "/get-a-quote",
+        permanent: true,
+      },
     ];
   },
 };

@@ -109,11 +109,37 @@ export default function ScopeBuilder({ initialServiceId = "", onClose, isModal =
     setLoading(true);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 800));
-      setSubmitted(true);
-      setLoading(false);
+      const data = new FormData();
+      data.append("access_key", "472cadfd-430e-472b-94ab-41c7f5fe5d36");
+      data.append("subject", `New Scope Builder Request: ${formData.contactName} (${currentServiceObj.title})`);
+      data.append("from_name", "FACET Verify - Scope Builder");
+      data.append("client_name", formData.contactName);
+      data.append("company_or_firm", formData.company || "Not specified");
+      data.append("email", formData.email);
+      data.append("phone", formData.phone || "Not specified");
+      data.append("service_vertical", currentServiceObj.title);
+      data.append("subject_identifier", formData.subjectIdentifier || "Not specified");
+      data.append("jurisdiction_corridor", formData.jurisdiction);
+      data.append("turnaround_urgency", formData.urgency);
+      data.append("selected_modules", formData.researchAreas.join(", "));
+      data.append("confidential_notes", formData.purpose || "None provided");
+      data.append("bilateral_nda_required", formData.ndaRequired ? "Yes" : "No");
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: data,
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setSubmitted(true);
+      } else {
+        setErrorMessage(result.message || "Unable to submit scope request at this time. Please contact info@facetverify.com.");
+      }
     } catch (err) {
-      setErrorMessage("Unable to process request at this time. Please contact info@facetverify.com.");
+      setErrorMessage("A network error occurred while transmitting your scope. Please try again or contact info@facetverify.com.");
+    } finally {
       setLoading(false);
     }
   };
