@@ -2,24 +2,39 @@ import "./globals.css";
 import WhatsAppBubble from "./components/WhatsAppBubble";
 
 export const metadata = {
-  title: "FACET Verify | Global Due Diligence & Investigative Intelligence",
-  description: "Country-specific due diligence, public-record verification, and investigative intelligence across the United States, Europe, the UK, and India. Supporting M&A, institutional lending, and executive risk assessment.",
+  metadataBase: new URL("https://www.facetverify.com"),
+  title: {
+    default: "FACET Verify | India's Best Due Diligence & Investigative Intelligence Company",
+    template: "%s | FACET Verify",
+  },
+  description: "India's premier due diligence and corporate investigative intelligence company. Sourced public-record verification, promoter background checks, 30-year property title verification, and litigation risk screening across India, the US, UK, and Europe.",
   keywords: [
+    "Best Due Diligence Company in India",
+    "India Due Diligence Firm",
     "FACET Verify",
-    "Country-Specific Due Diligence",
-    "Global Due Diligence",
-    "Investigative Intelligence",
-    "US Due Diligence",
-    "European Company Search",
-    "India Due Diligence",
-    "Promoter Background Check",
-    "PACER Litigation Verification",
+    "Corporate Due Diligence India",
+    "Property Due Diligence India",
+    "Promoter Background Verification",
+    "Investigative Intelligence Firm",
+    "Land Title Verification India",
+    "Litigation Screening e-Courts",
+    "NCLT Insolvency Checks",
     "Vendor Due Diligence",
-    "M&A Due Diligence",
-    "OFAC Sanctions Screening",
-    "Asset & Ownership Intelligence"
+    "M&A Due Diligence India",
+    "Asset & Ownership Intelligence",
+    "Bengaluru Due Diligence Agency"
   ],
-  authors: [{ name: "FACET Verify" }],
+  authors: [{ name: "FACET Verify", url: "https://www.facetverify.com" }],
+  creator: "FACET Verify",
+  publisher: "FACET Verify",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: [
       { url: "/icon.png", sizes: "32x32", type: "image/png" },
@@ -29,12 +44,144 @@ export const metadata = {
     shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png"
   },
+  manifest: "/manifest.json",
   openGraph: {
-    title: "FACET Verify | Due Diligence & Investigative Intelligence",
-    description: "Make Confident Decisions. See the Full Picture. Structured research, public-record verification and investigative analysis.",
+    title: "FACET Verify | India's Best Due Diligence & Investigative Intelligence Company",
+    description: "Make Confident Decisions. See the Full Picture. Sourced public-record verification, promoter background checks, land title due diligence, and litigation risk screening.",
+    url: "https://www.facetverify.com",
     siteName: "FACET Verify",
+    images: [
+      {
+        url: "/facet_hero.png",
+        width: 1200,
+        height: 630,
+        alt: "FACET Verify - India's Best Due Diligence Company",
+      },
+    ],
+    locale: "en_IN",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "FACET Verify | India's Best Due Diligence Company",
+    description: "Make Confident Decisions. See the Full Picture. Sourced public-record verification and investigative analysis.",
+    images: ["/facet_hero.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Organization", "ProfessionalService"],
+      "@id": "https://www.facetverify.com/#organization",
+      "name": "FACET Verify",
+      "legalName": "FACET (Fraud Analysis, Credibility & Estate Title)",
+      "url": "https://www.facetverify.com",
+      "logo": "https://www.facetverify.com/logo.svg",
+      "image": "https://www.facetverify.com/facet_hero.png",
+      "description": "FACET Verify is India's best due diligence and investigative intelligence company. Specialized in promoter background verification, 30-year property title verification, NCLT insolvency searches, and corporate litigation risk screening.",
+      "telephone": "+91 72890 87530",
+      "email": "info@facetverify.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Bengaluru Operations Hub",
+        "addressLocality": "Bengaluru",
+        "addressRegion": "Karnataka",
+        "postalCode": "560049",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 12.9716,
+        "longitude": 77.5946
+      },
+      "areaServed": [
+        { "@type": "Country", "name": "India" },
+        { "@type": "Country", "name": "United States" },
+        { "@type": "Country", "name": "United Kingdom" },
+        { "@type": "Country", "name": "European Union" }
+      ],
+      "priceRange": "$$",
+      "knowsAbout": [
+        "Corporate Due Diligence",
+        "Property Due Diligence India",
+        "Promoter Background Verification",
+        "Litigation Screening e-Courts",
+        "NCLT IBC Insolvency Searches",
+        "Asset Tracing and Ownership Intelligence",
+        "Vendor Risk Assessment",
+        "Fraud and Corporate Intelligence"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Due Diligence & Investigative Intelligence Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Property & Real Estate Due Diligence",
+              "url": "https://www.facetverify.com/services/property-due-diligence"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Litigation, Legal & Regulatory Due Diligence",
+              "url": "https://www.facetverify.com/services/litigation-regulatory-due-diligence"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Vendor & Third-Party Due Diligence",
+              "url": "https://www.facetverify.com/services/vendor-third-party-due-diligence"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Fraud & Corporate Investigative Intelligence",
+              "url": "https://www.facetverify.com/services/fraud-investigative-intelligence"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Asset & Ownership Intelligence",
+              "url": "https://www.facetverify.com/services/asset-ownership-intelligence"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.facetverify.com/#website",
+      "url": "https://www.facetverify.com",
+      "name": "FACET Verify",
+      "description": "India's Best Due Diligence Company and Investigative Intelligence Firm",
+      "publisher": {
+        "@id": "https://www.facetverify.com/#organization"
+      }
+    }
+  ]
 };
 
 export default function RootLayout({ children }) {
@@ -47,6 +194,11 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/icon.png" type="image/png" sizes="32x32" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Context" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
 
         {/* Modern, Highly Readable Typography: Plus Jakarta Sans & Inter */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
