@@ -59,7 +59,7 @@ export default function TermsPage() {
                 4. Governing Law & Dispute Resolution
               </h2>
               <p>
-                These terms shall be governed by and construed in accordance with the laws of India. Any disputes arising out of the use of this website shall be subject to the exclusive jurisdiction of the competent courts in Mumbai, Maharashtra.
+                These terms shall be governed by and construed in accordance with the laws of India. Any disputes arising out of the use of this website shall be subject to the exclusive jurisdiction of the competent courts in Bengaluru, Karnataka.
               </p>
             </div>
           </div>

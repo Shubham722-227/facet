@@ -1,4 +1,5 @@
 import "./globals.css";
+import WhatsAppBubble from "./components/WhatsAppBubble";
 
 export const metadata = {
   title: "FACET Verify | Global Due Diligence & Investigative Intelligence",
@@ -135,6 +136,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className="bg-surface-canvas text-on-surface font-body text-body-md antialiased selection:bg-facet-red selection:text-white">
         {children}
+        <WhatsAppBubble />
       </body>
     </html>
   );

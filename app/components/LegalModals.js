@@ -91,7 +91,7 @@ export default function LegalModals({ activeModal, onClose }) {
               </p>
               <h4 style={{ fontSize: "1rem", color: "var(--navy-primary)", fontWeight: "700", marginBottom: "0.5rem" }}>3. Governing Law</h4>
               <p>
-                All matters arising out of website usage and commercial engagements shall be governed by the laws of India, subject to the exclusive jurisdiction of the courts in Mumbai.
+                All matters arising out of website usage and commercial engagements shall be governed by the laws of India, subject to the exclusive jurisdiction of the courts in Bengaluru, Karnataka.
               </p>
             </div>
           )}

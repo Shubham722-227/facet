@@ -113,7 +113,7 @@ export default function ScopeBuilder({ initialServiceId = "", onClose, isModal =
       setSubmitted(true);
       setLoading(false);
     } catch (err) {
-      setErrorMessage("Unable to process request at this time. Please contact enquiries@facetverify.com.");
+      setErrorMessage("Unable to process request at this time. Please contact info@facetverify.com.");
       setLoading(false);
     }
   };

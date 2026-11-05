@@ -99,13 +99,22 @@ export default function Footer() {
             </span>
             <div className="space-y-2 text-slate-300">
               <a
-                href={`mailto:${BRAND.email || "enquiries@facetverify.com"}`}
+                href={`mailto:${BRAND.email || "info@facetverify.com"}`}
                 className="text-blue-400 hover:text-blue-300 font-mono text-[12px] block transition-colors"
               >
-                {BRAND.email || "enquiries@facetverify.com"}
+                {BRAND.email || "info@facetverify.com"}
+              </a>
+              <a
+                href={BRAND.whatsappUrl || "https://wa.me/917289087530"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-400 hover:text-emerald-300 text-[12px] font-medium flex items-center gap-1.5 transition-colors"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                <span>WhatsApp: +91 72890 87530</span>
               </a>
               <span className="text-slate-400 text-[12px] block">
-                Operations Hub · Mumbai
+                Operations Hub · Bengaluru, PIN 560049
               </span>
               <div className="pt-1 flex flex-wrap gap-x-3 gap-y-1 text-[12px] text-slate-400">
                 <Link href="/about" className="hover:text-white transition-colors">About</Link>

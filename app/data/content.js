@@ -12,10 +12,14 @@ export const BRAND = {
   heroHeadline: "Make Confident Decisions. See the Full Picture.",
   heroSubheadline: "FACET combines structured research, public-record verification and investigative analysis to help clients understand property, people, businesses, legal exposure and transaction risk before making important decisions.",
   corePromise: "Clear scope. Sourced findings. Practical risk context.",
-  email: "enquiries@facetverify.com",
-  phone: "Dedicated Engagement Desk via enquiries@facetverify.com",
-  whatsappNote: "Direct WhatsApp Client Desk available upon bilateral NDA execution",
-  address: "Mumbai Operations Hub · Global Research Corridors (US, UK, Europe & India)",
+  email: "info@facetverify.com",
+  phone: "+91 72890 87530",
+  whatsapp: "7289087530",
+  whatsappDisplay: "+91 72890 87530",
+  whatsappUrl: "https://wa.me/917289087530",
+  whatsappNote: "Direct WhatsApp Client Desk available via +91 72890 87530",
+  address: "Bengaluru, Karnataka – 560049, India",
+  operationsHub: "Operations Hub · Bengaluru, PIN 560049",
   disclaimerSnippet: "FACET reports are prepared for agreed scope using lawfully accessible sources. They do not constitute formal legal opinions or title guarantees.",
 };
 

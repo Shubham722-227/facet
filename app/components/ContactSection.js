@@ -66,7 +66,9 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <span style={{ fontSize: "0.75rem", textTransform: "uppercase", color: "var(--text-muted)", fontWeight: "700" }}>Confidential Inquiries</span>
-                  <div style={{ fontSize: "0.9375rem", fontWeight: "600", color: "var(--navy-primary)" }}>{BRAND.email}</div>
+                  <div style={{ fontSize: "0.9375rem", fontWeight: "600", color: "var(--navy-primary)" }}>
+                    <a href={`mailto:${BRAND.email}`} style={{ color: "inherit", textDecoration: "none" }}>{BRAND.email}</a>
+                  </div>
                   <span style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>PGP / Encrypted channel available on request</span>
                 </div>
               </div>
@@ -76,21 +78,30 @@ export default function ContactSection() {
                   width: "2.5rem",
                   height: "2.5rem",
                   borderRadius: "4px",
-                  background: "var(--bg-page)",
-                  border: "1px solid var(--border-light)",
+                  background: "#e6f9ed",
+                  border: "1px solid #b7ebc6",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  color: "var(--navy-primary)"
+                  color: "#25D366"
                 }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
                   </svg>
                 </div>
                 <div>
-                  <span style={{ fontSize: "0.75rem", textTransform: "uppercase", color: "var(--text-muted)", fontWeight: "700" }}>WhatsApp &amp; Client Liaison</span>
-                  <div style={{ fontSize: "0.9375rem", fontWeight: "600", color: "var(--navy-primary)" }}>Available upon bilateral NDA</div>
-                  <span style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>Dedicated direct line for active transaction windows</span>
+                  <span style={{ fontSize: "0.75rem", textTransform: "uppercase", color: "var(--text-muted)", fontWeight: "700" }}>Contact &amp; WhatsApp Desk</span>
+                  <div style={{ fontSize: "0.9375rem", fontWeight: "600" }}>
+                    <a
+                      href={BRAND.whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: "#25D366", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "0.25rem" }}
+                    >
+                      +91 72890 87530 &rarr;
+                    </a>
+                  </div>
+                  <span style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>Direct WhatsApp desk for active transaction windows &amp; scoping</span>
                 </div>
               </div>
 

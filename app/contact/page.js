@@ -90,30 +90,45 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <div className="font-display font-bold text-[15px] text-primary">Corporate Enquiries &amp; Scoping</div>
-                    <div className="font-body text-[15px] text-slate-700 font-semibold">{BRAND.email}</div>
+                    <a
+                      href={`mailto:${BRAND.email}`}
+                      className="font-body text-[15px] text-blue-600 hover:text-blue-800 font-semibold block transition-colors"
+                    >
+                      {BRAND.email}
+                    </a>
                     <div className="text-[12px] text-slate-500 mt-0.5">Formal scope proposals &amp; feasibility assessment within 24 business hours</div>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-primary shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100 flex items-center justify-center shrink-0">
                     <span className="material-symbols-outlined text-[20px]">chat</span>
                   </div>
                   <div>
-                    <div className="font-display font-bold text-[15px] text-primary">WhatsApp &amp; Client Liaison Desk</div>
-                    <div className="font-body text-[14px] text-slate-700">Available upon bilateral NDA execution</div>
-                    <div className="text-[12px] text-slate-500 mt-0.5">Dedicated liaison for active deal windows &amp; urgent mandates</div>
+                    <div className="font-display font-bold text-[15px] text-primary">Contact &amp; WhatsApp Desk</div>
+                    <a
+                      href={BRAND.whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-body text-[15px] text-emerald-600 hover:text-emerald-700 font-semibold flex items-center gap-2 transition-colors mt-0.5"
+                    >
+                      <span>+91 72890 87530</span>
+                      <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 uppercase tracking-wider inline-flex items-center gap-1">
+                        Chat on WhatsApp &rarr;
+                      </span>
+                    </a>
+                    <div className="text-[12px] text-slate-500 mt-0.5">Direct line for active transaction windows, immediate scoping &amp; quick queries</div>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-primary shrink-0">
-                    <span className="material-symbols-outlined text-[20px]">corporate_fare</span>
+                    <span className="material-symbols-outlined text-[20px]">location_on</span>
                   </div>
                   <div>
                     <div className="font-display font-bold text-[15px] text-primary">Operations &amp; Research Desks</div>
-                    <div className="font-body text-[14px] text-slate-700">{BRAND.address}</div>
-                    <div className="text-[12px] text-slate-500 mt-0.5">In-person consultations by prior appointment following mutual scoping</div>
+                    <div className="font-body text-[14px] text-slate-700 font-medium">{BRAND.address}</div>
+                    <div className="text-[12px] text-slate-500 mt-0.5">In-person consultations by prior appointment · Global Research Corridors</div>
                   </div>
                 </div>
               </div>

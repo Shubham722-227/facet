@@ -49,7 +49,7 @@ export default function DisclaimerPage() {
               Indian land registries, municipal development authorities, and judicial cause lists vary significantly in terms of digitization, indexing standards, and update frequencies across states and districts. A search indicating no active litigation or encumbrance at the time of query reflects only records accessible on that date.
             </p>
             <p className="pt-2 text-sm text-slate-500">
-              For further clarification or to request a customized Scope of Work, please contact our engagement team at <span className="font-semibold text-primary">enquiries@facetverify.com</span>.
+              For further clarification or to request a customized Scope of Work, please contact our engagement team at <a href="mailto:info@facetverify.com" className="font-semibold text-primary hover:underline">info@facetverify.com</a>.
             </p>
           </div>
         </section>
